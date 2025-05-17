@@ -15,7 +15,7 @@
   <!-- Role Selection -->
   <div id="role-selector" style="display: none;">
     <h1>Welcome to TRIV</h1>
-    <p>Choose your role: yeyyeyeyeyeye</p>
+    <p>Choose your role:</p>
     <div class="buttons">
       <a href="public/index.php" class="btn client-btn">Client</a>
       <a href="admin/admin.php" class="btn admin-btn">Admin</a>
