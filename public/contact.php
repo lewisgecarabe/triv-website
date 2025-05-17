@@ -91,7 +91,7 @@
                     <div class="icon">
                         <img src="../assets/images/phone.png" alt="Phone">
                     </div>
-                    <p>0919-670-918777</p> 
+                    <p>0919-670-9187</p> 
                 </div>
                 
                 <div class="contact-item">
