@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Founders - TRIV Design & Construction</title>
-    <link rel="stylesheet" href="style.css">
+    <title>TRIV Design & Construction</title>
+    <link rel="stylesheet" href="../assets/css/public-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="triv-logo.png" alt="TRIV Design & Construction">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">HOME</a></li>
-                <li><a href="services.php">SERVICES</a></li>
-                <li><a href="developers.php">DEVELOPERS</a></li>
-                <li><a href="contact.php">CONTACT US</a></li>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero developers-hero">
         <div class="hero-overlay"></div>
-        <img src="codings.jpg" alt="Code Background" class="hero-bg">
+        <img src="../assets/images/codings.jpg" alt="Code Background" class="hero-bg">
         <div class="hero-content">
             <h1>FOUNDERS</h1>
         </div>
@@ -71,21 +72,21 @@
         <div class="contact-info">
             <div class="contact-item">
                 <div class="icon">
-                    <img src="emails.png" alt="Email">
+                    <img src="../assets/images/email.png" alt="Email">
                 </div>
                 <p>nrvillanueva8@yahoo.com</p>
             </div>
             
             <div class="contact-item">
                 <div class="icon">
-                    <img src="phone.png" alt="Phone">
+                    <img src="../assets/images/phone.png" alt="Phone">
                 </div>
                 <p>0908-742-0857</p>
             </div>
             
             <div class="contact-item">
                 <div class="icon">
-                    <img src="location.jpg" alt="Location">
+                    <img src="../assets/images/location.jpg" alt="Location">
                 </div>
                 <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
             </div>
@@ -97,9 +98,9 @@
         </div>
     </section>
 
-    <footer>
+   <footer>
         <div class="footer-logo">
-            <img src="images/triv-logo.png" alt="TRIV Design & Construction">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <div class="copyright">
             <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>

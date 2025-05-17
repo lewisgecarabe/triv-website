@@ -42,9 +42,9 @@
             <a href="../public/developers.php" class="btn-red">Learn more →</a>
         </div>
         <div class="about-image">
-            <img src="building-construction.jpg" alt="Construction site" class="main-image">
+            <img src="../assets/images/building-construction.jpg" alt="Construction site" class="main-image">
             <div class="video-overlay">
-                <img src="../assets/notebook.jpg" alt="Construction plans" class="overlay-image">
+                <img src="../assets/images/notebook.jpg" alt="Construction plans" class="overlay-image">
                 <div class="video-btn">▶</div>
             </div>
         </div>
@@ -84,7 +84,7 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="../assets/triv-logo.png" alt="TRIV Design & Construction">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <div class="copyright">
             <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lewis Berrios, Lewis Guzman, Noel Villanueva'; ?>

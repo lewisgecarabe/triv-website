@@ -1,35 +1,36 @@
-<?php include 'functions.php'; ?>
+<?php include '../public/functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - TRIV Design & Construction</title>
-    <link rel="stylesheet" href="style.css">
+    <title>TRIV Design & Construction</title>
+    <link rel="stylesheet" href="../assets/css/public-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="triv-logo.png" alt="TRIV Design & Construction">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">HOME</a></li>
-                <li><a href="services.php">SERVICES</a></li>
-                <li><a href="developers.php">DEVELOPERS</a></li>
-                <li><a href="contact.php">CONTACT US</a></li>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="services-hero">
         <div class="hero-overlay"></div>
-        <img src="construction-bg.jpg" alt="Construction Site" class="hero-bg">
+        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
         <div class="services-content">
             <div class="services-info">
                 <h1>TRIV Construction Services</h1>
                 <div class="services-image">
-                    <img src="codings.jpg" alt="Construction Workers">
+                    <img src="../assets/images/codings.jpg" alt="Construction Workers">
                 </div>
                 <p class="services-description">
                     With years of experience in the construction industry, RMJE Construction Services Corporation has gained the expertise and technical knowledge needed to deliver exceptional quality across all the services we offer.
@@ -93,7 +94,7 @@
 
     <section class="cta-section">
         <div class="cta-overlay"></div>
-        <img src="images/construction-equipment.jpg" alt="Construction Equipment" class="cta-bg">
+        <img src="../images/construction-equipment.jpg" alt="Construction Equipment" class="cta-bg">
         <div class="cta-content">
             <h2>Ensure your project's success with TRIV Design & Construction — your reliable partner in design and construction project management.</h2>
             <p>Ready to build your project? Let's talk about your plans.</p>
@@ -103,7 +104,7 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="images/triv-logo.png" alt="TRIV Design & Construction">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <div class="copyright">
             <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>
