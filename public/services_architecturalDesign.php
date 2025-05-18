@@ -33,7 +33,7 @@
                         <p>From initial sketches to detailed plans, we guide you through each step of the design process. As a new firm, we take the time to listen carefully to your needs and work closely with you to create designs that balance your vision with practical requirements and local building regulations.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="images/architectural-detail.jpg" alt="Architectural design rendering from TRIV">
+                        <img src="../assets/images/architectural-detail.jpg" alt="Architectural design rendering from TRIV">
                     </div>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/architectural-project1.jpg" alt="TRIV Architectural Project 1">
+                            <img src="../assets/images/architectural-project1.jpg" alt="TRIV Architectural Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/architectural-project2.jpg" alt="TRIV Architectural Project 2">
+                            <img src="../assets/images/architectural-project2.jpg" alt="TRIV Architectural Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/architectural-project3.jpg" alt="TRIV Architectural Project 3">
+                            <img src="../assets/images/architectural-project3.jpg" alt="TRIV Architectural Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/architectural-project4.jpg" alt="TRIV Architectural Project 4">
+                            <img src="../assets/images/architectural-project4.jpg" alt="TRIV Architectural Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
@@ -122,7 +122,7 @@
                             <p>"TRIV's architectural team created a design for our corporate headquarters that perfectly balances form and function. The building has become a landmark in our city and provides an inspiring workspace for our employees."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client5.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client5.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Gabriel Tan</h4>
                                 <p>Director, Pinnacle Enterprises</p>
@@ -135,7 +135,7 @@
                             <p>"The architectural design TRIV created for our family home perfectly captured our vision while adding innovative elements we hadn't even considered. The result is a beautiful, functional space that exceeds our expectations."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client6.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client6.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Isabella and Ramon Mendoza</h4>
                                 <p>Homeowners</p>

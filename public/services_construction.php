@@ -33,7 +33,7 @@
                         <p>Safety and quality are our priorities. We follow building codes and regulations while working efficiently to deliver your project on time and within budget. As a new firm in Manila, we're committed to building our reputation through excellent workmanship and customer satisfaction.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="images/construction-detail.jpg" alt="Construction workers at a TRIV project site">
+                        <img src="../assets/images/construction-detail.jpg" alt="Construction workers at a TRIV project site">
                     </div>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/construction-project1.jpg" alt="TRIV Construction Project 1">
+                            <img src="../assets/images/construction-project1.jpg" alt="TRIV Construction Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/construction-project2.jpg" alt="TRIV Construction Project 2">
+                            <img src="../assets/images/construction-project2.jpg" alt="TRIV Construction Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/construction-project3.jpg" alt="TRIV Construction Project 3">
+                            <img src="../assets/images/construction-project3.jpg" alt="TRIV Construction Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/construction-project4.jpg" alt="TRIV Construction Project 4">
+                            <img src="../assets/images/construction-project4.jpg" alt="TRIV Construction Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
@@ -122,7 +122,7 @@
                             <p>"TRIV Construction delivered our office building on time and within budget. Their attention to detail and quality workmanship exceeded our expectations."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client1.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client1.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Maria Santos</h4>
                                 <p>CEO, Innovate Solutions</p>
@@ -135,7 +135,7 @@
                             <p>"The construction team at TRIV was professional, skilled, and responsive throughout our project. The final result is a beautiful and sturdy structure that will serve us for years to come."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client2.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client2.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Antonio Reyes</h4>
                                 <p>Property Developer</p>

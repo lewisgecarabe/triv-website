@@ -33,7 +33,7 @@
                         <p>As a new firm in the Philippines, we're eager to showcase our skills through renovation projects that make a real difference to our clients. We work efficiently to minimize disruption and focus on delivering quality results that improve both the appearance and functionality of your space.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="images/renovation-detail.jpg" alt="Before and after of a TRIV renovation project">
+                        <img src="../assets/images/renovation-detail.jpg" alt="Before and after of a TRIV renovation project">
                     </div>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/renovation-project1.jpg" alt="TRIV Renovation Project 1">
+                            <img src="../assets/images/renovation-project1.jpg" alt="TRIV Renovation Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project2.jpg" alt="TRIV Renovation Project 2">
+                            <img src="../assets/images/renovation-project2.jpg" alt="TRIV Renovation Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project3.jpg" alt="TRIV Renovation Project 3">
+                            <img src="../assets/images/renovation-project3.jpg" alt="TRIV Renovation Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project4.jpg" alt="TRIV Renovation Project 4">
+                            <img src="../assets/images/renovation-project4.jpg" alt="TRIV Renovation Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
@@ -122,7 +122,7 @@
                             <p>"TRIV completely transformed our outdated office into a modern, functional workspace. The renovation was completed on schedule with minimal disruption to our operations."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client3.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client3.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Elena Cruz</h4>
                                 <p>Office Manager, Tech Innovations</p>
@@ -135,7 +135,7 @@
                             <p>"Our home renovation with TRIV exceeded all expectations. They preserved the character of our 1950s house while adding modern amenities and improving energy efficiency."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client4.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client4.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Marco and Sophia Diaz</h4>
                                 <p>Homeowners</p>

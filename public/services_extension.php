@@ -33,7 +33,7 @@
                 <p>Whether you need extra space for your growing family, additional room for your business, or want to maximize your property's potential, our team can help. As a new firm in the Philippines, we're committed to delivering quality extensions that seamlessly integrate with your existing structure while meeting local building requirements.</p>
             </div>
             <div class="service-description-image">
-                <img src="images/extension-detail.jpg" alt="Building extension project by TRIV">
+                <img src="../assets/images/extension-detail.jpg" alt="Building extension project by TRIV">
             </div>
         </div>
     </div>
@@ -94,16 +94,16 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/extension-project1.jpg" alt="TRIV Extension Project 1">
+                            <img src="../assets/images/extension-project1.jpg" alt="TRIV Extension Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/extension-project2.jpg" alt="TRIV Extension Project 2">
+                            <img src="../assets/images/extension-project2.jpg" alt="TRIV Extension Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/extension-project3.jpg" alt="TRIV Extension Project 3">
+                            <img src="../assets/images/extension-project3.jpg" alt="TRIV Extension Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/extension-project4.jpg" alt="TRIV Extension Project 4">
+                            <img src="../assets/images/extension-project4.jpg" alt="TRIV Extension Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
@@ -122,7 +122,7 @@
                             <p>"TRIV designed and built a two-story extension for our home that blends perfectly with the original structure. The additional space has transformed how we live, and the transition between old and new is seamless."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client9.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client9.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Ricardo and Ana Fernandez</h4>
                                 <p>Homeowners</p>
@@ -135,7 +135,7 @@
                             <p>"Our retail store needed additional space, and TRIV created an extension that doubled our floor area without disrupting our business operations. The result is a cohesive space that looks like it was always part of the original building."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client10.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client10.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Olivia Chen</h4>
                                 <p>Business Owner, Urban Boutique</p>

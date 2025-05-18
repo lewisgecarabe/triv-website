@@ -33,7 +33,7 @@
                         <p>As a new design firm in the Philippines, we're passionate about creating interiors that incorporate local elements while meeting modern needs. We work within your budget to select appropriate materials, furniture, and finishes, creating spaces that feel both fresh and uniquely yours.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="images/interior-detail.jpg" alt="Interior design project by TRIV">
+                        <img src="../assets/images/interior-detail.jpg" alt="Interior design project by TRIV">
                     </div>
                 </div>
             </div>
@@ -94,16 +94,16 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/interior-project1.jpg" alt="TRIV Interior Design Project 1">
+                            <img src="../assets/images/interior-project1.jpg" alt="TRIV Interior Design Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/interior-project2.jpg" alt="TRIV Interior Design Project 2">
+                            <img src="../assets/images/interior-project2.jpg" alt="TRIV Interior Design Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/interior-project3.jpg" alt="TRIV Interior Design Project 3">
+                            <img src="../assets/images/interior-project3.jpg" alt="TRIV Interior Design Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/interior-project4.jpg" alt="TRIV Interior Design Project 4">
+                            <img src="../assets/images/interior-project4.jpg" alt="TRIV Interior Design Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
@@ -122,7 +122,7 @@
                             <p>"TRIV's interior design team transformed our restaurant into a stunning space that has received countless compliments from our customers. The design perfectly captures our brand identity while creating a comfortable dining atmosphere."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client7.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client7.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Chef Luis Navarro</h4>
                                 <p>Owner, Fusion Bistro</p>
@@ -135,7 +135,7 @@
                             <p>"Working with TRIV on our home interior was a delightful experience. Their designers listened carefully to our needs and created spaces that are both beautiful and practical for our family of five."</p>
                         </div>
                         <div class="testimonial-author">
-                            <img src="images/client8.jpg" alt="Client Portrait">
+                            <img src="../assets/images/client8.jpg" alt="Client Portrait">
                             <div class="testimonial-info">
                                 <h4>Patricia Lim</h4>
                                 <p>Homeowner</p>
