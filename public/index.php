@@ -40,11 +40,45 @@
             <h2>With our knowledge<br> we guarantee success</h2>
             <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
     </div>
-    </div>
+
+
+
             <div class="right-side">
+                <p>Guided by Engr. Noel R. Villanueva, passionate individuals, fueled by talent, the  company  has grown stronger with each new challenge</p>
             <a href="../public/developers.php" class="btn-red">Learn more →</a>
-</div>
+            </div>
+
     </section>
+
+    <hr class="horizon-rule">
+
+    <section class="projects-homepage">
+            <div class="header">
+      <h2>FEATURED PROJECT</h2>
+      <a href="#" class="view-project">View Project →</a>
+    </div>
+
+    <div class="projects">
+        <?php
+        $projects = [
+            ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+             ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+        ];
+
+        foreach ($projects as $project) {
+                      echo '<div class="project-card">';
+          echo '  <img src="' . $project["img"] . '" alt="">';
+          echo '  <div class="overlay">';
+          echo '    <p>' . $project["type"] . '</p>';
+          echo '    <h3>' . $project["title"] . '</h3>';
+          echo '  </div>';
+          echo '</div>';
+        }
+        ?>
+</div>
+
+</section>
 
 
     <footer>
