@@ -36,10 +36,11 @@
 
     <section class="about">
         <div class="about-content">
-            <div class="subtitle">ABOUT US</div>
-            <h2>With our knowledge we guarente success</h2>
+            <h1>ABOUT US</h1>
+            <h2>With our knowledge<br> we guarantee success</h2>
             <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
-           
+    </div>
+    </div>
             <div class="right-side">
             <a href="../public/developers.php" class="btn-red">Learn more →</a>
 </div>
