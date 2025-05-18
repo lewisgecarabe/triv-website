@@ -15,10 +15,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">HOME</a></li>
+                 <li><a href="../public/index.php">HOME</a></li>
                 <li><a href="../public/services.php">SERVICES</a></li>
                 <li><a href="../public/developers.php">DEVELOPERS</a></li>
                 <li><a href="../public/contact.php">CONTACT US</a></li>
+                 <li><a href="../public/career.php">CAREERS</a></li>
             </ul>
         </nav>
     </header>
@@ -35,52 +36,51 @@
 
     <section class="about">
         <div class="about-content">
-            <div class="subtitle">ABOUT US</div>
-            <h2>With our knowledge we guarente success</h2>
+            <h1>ABOUT US</h1>
+            <h2>With our knowledge<br> we guarantee success</h2>
             <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
-            <p>Cras tincidunt tellus at mi tristique rhoncus. Etiam dapibus rutrum leo consectetur accumsan. Vivamus viverra ante turpis, dignissim condimentum elit egestas sit amet. Phasellus faucibus pellentesque</p>
+    </div>
+
+
+
+            <div class="right-side">
+                <p>Guided by Engr. Noel R. Villanueva, passionate individuals, fueled by talent, the  company  has grown stronger with each new challenge</p>
             <a href="../public/developers.php" class="btn-red">Learn more →</a>
-        </div>
-        <div class="about-image">
-            <img src="../assets/images/building-construction.jpg" alt="Construction site" class="main-image">
-            <div class="video-overlay">
-                <img src="../assets/images/notebook.jpg" alt="Construction plans" class="overlay-image">
-                <div class="video-btn">▶</div>
             </div>
-        </div>
+
     </section>
 
-    <section class="company-info">
-        <div class="sidebar">
-            <h3>The Firm</h3>
-            <ul>
-                <li>People</li>
-                <li>Inquiries</li>
-                <li>Account</li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <h2>TRIV Design & Construction</h2>
-            <p class="founded">SINCE 2025.</p>
-            
-            <p>Guided by Engr. Noel R. Villanueva, passionate individuals, fueled by talent, the company has grown stronger with each new challenge</p>
-            
-            <div class="info-section">
-                <h3>HISTORY</h3>
-                <p>TRIV Design & Construction is a full service firm specializing in architecture, interior design, and construction management. We are committed to delivering solutions that perfectly balance aesthetics, function, and budget. Through expert craftsmanship and client collaboration, we ensure every project meets the highest standards. Our team combines creative design with technical expertise to deliver projects on time and within budget. At TRIV, we build not just structures – but lasting value and meaningful experiences.</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>MISSION</h3>
-                <p>To provide exceptional architectural and construction services that fuse innovative design, functionality, and sustainability. We are committed to exceeding client expectations through collaborative processes, high-quality workmanship, and ethical practices.</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>VISION</h3>
-                <p>To be a leading force in the design and construction industry, recognized for shaping spaces that inspire, endure, and elevate the way people live and work.</p>
-            </div>
-        </div>
-    </section>
+    <hr class="horizon-rule">
+
+    <section class="projects-homepage">
+            <div class="header">
+      <h2>FEATURED PROJECTS</h2>
+      <a href="public/projects.php" class="view-project">View Projects →</a>
+    </div>
+
+    <div class="projects">
+        <?php
+        $projects = [
+            ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+             ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+        ];
+
+        foreach ($projects as $project) {
+         echo '<div class="project-card">';
+          echo '  <img src="' . $project["img"] . '" alt="">';
+          echo '  <div class="overlay">';
+          echo '    <p>' . $project["type"] . '</p>';
+          echo '    <h3>' . $project["title"] . '</h3>';
+          echo '  </div>';
+          echo '</div>';
+        }
+        ?>
+</div>
+
+</section>
+
 
     <footer>
         <div class="footer-logo">
