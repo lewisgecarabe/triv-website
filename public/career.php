@@ -80,8 +80,8 @@
                         <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Lead architectural design projects from concept to completion, collaborating with clients and construction teams to deliver innovative, sustainable building solutions.</p>
                         <div class="job-actions">
-                            <a href="jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
+                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
+                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
                         </div>
                     </div>
                 </div>
@@ -96,8 +96,8 @@
                         <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Design and oversee construction projects ensuring structural integrity, safety compliance, and efficient execution while coordinating with architects and contractors.</p>
                         <div class="job-actions">
-                            <a href="jobdetails.php?id=2" class="btn btn-outline">View Details</a>
-                            <a href="apply.php?job=civil-engineer" class="btn btn-primary">Apply Now</a>
+                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
+                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
                         </div>
                     </div>
                 </div>
@@ -112,8 +112,8 @@
                         <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (Hybrid)</p>
                         <p class="job-description">Create stunning, functional interior spaces that reflect clients' visions and needs, selecting materials, colors, and furnishings while managing project timelines and budgets.</p>
                         <div class="job-actions">
-                            <a href="jobdetails.php?id=3" class="btn btn-outline">View Details</a>
-                            <a href="apply.php?job=interior-designer" class="btn btn-primary">Apply Now</a>
+                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
+                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
                         </div>
                     </div>
                 </div>
@@ -128,8 +128,8 @@
                         <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Oversee construction projects from planning to completion, managing timelines, budgets, resources, and teams to ensure quality, safety, and client satisfaction.</p>
                         <div class="job-actions">
-                            <a href="jobdetails.php?id=4" class="btn btn-outline">View Details</a>
-                            <a href="apply.php?job=project-manager" class="btn btn-primary">Apply Now</a>
+                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
+                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
                         </div>
                     </div>
                 </div>
@@ -144,8 +144,8 @@
                         <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (Hybrid)</p>
                         <p class="job-description">Develop and implement marketing strategies to promote TRIV's services, manage social media presence, create compelling content, and build client relationships.</p>
                         <div class="job-actions">
-                            <a href="jobdetails.php?id=5" class="btn btn-outline">View Details</a>
-                            <a href="apply.php?job=marketing-specialist" class="btn btn-primary">Apply Now</a>
+                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
+                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
                         </div>
                     </div>
                 </div>
