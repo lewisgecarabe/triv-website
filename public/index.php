@@ -39,16 +39,10 @@
             <div class="subtitle">ABOUT US</div>
             <h2>With our knowledge we guarente success</h2>
             <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
-            <p>Cras tincidunt tellus at mi tristique rhoncus. Etiam dapibus rutrum leo consectetur accumsan. Vivamus viverra ante turpis, dignissim condimentum elit egestas sit amet. Phasellus faucibus pellentesque</p>
+           
+            <div class="right-side">
             <a href="../public/developers.php" class="btn-red">Learn more →</a>
-        </div>
-        <div class="about-image">
-            <img src="../assets/images/building-construction.jpg" alt="Construction site" class="main-image">
-            <div class="video-overlay">
-                <img src="../assets/images/notebook.jpg" alt="Construction plans" class="overlay-image">
-                <div class="video-btn">▶</div>
-            </div>
-        </div>
+</div>
     </section>
 
 
