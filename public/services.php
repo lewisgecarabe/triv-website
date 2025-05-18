@@ -23,7 +23,7 @@
 
     <section class="career-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
+        <img src="../assets/images/services.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
             <h1>SERVICES</h1>
         </div>
