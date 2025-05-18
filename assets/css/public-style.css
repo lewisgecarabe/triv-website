@@ -179,7 +179,7 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .projects-homepage .header {
-  display: flex;
+  display: relative;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -205,7 +205,7 @@ font-family: 'Montserrat', sans-serif;
 
 .project-card {
   position: relative;
-  width: 250px;
+  width: 323px;
   height: 300px;
   overflow: hidden;
   border-radius: 10px;

@@ -54,8 +54,8 @@
 
     <section class="projects-homepage">
             <div class="header">
-      <h2>FEATURED PROJECT</h2>
-      <a href="#" class="view-project">View Project →</a>
+      <h2>FEATURED PROJECTS</h2>
+      <a href="public/projects.php" class="view-project">View Projects →</a>
     </div>
 
     <div class="projects">
@@ -64,10 +64,11 @@
             ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
               ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
         ];
 
         foreach ($projects as $project) {
-                      echo '<div class="project-card">';
+         echo '<div class="project-card">';
           echo '  <img src="' . $project["img"] . '" alt="">';
           echo '  <div class="overlay">';
           echo '    <p>' . $project["type"] . '</p>';
