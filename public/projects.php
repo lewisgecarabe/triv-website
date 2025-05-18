@@ -57,3 +57,12 @@
 </div>
 
 </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <div class="copyright">
+            <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>
+        </div>
+    </footer>
