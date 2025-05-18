@@ -50,37 +50,6 @@
         </div>
     </section>
 
-    <section class="company-info">
-        <div class="sidebar">
-            <h3>The Firm</h3>
-            <ul>
-                <li>People</li>
-                <li>Inquiries</li>
-                <li>Account</li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <h2>TRIV Design & Construction</h2>
-            <p class="founded">SINCE 2025.</p>
-            
-            <p>Guided by Engr. Noel R. Villanueva, passionate individuals, fueled by talent, the company has grown stronger with each new challenge</p>
-            
-            <div class="info-section">
-                <h3>HISTORY</h3>
-                <p>TRIV Design & Construction is a full service firm specializing in architecture, interior design, and construction management. We are committed to delivering solutions that perfectly balance aesthetics, function, and budget. Through expert craftsmanship and client collaboration, we ensure every project meets the highest standards. Our team combines creative design with technical expertise to deliver projects on time and within budget. At TRIV, we build not just structures – but lasting value and meaningful experiences.</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>MISSION</h3>
-                <p>To provide exceptional architectural and construction services that fuse innovative design, functionality, and sustainability. We are committed to exceeding client expectations through collaborative processes, high-quality workmanship, and ethical practices.</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>VISION</h3>
-                <p>To be a leading force in the design and construction industry, recognized for shaping spaces that inspire, endure, and elevate the way people live and work.</p>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-logo">

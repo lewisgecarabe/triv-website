@@ -215,60 +215,7 @@ font-family: 'Montserrat', sans-serif;
   background-color: #b71c1c;
 }
 
-/* Company info section */
-.company-info {
-  padding: 80px 10%;
-  background-color: #f9f9f9;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 50px;
-}
 
-.sidebar {
-  border-right: 1px solid #ddd;
-  padding-right: 30px;
-}
-
-.sidebar h3 {
-  margin-bottom: 20px;
-  color: #1a2b49;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li {
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.main-content h2 {
-  color: #1a2b49;
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.main-content .founded {
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.info-section {
-  margin-bottom: 40px;
-}
-
-.info-section h3 {
-  color: #1a2b49;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-}
-
-.info-section p {
-  color: #555;
-  margin-bottom: 15px;
-  
-}
 
 /* Footer */
 footer {
