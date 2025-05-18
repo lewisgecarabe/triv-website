@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extension Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -22,22 +35,22 @@
 
         <!-- Description Section -->
         <section class="service-description">
-    <div class="service-description-container">
-        <h2>Practical Space Expansion</h2>
-        <div class="service-description-content">
-            <div class="service-description-text">
-                <p>TRIV Design and Construction specializes in creating practical extensions that add valuable space to your existing property. Based in Manila, we can also work on projects in other areas of the Philippines upon negotiation. Our extension services offer a cost-effective way to gain additional room without the hassle and expense of relocating.</p>
-                
-                <p>We approach each extension project with careful consideration of your existing building, ensuring that the new addition complements the original structure. Our team handles all aspects of the extension process, from initial design to final construction.</p>
-                
-                <p>Whether you need extra space for your growing family, additional room for your business, or want to maximize your property's potential, our team can help. As a new firm in the Philippines, we're committed to delivering quality extensions that seamlessly integrate with your existing structure while meeting local building requirements.</p>
+            <div class="service-description-container">
+                <h2>Practical Space Expansion</h2>
+                <div class="service-description-content">
+                    <div class="service-description-text">
+                        <p>TRIV Design and Construction specializes in creating practical extensions that add valuable space to your existing property. Based in Manila, we can also work on projects in other areas of the Philippines upon negotiation. Our extension services offer a cost-effective way to gain additional room without the hassle and expense of relocating.</p>
+                        
+                        <p>We approach each extension project with careful consideration of your existing building, ensuring that the new addition complements the original structure. Our team handles all aspects of the extension process, from initial design to final construction.</p>
+                        
+                        <p>Whether you need extra space for your growing family, additional room for your business, or want to maximize your property's potential, our team can help. As a new firm in the Philippines, we're committed to delivering quality extensions that seamlessly integrate with your existing structure while meeting local building requirements.</p>
+                    </div>
+                    <div class="service-description-image">
+                        <img src="../assets/images/extension-detail.jpg" alt="Building extension project by TRIV">
+                    </div>
+                </div>
             </div>
-            <div class="service-description-image">
-                <img src="../assets/images/extension-detail.jpg" alt="Building extension project by TRIV">
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- Process Section -->
         <section class="service-process">
@@ -112,53 +125,17 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="service-testimonials">
-            <div class="service-testimonials-container">
-                <h2>Client Testimonials</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"TRIV designed and built a two-story extension for our home that blends perfectly with the original structure. The additional space has transformed how we live, and the transition between old and new is seamless."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client9.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Ricardo and Ana Fernandez</h4>
-                                <p>Homeowners</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Our retail store needed additional space, and TRIV created an extension that doubled our floor area without disrupting our business operations. The result is a cohesive space that looks like it was always part of the original building."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client10.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Olivia Chen</h4>
-                                <p>Business Owner, Urban Boutique</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
                 <h2>Ready to Expand Your Space?</h2>
                 <p>Contact us today to discuss your extension project and schedule a site assessment.</p>
-                <a href="contact.php" class="cta-button">Start Your Extension Project</a>
+                <a href="../public/contact.php" class="cta-button">Start Your Extension Project</a>
             </div>
         </section>
     </main>
 
-    <?php include 'footer.php'; ?>
-
-    <script>
+     <script>
         // Gallery Slider Functionality
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.querySelector('.gallery-track');

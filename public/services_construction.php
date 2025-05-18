@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Construction Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -112,51 +125,15 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="service-testimonials">
-            <div class="service-testimonials-container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"TRIV Construction delivered our office building on time and within budget. Their attention to detail and quality workmanship exceeded our expectations."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client1.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Maria Santos</h4>
-                                <p>CEO, Innovate Solutions</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"The construction team at TRIV was professional, skilled, and responsive throughout our project. The final result is a beautiful and sturdy structure that will serve us for years to come."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client2.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Antonio Reyes</h4>
-                                <p>Property Developer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
                 <h2>Ready to Build Your Dream Project?</h2>
                 <p>Contact us today to discuss your construction needs and get a detailed quote.</p>
-                <a href="contact.php" class="cta-button">Request a Quote</a>
+                <a href="../public/contact.php" class="cta-button">Request a Quote</a>
             </div>
         </section>
     </main>
-
-    <?php include 'footer.php'; ?>
 
     <script>
         // Gallery Slider Functionality

@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interior Design Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -112,51 +125,15 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="service-testimonials">
-            <div class="service-testimonials-container">
-                <h2>Client Experiences</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"TRIV's interior design team transformed our restaurant into a stunning space that has received countless compliments from our customers. The design perfectly captures our brand identity while creating a comfortable dining atmosphere."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client7.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Chef Luis Navarro</h4>
-                                <p>Owner, Fusion Bistro</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Working with TRIV on our home interior was a delightful experience. Their designers listened carefully to our needs and created spaces that are both beautiful and practical for our family of five."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client8.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Patricia Lim</h4>
-                                <p>Homeowner</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
                 <h2>Ready to Transform Your Interior?</h2>
                 <p>Contact us today to schedule a consultation with our interior design team.</p>
-                <a href="contact.php" class="cta-button">Begin Your Interior Journey</a>
+                <a href="../public/contact.php" class="cta-button">Begin Your Interior Journey</a>
             </div>
         </section>
     </main>
-
-    <?php include 'footer.php'; ?>
 
     <script>
         // Gallery Slider Functionality

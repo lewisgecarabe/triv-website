@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architectural Design Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -130,33 +143,15 @@
                         </div>
                     </div>
                     
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"The architectural design TRIV created for our family home perfectly captured our vision while adding innovative elements we hadn't even considered. The result is a beautiful, functional space that exceeds our expectations."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client6.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Isabella and Ramon Mendoza</h4>
-                                <p>Homeowners</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
                 <h2>Ready to Design Your Dream Space?</h2>
                 <p>Contact us today to schedule a consultation with our architectural design team.</p>
-                <a href="contact.php" class="cta-button">Start Your Design Journey</a>
+                <a href="../public/contact.php" class="cta-button">Start Your Design Journey</a>
             </div>
         </section>
     </main>
-
-    <?php include 'footer.php'; ?>
 
     <script>
         // Gallery Slider Functionality
