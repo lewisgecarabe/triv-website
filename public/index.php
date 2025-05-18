@@ -20,6 +20,7 @@
                 <li><a href="../public/developers.php">DEVELOPERS</a></li>
                 <li><a href="../public/contact.php">CONTACT US</a></li>
                  <li><a href="../public/career.php">CAREERS</a></li>
+                  <li><a href="../public/projects.php">PROJECTS</a></li>
             </ul>
         </nav>
     </header>
