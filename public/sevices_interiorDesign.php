@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Design Services | TRIV Design and Construction</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <?php include 'header.php'; ?>
+
+    <main class="service-detail-main">
+        <!-- Banner Section -->
+        <section class="service-banner interior-banner">
+            <div class="service-banner-overlay"></div>
+            <div class="service-banner-content">
+                <h1>Interior Design</h1>
+                <p>Creating elegant interiors that reflect your personality and lifestyle</p>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="service-description">
+            <div class="service-description-container">
+                <h2>Practical Interior Spaces</h2>
+                <div class="service-description-content">
+                    <div class="service-description-text">
+                        <p>TRIV Design and Construction offers interior design services that create comfortable, functional, and attractive spaces for homes and businesses in Manila and other locations. Though Manila-based, we're open to projects throughout the Philippines with proper arrangements. Our designers focus on creating interiors that reflect your personal style while meeting your practical needs.</p>
+                        
+                        <p>We believe good interior design should make your daily life better. Our approach balances aesthetics with functionality, ensuring that your space not only looks good but also works well for the people who use it every day.</p>
+                        
+                        <p>As a new design firm in the Philippines, we're passionate about creating interiors that incorporate local elements while meeting modern needs. We work within your budget to select appropriate materials, furniture, and finishes, creating spaces that feel both fresh and uniquely yours.</p>
+                    </div>
+                    <div class="service-description-image">
+                        <img src="images/interior-detail.jpg" alt="Interior design project by TRIV">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="service-process">
+            <div class="service-process-container">
+                <h2>Our Interior Design Process</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="process-step-number">1</div>
+                        <div class="process-step-content">
+                            <h3>Consultation & Brief</h3>
+                            <p>We begin with an in-depth consultation to understand your style preferences, functional requirements, and budget considerations for your interior project.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">2</div>
+                        <div class="process-step-content">
+                            <h3>Concept Development</h3>
+                            <p>Our designers create concept boards and preliminary designs that capture the essence of your vision while introducing innovative ideas and solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">3</div>
+                        <div class="process-step-content">
+                            <h3>Design Specification</h3>
+                            <p>We develop detailed design specifications, including furniture layouts, material selections, color schemes, lighting plans, and custom elements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">4</div>
+                        <div class="process-step-content">
+                            <h3>Implementation</h3>
+                            <p>Our team coordinates with contractors and suppliers to implement the design, overseeing all aspects of the installation process to ensure quality execution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">5</div>
+                        <div class="process-step-content">
+                            <h3>Styling & Finishing</h3>
+                            <p>We complete your interior with careful styling and finishing touches, arranging accessories and ensuring every detail contributes to the overall design vision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="service-gallery">
+            <div class="service-gallery-container">
+                <h2>Interior Design Portfolio</h2>
+                <div class="gallery-slider">
+                    <div class="gallery-track">
+                        <div class="gallery-slide">
+                            <img src="images/interior-project1.jpg" alt="TRIV Interior Design Project 1">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/interior-project2.jpg" alt="TRIV Interior Design Project 2">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/interior-project3.jpg" alt="TRIV Interior Design Project 3">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/interior-project4.jpg" alt="TRIV Interior Design Project 4">
+                        </div>
+                    </div>
+                    <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="service-testimonials">
+            <div class="service-testimonials-container">
+                <h2>Client Experiences</h2>
+                <div class="testimonials-slider">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"TRIV's interior design team transformed our restaurant into a stunning space that has received countless compliments from our customers. The design perfectly captures our brand identity while creating a comfortable dining atmosphere."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/client7.jpg" alt="Client Portrait">
+                            <div class="testimonial-info">
+                                <h4>Chef Luis Navarro</h4>
+                                <p>Owner, Fusion Bistro</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Working with TRIV on our home interior was a delightful experience. Their designers listened carefully to our needs and created spaces that are both beautiful and practical for our family of five."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/client8.jpg" alt="Client Portrait">
+                            <div class="testimonial-info">
+                                <h4>Patricia Lim</h4>
+                                <p>Homeowner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="service-cta">
+            <div class="service-cta-container">
+                <h2>Ready to Transform Your Interior?</h2>
+                <p>Contact us today to schedule a consultation with our interior design team.</p>
+                <a href="contact.php" class="cta-button">Begin Your Interior Journey</a>
+            </div>
+        </section>
+    </main>
+
+    <?php include 'footer.php'; ?>
+
+    <script>
+        // Gallery Slider Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.gallery-track');
+            const slides = document.querySelectorAll('.gallery-slide');
+            const nextButton = document.querySelector('.gallery-next');
+            const prevButton = document.querySelector('.gallery-prev');
+            
+            let currentIndex = 0;
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            
+            // Set initial position
+            track.style.transform = `translateX(0px)`;
+            
+            // Next button click
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            });
+            
+            // Previous button click
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            });
+            
+            // Auto slide every 5 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
