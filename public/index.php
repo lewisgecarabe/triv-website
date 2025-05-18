@@ -58,7 +58,7 @@
     <section class="projects-homepage">
             <div class="header">
       <h2>FEATURED PROJECTS</h2>
-      <a href="public/projects.php" class="view-project">View Projects →</a>
+      <a href="../public/projects.php" class="view-project">View Projects →</a>
     </div>
 
     <div class="projects">
