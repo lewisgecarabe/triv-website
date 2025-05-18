@@ -29,7 +29,7 @@
         <div class="hero-overlay"></div>
         <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
-            <h1>JOIN OUR TEAM</h1>
+            <h1>CAREER</h1>
         </div>
     </section>
 
