@@ -9,21 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
-        </div>
-        <nav>
-            <ul>
-                 <li><a href="../public/index.php">HOME</a></li>
-                <li><a href="../public/services.php">SERVICES</a></li>
-                <li><a href="../public/developers.php">DEVELOPERS</a></li>
-                <li><a href="../public/contact.php">CONTACT US</a></li>
-                 <li><a href="../public/career.php">CAREERS</a></li>
-                  <li><a href="../public/projects.php">PROJECTS</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo">
+        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+    </div>
+    <!-- Make sure the button is OUTSIDE the nav element -->
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav>
+        <ul>
+            <li><a href="../public/index.php">HOME</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
+            <li><a href="../public/developers.php">DEVELOPERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/projects.php">PROJECTS</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section class="hero">
         <div class="hero-overlay"></div>
@@ -56,7 +58,7 @@
     <section class="projects-homepage">
             <div class="header">
       <h2>FEATURED PROJECTS</h2>
-      <a href="public/projects.php" class="view-project">View Projects →</a>
+      <a href="../public/projects.php" class="view-project">View Projects →</a>
     </div>
 
     <div class="projects">
@@ -66,6 +68,8 @@
              ["title" => "Masaya Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/3RD.jpg"],
               ["title" => "San Miguel Padre Garcia, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/VIEW0010EDITED.jpg"],
               ["title" => "Romblon, Romblon", "type" => "RESIDENTIAL AND COMMERCIAL", "img" => "../assets/images/project5.JPG  "],
+               ["title" => "Romblon, Romblon", "type" => "RESIDENTIAL AND COMMERCIAL", "img" => "../assets/images/project5.JPG  "],
+
         ];
 
         foreach ($projects as $project) {
@@ -105,5 +109,27 @@
     </footer>
 
     <?php displayContactFormResults(); ?>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

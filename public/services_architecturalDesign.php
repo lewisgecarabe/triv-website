@@ -8,20 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="../public/index.php">HOME</a></li>
-                <li><a href="../public/services.php">SERVICES</a></li>
-                <li><a href="../public/developers.php">DEVELOPERS</a></li>
-                <li><a href="../public/contact.php">CONTACT US</a></li>
-                <li><a href="../public/career.php">CAREERS</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo">
+        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+    </div>
+    <!-- Make sure the button is OUTSIDE the nav element -->
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav>
+        <ul>
+            <li><a href="../public/index.php">HOME</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
+            <li><a href="../public/developers.php">DEVELOPERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/projects.php">PROJECTS</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -184,6 +187,28 @@
                 currentIndex = (currentIndex + 1) % slides.length;
                 track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             }, 5000);
+        });
+    </script>
+
+          <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                });
+            });
         });
     </script>
 </body>
