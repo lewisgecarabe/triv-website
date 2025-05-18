@@ -49,49 +49,101 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
- 
+   /* Semi-transparent background */
 }
 
 .logo img {
-  height: 10px;
+  height: 40px; /* Increased from 10px to be more visible */
   width: auto;
 }
 
-/* Mobile menu button */
+/* Hamburger menu button - always visible */
 .menu-toggle {
-    display: none; /* Hidden on desktop */
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001; /* Higher z-index to ensure it's clickable */
-    position: relative; /* Ensure proper stacking context */
-    padding: 5px 10px;
+  display: block; /* Always visible, not just on mobile */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative;
+  padding: 5px 10px;
 }
 
+/* Navigation menu - hidden by default */
+nav {
+  position: absolute;
+  top: 100%; /* Position right below the header */
+  right: 0;
+  width: 250px; /* Fixed width for the dropdown */
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
+  transition: opacity 0.3s, visibility 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Show navigation on hamburger hover */
+.menu-toggle:hover + nav,
+nav:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Vertical navigation list */
 nav ul {
   display: flex;
+  flex-direction: column; /* Stack vertically */
   list-style: none;
-  word-spacing: 1;
+  padding: 15px 0;
+  margin: 0;
 }
 
 nav ul li {
-  margin-right: 20px;
+  margin: 0;
+  width: 100%;
 }
 
 nav ul li a {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 14px; /* Increased from 10px for better readability */
   letter-spacing: 2px;
   text-transform: uppercase;
   color: white;
-  transition: 1s;
+  transition: 0.3s;
+  display: block;
+  padding: 12px 20px;
+  border-left: 3px solid transparent;
 }
 
 nav ul li a:hover {
   color: #ff0000;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #ff0000;
+}
+
+/* For larger screens, you might want to adjust the width */
+@media (min-width: 1200px) {
+  nav {
+    width: 300px;
+  }
+}
+
+/* For smaller screens, make sure everything fits */
+@media (max-width: 768px) {
+  header {
+    padding: 10px 5%;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+  
+  nav {
+    width: 100%; /* Full width on mobile */
+    right: 0;
+  }
 }
 
 /* Hero section */
@@ -973,32 +1025,39 @@ padding: 15px 180px;
 
 /* Project Page */
 
+.hero-content-project {
+  color: white;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+  text-align: center; /* Center align the title */
+}
+
 .hero-content-project h1 {
-font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 600;
-  font-size: 80px;
+  font-size: 4rem; /* Use relative units */
   line-height: 1;
-  margin-bottom: 100px;
+  margin-bottom: 50px; /* Reduced from 100px */
   letter-spacing: 0px;
   text-transform: uppercase;
   color: #ffffff;
+  margin-bottom: 39%;
 }
 
+/* Projects portfolio section */
 .projects-portfolio {
-padding: 15px 180px;
-  display: grid;
-
-  gap: 50px;
-  align-items: center;
+ padding: 15px 10%; /* Changed from fixed padding */
   margin-top: 35px;
-   margin-bottom: 35px;
+  margin-bottom: 35px;
 }
 
 .projects-portfolio .header {
-  display: relative;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 .projects-portfolio .header h2 {
@@ -1013,16 +1072,18 @@ padding: 15px 180px;
   font-size: 14px;
 }
 
+/* Projects grid */
 .projects-page {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
   gap: 20px;
-  flex-wrap: wrap;
-   grid-template-rows: repeat(4, auto);
+  width: 100%;
+  justify-content: center;
 }
 
 .project-card-page {
   position: relative;
-  width: 325px;
+  width: 100%; /* Full width of grid cell */
   height: 300px;
   overflow: hidden;
   border-radius: 10px;
@@ -1051,10 +1112,19 @@ padding: 15px 180px;
   align-items: center;
   opacity: 0;
   transition: 0.3s;
+  text-align: center;
+  padding: 15px;
 }
 
 .project-card-page:hover .overlay {
   opacity: 1;
+}
+
+/* For touch devices, make overlay visible on touch */
+@media (hover: none) {
+  .project-card-page:active .overlay {
+    opacity: 1;
+  }
 }
 
 .overlay p {
@@ -1065,8 +1135,59 @@ padding: 15px 180px;
 .overlay h3 {
   font-size: 18px;
   margin: 5px 0 0;
+  text-align: center;
 }
 
+/* Media Queries for Responsive Design */
+
+/* Tablets and small desktops */
+@media (max-width: 1024px) {
+  .hero-content-project h1 {
+    font-size: 3.5rem;
+  }
+  
+  .projects-portfolio {
+    padding: 30px 5%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .hero-content-project h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .projects-portfolio {
+    padding: 20px 5%;
+  }
+  
+  .projects-portfolio .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .project-card-page {
+    height: 250px; /* Slightly smaller on mobile */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .hero-content-project h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .projects-portfolio {
+    padding: 15px 5%;
+  }
+  
+  .project-card-page {
+    height: 200px; /* Even smaller on very small screens */
+  }
+}
 /* Responsive styles */
 @media (max-width: 992px) {
   .about,

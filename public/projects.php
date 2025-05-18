@@ -13,7 +13,7 @@
     <div class="logo">
         <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
     </div>
-    <!-- Make sure the button is OUTSIDE the nav element -->
+    <!-- Hamburger menu that shows nav on hover -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
         <ul>
