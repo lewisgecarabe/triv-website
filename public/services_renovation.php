@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renovation Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
@@ -33,7 +46,7 @@
                         <p>As a new firm in the Philippines, we're eager to showcase our skills through renovation projects that make a real difference to our clients. We work efficiently to minimize disruption and focus on delivering quality results that improve both the appearance and functionality of your space.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="images/renovation-detail.jpg" alt="Before and after of a TRIV renovation project">
+                        <img src="../assets/images/renovation-detail.jpg" alt="Before and after of a TRIV renovation project">
                     </div>
                 </div>
             </div>
@@ -94,54 +107,20 @@
                 <div class="gallery-slider">
                     <div class="gallery-track">
                         <div class="gallery-slide">
-                            <img src="images/renovation-project1.jpg" alt="TRIV Renovation Project 1">
+                            <img src="../assets/images/renovation-project1.jpg" alt="TRIV Renovation Project 1">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project2.jpg" alt="TRIV Renovation Project 2">
+                            <img src="../assets/images/renovation-project2.jpg" alt="TRIV Renovation Project 2">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project3.jpg" alt="TRIV Renovation Project 3">
+                            <img src="../assets/images/renovation-project3.jpg" alt="TRIV Renovation Project 3">
                         </div>
                         <div class="gallery-slide">
-                            <img src="images/renovation-project4.jpg" alt="TRIV Renovation Project 4">
+                            <img src="../assets/images/renovation-project4.jpg" alt="TRIV Renovation Project 4">
                         </div>
                     </div>
                     <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
                     <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="service-testimonials">
-            <div class="service-testimonials-container">
-                <h2>Client Success Stories</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"TRIV completely transformed our outdated office into a modern, functional workspace. The renovation was completed on schedule with minimal disruption to our operations."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="images/client3.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Elena Cruz</h4>
-                                <p>Office Manager, Tech Innovations</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Our home renovation with TRIV exceeded all expectations. They preserved the character of our 1950s house while adding modern amenities and improving energy efficiency."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="images/client4.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Marco and Sophia Diaz</h4>
-                                <p>Homeowners</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -151,12 +130,10 @@
             <div class="service-cta-container">
                 <h2>Ready to Renovate?</h2>
                 <p>Contact us today to discuss your renovation project and schedule a consultation.</p>
-                <a href="contact.php" class="cta-button">Start Your Renovation</a>
+                <a href="../public/contact.php" class="cta-button">Start Your Renovation</a>
             </div>
         </section>
     </main>
-
-    <?php include 'footer.php'; ?>
 
     <script>
         // Gallery Slider Functionality

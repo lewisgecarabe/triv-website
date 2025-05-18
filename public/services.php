@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | TRIV Design and Construction</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <?php include 'header.php'; ?>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../public/index.php">HOME</a></li>
+                <li><a href="../public/services.php">SERVICES</a></li>
+                <li><a href="../public/developers.php">DEVELOPERS</a></li>
+                <li><a href="../public/contact.php">CONTACT US</a></li>
+                <li><a href="../public/career.php">CAREERS</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main class="services-main">
-        <!-- Hero Section -->
-        <section class="services-hero">
-            <div class="services-hero-content">
-                <h1>What We Do</h1>
-                <p class="services-tagline">Building Beyond Limits</p>
-                <p class="services-intro">At TRIV Design and Construction, we offer a range of building and design services to meet your needs in Manila and throughout the Philippines. While we're based in Manila, we're open to projects in other locations upon negotiation. As a new firm, we're committed to delivering quality work and building lasting relationships with our clients.</p>
-            </div>
-        </section>
-
+    <section class="career-hero">
+        <div class="hero-overlay"></div>
+        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
+        <div class="hero-content">
+            <h1>SERVICES</h1>
+        </div>
+    </section>
+       
         <!-- Services Grid -->
         <section class="services-grid-container">
             <h2 class="services-section-title">Our Services</h2>
@@ -92,12 +101,51 @@
             <div class="services-cta-content">
                 <h2>Ready to Start Your Project?</h2>
                 <p>Contact us today for a free consultation and quote.</p>
-                <a href="contact.php" class="cta-button">Get in Touch</a>
+                <a href="../public/contact.php" class="cta-button">Get in Touch</a>
             </div>
         </section>
     </main>
 
-    <?php include 'footer.php'; ?>
+    <section class="company-contact-info">
+        <div class="contact-info-container">
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="../assets/images/email.png" alt="Email">
+                    </div>
+                    <p>nrvillanueva8@yahoo.com</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="../assets/images/phone.png" alt="Phone">
+                    </div>
+                    <p>0919-670-9187</p> 
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="../assets/images/location.jpg" alt="Location">
+                    </div>
+                    <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
+                </div>
+            </div>
+            
+            <div class="company-description">
+                <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+                <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <div class="copyright">
+            <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>
+        </div>
+    </footer>
 
     <script>
         // Add scroll animation for service cards
