@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -21,33 +21,35 @@ a {
 header {
   position: fixed;
   width: 100%;
-  padding: 15px 50px;
+  padding: 15px 180px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .logo img {
   height: 40px;
   width: auto;
-  margin-left: 120px;
+
 }
 
 nav ul {
   display: flex;
   list-style: none;
+  word-spacing: 1;
 
 }
 
 nav ul li {
-  margin-right: 40px;
+  margin-right: 30px;
+  
  
 }
 
 nav ul li a {
-font-family: 'Montserrat', sans-serif;
+font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 10px;
   letter-spacing: 2px;
@@ -68,6 +70,8 @@ nav ul li a:hover {
   align-items: center;
   padding: 0 10%;
   overflow: hidden;
+  padding: 15px 180px;
+  margin-top: ;
 }
 
 .hero-bg {
@@ -92,24 +96,26 @@ nav ul li a:hover {
 
 .hero-content {
   color: white;
-  max-width: 600px;
+  max-width: 1000px;
   position: relative;
   z-index: 1;
 }
 
 .hero-content h1 {
-font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  font-size: 48px;
-  line-height: 1.2;
+font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1;
   margin-bottom: 20px;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
   text-transform: uppercase;
+  color: #ffffff;
 }
 
 .hero-content p {
   margin-bottom: 30px;
   font-size: 16px;
+  color: #c2c2c2;
 }
 
 .btn {
@@ -117,7 +123,7 @@ font-family: 'Montserrat', sans-serif;
   padding: 12px 30px;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  border-radius: 30px;
+  border-radius: 5px;
   transition: 0.3s;
   border: none;
   cursor: pointer;
@@ -129,7 +135,7 @@ font-family: 'Montserrat', sans-serif;
 
 /* About section */
 .about {
-  padding: 80px 10%;
+  padding: 40px 180px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
@@ -171,11 +177,13 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .projects-homepage {
-    padding: 80px 10%;
+padding: 15px 180px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
   align-items: center;
+  margin-top: 35px;
+   margin-bottom: 35px;
 }
 
 .projects-homepage .header {
@@ -186,13 +194,13 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .projects-homepage .header h2 {
-  color: #4b0000;
+  color: #c80000;
   font-size: 24px;
   margin: 0;
 }
 
 .projects-homepage .view-project {
-  color: #a40000;
+  color: #1a2b49;
   text-decoration: none;
   font-size: 14px;
 }
@@ -205,7 +213,7 @@ font-family: 'Montserrat', sans-serif;
 
 .project-card {
   position: relative;
-  width: 323px;
+  width: 320px;
   height: 300px;
   overflow: hidden;
   border-radius: 10px;
@@ -258,14 +266,44 @@ height: 40vh;
   align-items: center;     /* vertical center */
 
   padding: 0;
-  background-color: #4d0000;
+  background-color: #000000;
 }
 
 .soc-med h1 {
 font-size: 40px   ;
 color: white  ;
+font-family: 'Lato', sans-serif;
 }
 
+.myfacebook {
+  display: flex;
+  align-items: center;
+  background-color: #2a2626; 
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px; 
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  gap: 10px; /* space between image and text */
+}
+
+.myfacebook:hover {
+    background-color: #006eff; /* Slightly darker green on hover */
+}
+
+.fbdatcom {
+    width: 50px;
+    height: auto;
+}
+
+.fb-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
 
 
 
@@ -430,7 +468,7 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  padding: 0 10%;
+padding: 15px 180px;
   position: relative;
   z-index: 1;
 }
@@ -440,20 +478,20 @@ footer {
 }
 
 .services-info h1 {
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 5px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: white;
-  transition: 0.3s;
+  font-family: 'Lato', sans-serif;
 }
 
 .services-image {
   margin-bottom: 20px;
-  border: 5px solid white;
-  max-width: 100%;
+  border: 5px solid #c80000;
+  max-width: 500px;
 }
 
 .services-image img {
@@ -465,13 +503,17 @@ footer {
 .services-description {
   margin-bottom: 20px;
   font-size: 15px;
+  max-width: 500px;
 }
 
 .contact-form-container {
+  display: flex;
   background-color: white;
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+   justify-self: end; 
 }
 
 .contact-form h3 {

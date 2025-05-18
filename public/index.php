@@ -84,11 +84,14 @@
 
 
 <section class="soc-med">
-<div class="soc-med-content">
-            <h1>FOLLOW US ON OUR SOCIAL MEDIA!</h1>
-
-    </div>
-    </section>
+  <div class="soc-med-content">
+    <h1>FOLLOW US ON OUR SOCIAL MEDIA!</h1>
+         <a href="https://web.facebook.com/profile.php?id=61572135853188" class="myfacebook" target="_blank">
+            <img src="../assets/images/fbdatcom.webp" alt="fbbb" class="fbdatcom"> 
+         <i class="fb">Message us on facebook!</i> 
+        </a>
+  </div>
+</section>
 
 
     <footer>
