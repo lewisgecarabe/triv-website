@@ -61,10 +61,10 @@
     <div class="projects">
         <?php
         $projects = [
-            ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
-             ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
-              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
-              ["title" => "Filipino Architecture", "type" => "Commerical", "img" => "images/tite.jpg"],
+            ["title" => "Quilib Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/FINAL P1 - Copy.jpg"],
+             ["title" => "Masaya Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/3RD.jpg"],
+              ["title" => "San Miguel Padre Garcia, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/PERSP 1.JPG"],
+              ["title" => "Romblon, Romblon", "type" => "RESIDENTIAL AND COMMERCIAL", "img" => "../assets/images/project5.JPG  "],
         ];
 
         foreach ($projects as $project) {
