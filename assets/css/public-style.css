@@ -25,7 +25,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
   z-index: 1000;
 }
 
@@ -833,6 +832,103 @@ padding: 15px 180px;
   gap: 20px;
 }
 
+
+/* Project Page */
+
+.hero-content-project h1 {
+font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 100px;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.projects-portfolio {
+padding: 15px 180px;
+  display: grid;
+
+  gap: 50px;
+  align-items: center;
+  margin-top: 35px;
+   margin-bottom: 35px;
+}
+
+.projects-portfolio .header {
+  display: relative;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.projects-portfolio .header h2 {
+  color: #c80000;
+  font-size: 24px;
+  margin: 0;
+}
+
+.projects-portfolio .view-project {
+  color: #1a2b49;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.projects-page {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+   grid-template-rows: repeat(4, auto);
+}
+
+.project-card-page {
+  position: relative;
+  width: 325px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background: #eee;
+}
+
+.project-card-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card-page .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(77, 14, 14, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.project-card-page:hover .overlay {
+  opacity: 1;
+}
+
+.overlay p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.overlay h3 {
+  font-size: 18px;
+  margin: 5px 0 0;
+}
+
 /* Responsive styles */
 @media (max-width: 992px) {
   .about,
@@ -867,23 +963,10 @@ padding: 15px 180px;
 }
 
 @media (max-width: 768px) {
-  header {
-    padding: 15px 20px;
-    flex-direction: column;
-  }
 
-  nav ul {
-    margin-top: 15px;
 
-  }
 
-  nav ul li {
-    margin: 0 10px;
-  }
-
-  .hero-content h1 {
-    font-size: 32px;
-  }
+ 
 
   .developers-hero h1,
   .contact-hero h1 {

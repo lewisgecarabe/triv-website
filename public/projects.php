@@ -27,8 +27,33 @@
 
     <section class="hero developers-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/codings.jpg" alt="Code Background" class="hero-bg">
-        <div class="hero-content">
-            <h1>FOUNDERS</h1>
+        <img src="../assets/images/FINAL P1 - Copy.jpg" alt="Code Background" class="hero-bg">
+        <div class="hero-content-project">
+            <h1>PROJECTS</h1>
         </div>
     </section>
+
+
+    <section class="projects-portfolio">
+    <div class="projects-page">
+        <?php
+        $projects = [
+            ["title" => "Quilib Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/FINAL P1 - Copy.jpg"],
+             ["title" => "Masaya Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/3RD.jpg"],
+              ["title" => "San Miguel Padre Garcia, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/VIEW0010EDITED.jpg"],
+              ["title" => "Romblon, Romblon", "type" => "RESIDENTIAL AND COMMERCIAL", "img" => "../assets/images/project5.JPG  "],
+        ];
+
+        foreach ($projects as $project) {
+         echo '<div class="project-card-page">';
+          echo '  <img src="' . $project["img"] . '" alt="">';
+          echo '  <div class="overlay">';
+          echo '    <p>' . $project["type"] . '</p>';
+          echo '    <h3>' . $project["title"] . '</h3>';
+          echo '  </div>';
+          echo '</div>';
+        }
+        ?>
+</div>
+
+</section>
