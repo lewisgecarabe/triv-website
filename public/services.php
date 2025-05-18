@@ -24,9 +24,9 @@
     </nav>
 </header>
 
-    <section class="career-hero">
+    <section class="services-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/services.jpg" alt="Construction Site" class="hero-bg">
+        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
             <h1>SERVICES</h1>
         </div>
@@ -39,7 +39,7 @@
             <div class="services-grid">
                 <!-- Construction -->
                 <div class="service-card" onclick="location.href='services_construction.php';">
-                    <div class="service-card-image construction-img">
+                    <div class="../assets/images/construction-bg.jpg">
                         <div class="service-overlay"></div>
                     </div>
                     <div class="service-card-content">
