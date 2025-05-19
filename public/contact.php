@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
     <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -30,7 +30,7 @@
     <section class="contact-hero">
         <div class="hero-overlay"></div>
         <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
-        <div class="hero-content">
+        <div class="hero-content-contact">
             <h1>CONTACT US</h1>
         </div>
     </section>

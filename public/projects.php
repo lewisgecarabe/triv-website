@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
     <!-- Hamburger menu that shows nav on hover -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -59,6 +59,8 @@
 </div>
 
 </section>
+
+
 
     <footer>
         <div class="footer-logo">

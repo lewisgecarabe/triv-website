@@ -153,7 +153,7 @@ nav ul li a:hover {
   display: flex;
   align-items: center;
    padding: 15px 10%;
-  overflow: hidden;
+ 
 }
 
 .hero-bg {
@@ -179,7 +179,7 @@ nav ul li a:hover {
 .hero-content {
   color: white;
   max-width: 100%;
-  position: relative;
+  position: flex;
   z-index: 1;
 }
 
@@ -198,7 +198,7 @@ nav ul li a:hover {
   margin-bottom: 30px;
   font-size: 16px;
   color: #c2c2c2;
-  max-width: 55rem;
+  max-width: 53rem;
 }
 
 .btn {
@@ -231,6 +231,7 @@ nav ul li a:hover {
   margin-bottom: 10px;
   margin-top: 22px;
   line-height: 1.2;
+ 
 }
 
 .about-content h1 {
@@ -429,9 +430,7 @@ footer {
 
 /* Tablets and small desktops */
 @media (max-width: 1024px) {
-  .hero-content h1 {
-    font-size: 2.8rem;
-  }
+
   
   .about {
     grid-template-columns: 1fr;
@@ -486,9 +485,7 @@ footer {
     font-size: 16px;
   }
   
-  .hero-content h1 {
-    font-size: 2rem;
-  }
+
   
   .hero-content p {
     font-size: 14px;
@@ -970,6 +967,18 @@ footer {
   gap: 20px;
 }
 
+.hero-content-contact h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 4rem; /* Use relative units */
+  line-height: 1;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 32%;
+}
+
+
 
 /* Project Page */
 
@@ -989,7 +998,7 @@ footer {
   margin-bottom: 50px; /* Reduced from 100px */
   letter-spacing: 0px;
   text-transform: uppercase;
-  color: #ffc107;
+  color: #ffffff;
   margin-bottom: 39%;
 }
 
@@ -1036,7 +1045,7 @@ footer {
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
-  background: #eee;
+  background: #000000;
 }
 
 .project-card-page img {
@@ -1052,7 +1061,7 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(77, 14, 14, 0.7);
+  background: #1a2b49;
   color: white;
   display: flex;
   flex-direction: column;
@@ -1067,6 +1076,29 @@ footer {
 .project-card-page:hover .overlay {
   opacity: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* For touch devices, make overlay visible on touch */
 @media (hover: none) {
@@ -1240,7 +1272,7 @@ a {
 }
 
 a:hover {
-  color: #c7a008;
+  color: #1a2b49;
 }
 
 img {
@@ -1303,15 +1335,15 @@ img {
 
 .nav-menu a:hover,
 .nav-menu .active > a {
-  color: #800000;
+  color: #1a2b49;
 }
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #ffffff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: #1a2b49;
+  box-shadow: 0 5px 15px rgba(255, 254, 254, 0.1);
   min-width: 200px;
   opacity: 0;
   visibility: hidden;
@@ -1341,8 +1373,8 @@ img {
 }
 
 .dropdown-menu a:hover {
-  background-color: #f4f4f4;
-  color: #800000;
+  background-color: #ffffff;
+  color: #1a2b49;
 }
 
 .mobile-menu-toggle {
@@ -1372,6 +1404,8 @@ img {
 }
 
 /* ===== SERVICES CSS ===== */
+
+
 .services-main {
   min-height: 100vh;
   padding-top: 80px; /* To account for fixed header */
@@ -2738,49 +2772,8 @@ img {
 
 /* Career Page Styles */
 
-/* Hero Sections */
-.career-hero,
-.job-details-hero,
-.apply-hero {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-}
 
-.hero-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: #FAFAFA;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
 
 /* Container */
 .container {
@@ -3128,9 +3121,7 @@ img {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
+
     
     .jobs-container {
         grid-template-columns: 1fr;
@@ -3147,9 +3138,7 @@ img {
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
+
     
     .job-meta {
         flex-direction: column;
