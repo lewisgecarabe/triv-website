@@ -31,9 +31,28 @@
         <div class="hero-overlay"></div>
         <img src="../assets/images/codings.jpg" alt="Code Background" class="hero-bg">
         <div class="hero-content">
-            <h1>FOUNDERS</h1>
+            <h1>ABOUT US</h1>
         </div>
     </section>
+
+    <!-- Company Description -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center mb-4 mb-md-0">
+          <h2 class="fw-semibold">TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+        </div>
+        <div class="col-md-6">
+          <p class="text-muted mb-4">
+            TRIV Design & Construction is a full-service firm specializing in architecture, interior design, and construction management. We are committed to transforming ideas into functional and visually compelling spaces. With a focus on quality craftsmanship and client collaboration, we ensure every project meets the highest standards.
+          </p>
+          <p class="text-muted">
+            Our team combines creative design with technical expertise to deliver projects on time and within budget. At TRIV, we build not just structures—but lasting value and meaningful experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <section class="founders-section">
         <div class="founders-container">
