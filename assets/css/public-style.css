@@ -3160,3 +3160,11 @@ img {
         flex-direction: column;
     }
 }
+
+.job-details-hero {
+  background-color: #800000;
+}
+
+.job-header {
+  color:#f0f0f0
+}

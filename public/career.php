@@ -67,8 +67,8 @@
                     <option value="architecture">Architecture</option>
                     <option value="engineering">Engineering</option>
                     <option value="construction">Construction</option>
-                    <option value="interior">Interior Design</option>
-                    <option value="admin">Administration</option>
+                    <option value="interior design">Interior Design</option>
+                    <option value="administration">Administration</option>
                 </select>
             </div>
             
@@ -197,23 +197,23 @@
         </div>
     </footer>
 
-    <script>
-        // Simple filter functionality for job listings
-        document.getElementById('department-filter').addEventListener('change', function() {
-            const selectedDepartment = this.value;
-            const jobCards = document.querySelectorAll('.job-card');
-            
-            jobCards.forEach(card => {
-                const department = card.querySelector('.job-department').textContent;
+        <script>
+            // Simple filter functionality for job listings
+            document.getElementById('department-filter').addEventListener('change', function() {
+                const selectedDepartment = this.value.trim().toLowerCase();
+                const jobCards = document.querySelectorAll('.job-card');
                 
-                if (selectedDepartment === 'all' || department.toLowerCase() === selectedDepartment) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                jobCards.forEach(card => {
+                    const department = card.querySelector('.job-department').textContent.trim().toLowerCase();
+                    
+                    if (selectedDepartment === 'all' || department === selectedDepartment) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
           <script>
         document.addEventListener('DOMContentLoaded', function() {
