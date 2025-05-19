@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        <img src="../assets/images/TRIV3-removebg-preview.png" alt="TRIV Design & Construction">
     </div>
     <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -40,7 +40,7 @@
     <section class="about">
         <div class="about-content">
             <h1>ABOUT US</h1>
-            <h2>With our knowledge<br> we guarantee success</h2>
+            <h2>With our knowledge we guarantee <br>success</h2>
             <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
     </div>
 
