@@ -39,7 +39,7 @@
             <div class="services-grid">
                 <!-- Construction -->
                 <div class="service-card" onclick="location.href='services_construction.php';">
-                    <div class="../assets/images/construction-bg.jpg">
+                    <div class="service-card-image construction-img">
                         <div class="service-overlay"></div>
                     </div>
                     <div class="service-card-content">

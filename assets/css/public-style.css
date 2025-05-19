@@ -1415,7 +1415,7 @@ img {
   color: #800000;
 }
 
-/* ===== SERVICES MAIN PAGE ===== */
+/* ===== SERVICES CSS ===== */
 .services-main {
   min-height: 100vh;
   padding-top: 80px; /* To account for fixed header */
@@ -1471,6 +1471,9 @@ img {
 
 .service-card {
   background-color: #ffffff;
+  background-image: url('../asse');
+  background-size: cover;
+  background-position: center;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -1890,105 +1893,6 @@ img {
   font-size: 1.2rem;
 }
 
-/* Testimonials Section */
-.service-testimonials {
-  padding: 80px 20px;
-  background-color: #f4f4f4;
-}
-
-.service-testimonials-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-testimonials h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  position: relative;
-  padding-bottom: 15px;
-}
-
-.service-testimonials h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background-color: #800000;
-}
-
-.testimonials-slider {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 50px;
-}
-
-.testimonial {
-  flex: 1 1 calc(50% - 15px);
-  min-width: 300px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-content {
-  margin-bottom: 20px;
-  position: relative;
-  padding-left: 25px;
-}
-
-.testimonial-content::before {
-  content: '"';
-  position: absolute;
-  left: 0;
-  top: -10px;
-  font-size: 3rem;
-  color: #800000;
-  opacity: 0.3;
-  line-height: 1;
-}
-
-.testimonial-content p {
-  font-style: italic;
-  color: #333333;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.testimonial-author img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.testimonial-info h4 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: #222222;
-}
-
-.testimonial-info p {
-  font-size: 0.9rem;
-  color: #666666;
-  margin-bottom: 0;
-}
-
 /* CTA Section */
 .service-cta {
   padding: 80px 20px;
@@ -2365,7 +2269,7 @@ img {
     padding: 12px 15px;
   }
 }
-
+/* === CAREER CSS === */
 /* Container */
 .container {
     max-width: 1200px;
