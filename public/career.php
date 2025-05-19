@@ -27,7 +27,7 @@
 
     <section class="career-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
+        <img src="../assets/images/career1.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
             <h1>CAREER</h1>
         </div>
@@ -52,7 +52,7 @@
                     <p>Join us and grow your career with continuous learning, mentorship programs, and clear advancement paths. We invest in our team because your success is our success.</p>
                 </div>
                 <div class="culture-image">
-                    <img src="../assets/images/team-working.jpg" alt="TRIV Team Working Together">
+                    <img src="../assets/images/career_jd.jpg" alt="TRIV Team Working Together">
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                         <span class="job-department">Architecture</span>
                     </div>
                     <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
+                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Lead architectural design projects from concept to completion, collaborating with clients and construction teams to deliver innovative, sustainable building solutions.</p>
                         <div class="job-actions">
                             <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
@@ -96,7 +96,7 @@
                         <span class="job-department">Engineering</span>
                     </div>
                     <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
+                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Design and oversee construction projects ensuring structural integrity, safety compliance, and efficient execution while coordinating with architects and contractors.</p>
                         <div class="job-actions">
                             <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
@@ -112,7 +112,7 @@
                         <span class="job-department">Interior Design</span>
                     </div>
                     <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (Hybrid)</p>
+                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (Hybrid)</p>
                         <p class="job-description">Create stunning, functional interior spaces that reflect clients' visions and needs, selecting materials, colors, and furnishings while managing project timelines and budgets.</p>
                         <div class="job-actions">
                             <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
@@ -128,7 +128,7 @@
                         <span class="job-department">Construction</span>
                     </div>
                     <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (On-site)</p>
+                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
                         <p class="job-description">Oversee construction projects from planning to completion, managing timelines, budgets, resources, and teams to ensure quality, safety, and client satisfaction.</p>
                         <div class="job-actions">
                             <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
@@ -144,7 +144,7 @@
                         <span class="job-department">Administration</span>
                     </div>
                     <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/location-pin.png" alt="Location"> Manila, Philippines (Hybrid)</p>
+                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (Hybrid)</p>
                         <p class="job-description">Develop and implement marketing strategies to promote TRIV's services, manage social media presence, create compelling content, and build client relationships.</p>
                         <div class="job-actions">
                             <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>

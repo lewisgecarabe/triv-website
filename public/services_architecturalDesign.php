@@ -9,6 +9,13 @@
 </head>
 <body>
 <header>
+
+<div class="return-services-container">
+    <a href="../public/services.php" class="return-services-button">
+        <i class="fas fa-arrow-left"></i> Return to Services
+    </a>
+</div>
+
     <div class="logo">
         <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
     </div>
@@ -49,7 +56,7 @@
                         <p>From initial sketches to detailed plans, we guide you through each step of the design process. As a new firm, we take the time to listen carefully to your needs and work closely with you to create designs that balance your vision with practical requirements and local building regulations.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="../assets/images/architectural-detail.jpg" alt="Architectural design rendering from TRIV">
+                        <img src="../assets/images/services_render.jpg" alt="Architectural design rendering from TRIV">
                     </div>
                 </div>
             </div>
@@ -102,49 +109,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Gallery Section -->
-        <section class="service-gallery">
-            <div class="service-gallery-container">
-                <h2>Our Architectural Portfolio</h2>
-                <div class="gallery-slider">
-                    <div class="gallery-track">
-                        <div class="gallery-slide">
-                            <img src="../assets/images/architectural-project1.jpg" alt="TRIV Architectural Project 1">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/architectural-project2.jpg" alt="TRIV Architectural Project 2">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/architectural-project3.jpg" alt="TRIV Architectural Project 3">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/architectural-project4.jpg" alt="TRIV Architectural Project 4">
-                        </div>
-                    </div>
-                    <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="service-testimonials">
-            <div class="service-testimonials-container">
-                <h2>Client Testimonials</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"TRIV's architectural team created a design for our corporate headquarters that perfectly balances form and function. The building has become a landmark in our city and provides an inspiring workspace for our employees."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="../assets/images/client5.jpg" alt="Client Portrait">
-                            <div class="testimonial-info">
-                                <h4>Gabriel Tan</h4>
-                                <p>Director, Pinnacle Enterprises</p>
-                            </div>
-                        </div>
-                    </div>
                     
         <!-- CTA Section -->
         <section class="service-cta">
@@ -156,60 +120,5 @@
         </section>
     </main>
 
-    <script>
-        // Gallery Slider Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.gallery-track');
-            const slides = document.querySelectorAll('.gallery-slide');
-            const nextButton = document.querySelector('.gallery-next');
-            const prevButton = document.querySelector('.gallery-prev');
-            
-            let currentIndex = 0;
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            
-            // Set initial position
-            track.style.transform = `translateX(0px)`;
-            
-            // Next button click
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            });
-            
-            // Previous button click
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            });
-            
-            // Auto slide every 5 seconds
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            }, 5000);
-        });
-    </script>
-
-          <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav');
-            
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                });
-            }
-            
-            // Close menu when clicking on a link
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>

@@ -27,7 +27,6 @@
 
     <section class="job-details-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
             <h1>JOB DETAILS</h1>
         </div>

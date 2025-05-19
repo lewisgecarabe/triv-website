@@ -26,78 +26,82 @@
 
     <section class="services-hero">
         <div class="hero-overlay"></div>
-        <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
+        <img src="../assets/images/services.jpg" alt="Construction Site" class="hero-bg">
         <div class="hero-content">
             <h1>SERVICES</h1>
         </div>
     </section>
        
-        <!-- Services Grid -->
-        <section class="services-grid-container">
-            <h2 class="services-section-title">Our Services</h2>
-            
-            <div class="services-grid">
-                <!-- Construction -->
-                <div class="service-card" onclick="location.href='services_construction.php';">
-                    <div class="service-card-image construction-img">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-card-content">
-                        <h3>Construction</h3>
-                        <p>From foundation to finishing, we build durable structures that last for generations.</p>
-                        <a href="services_construction.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <!-- Services Grid -->
+            <section class="services-grid-container">
+                <h2 class="services-section-title">Our Services</h2>
+                    
+        <div class="services-grid">
+            <!-- Construction -->
+            <div class="service-card" onclick="location.href='services_construction.php';">
+                <div class="service-card-image">
+                    <img src="../assets/images/services_construction.jpg" alt="Construction Services">
+                    <div class="service-overlay"></div>
                 </div>
-
-                <!-- Renovation -->
-                <div class="service-card" onclick="location.href='services_renovation.php';">
-                    <div class="service-card-image renovation-img">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-card-content">
-                        <h3>Renovation</h3>
-                        <p>Breathe new life into old spaces with our modern renovation solutions.</p>
-                        <a href="services_renovation.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Architectural Design -->
-                <div class="service-card" onclick="location.href='services_architecturalDesign.php';">
-                    <div class="service-card-image architectural-img">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-card-content">
-                        <h3>Architectural Design</h3>
-                        <p>Innovative and sustainable designs crafted to inspire and function.</p>
-                        <a href="services_architecturalDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Interior Design -->
-                <div class="service-card" onclick="location.href='services_interiorDesign.php';">
-                    <div class="service-card-image interior-img">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-card-content">
-                        <h3>Interior Design</h3>
-                        <p>Creating elegant interiors that reflect your personality and lifestyle.</p>
-                        <a href="services_interiorDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Extension -->
-                <div class="service-card" onclick="location.href='services_extension.php';">
-                    <div class="service-card-image extension-img">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-card-content">
-                        <h3>Extension</h3>
-                        <p>Expand your space seamlessly while preserving your original structure's charm.</p>
-                        <a href="services_extension.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="service-card-content">
+                    <h3>Construction</h3>
+                    <p>From foundation to finishing, we build durable structures that last for generations.</p>
+                    <a href="services_construction.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-        </section>
+
+            <!-- Renovation -->
+            <div class="service-card" onclick="location.href='services_renovation.php';">
+                <div class="service-card-image">
+                    <img src="../assets/images/services_renovation.jpg" alt="Renovation Services">
+                    <div class="service-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <h3>Renovation</h3>
+                    <p>Breathe new life into old spaces with our modern renovation solutions.</p>
+                    <a href="services_renovation.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Architectural Design -->
+            <div class="service-card" onclick="location.href='services_architecturalDesign.php';">
+                <div class="service-card-image">
+                    <img src="../assets/images/services_architecturalDesign.jpg" alt="Architectural Design Services">
+                    <div class="service-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <h3>Architectural Design</h3>
+                    <p>Innovative and sustainable designs crafted to inspire and function.</p>
+                    <a href="services_architecturalDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Interior Design -->
+            <div class="service-card" onclick="location.href='services_interiorDesign.php';">
+                <div class="service-card-image">
+                    <img src="../assets/images/services_interiorDesign.jpg" alt="Interior Design Services">
+                    <div class="service-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <h3>Interior Design</h3>
+                    <p>Creating elegant interiors that reflect your personality and lifestyle.</p>
+                    <a href="services_interiorDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Extension -->
+            <div class="service-card" onclick="location.href='services_extension.php';">
+                <div class="service-card-image">
+                    <img src="../assets/images/services_extension.jpg" alt="Extension Services">
+                    <div class="service-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <h3>Extension</h3>
+                    <p>Expand your space seamlessly while preserving your original structure's charm.</p>
+                    <a href="services_extension.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
 
         <!-- CTA Section -->
         <section class="services-cta">

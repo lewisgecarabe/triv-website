@@ -9,6 +9,13 @@
 </head>
 <body>
 <header>
+
+<div class="return-services-container">
+    <a href="../public/services.php" class="return-services-button">
+        <i class="fas fa-arrow-left"></i> Return to Services
+    </a>
+</div>
+
     <div class="logo">
         <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
     </div>
@@ -49,7 +56,7 @@
                         <p>As a new design firm in the Philippines, we're passionate about creating interiors that incorporate local elements while meeting modern needs. We work within your budget to select appropriate materials, furniture, and finishes, creating spaces that feel both fresh and uniquely yours.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="../assets/images/interior-detail.jpg" alt="Interior design project by TRIV">
+                        <img src="../assets/images/services_ID.jpg" alt="Interior design project by TRIV">
                     </div>
                 </div>
             </div>
@@ -103,31 +110,6 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section class="service-gallery">
-            <div class="service-gallery-container">
-                <h2>Interior Design Portfolio</h2>
-                <div class="gallery-slider">
-                    <div class="gallery-track">
-                        <div class="gallery-slide">
-                            <img src="../assets/images/interior-project1.jpg" alt="TRIV Interior Design Project 1">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/interior-project2.jpg" alt="TRIV Interior Design Project 2">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/interior-project3.jpg" alt="TRIV Interior Design Project 3">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="../assets/images/interior-project4.jpg" alt="TRIV Interior Design Project 4">
-                        </div>
-                    </div>
-                    <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
@@ -138,60 +120,5 @@
         </section>
     </main>
 
-    <script>
-        // Gallery Slider Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.gallery-track');
-            const slides = document.querySelectorAll('.gallery-slide');
-            const nextButton = document.querySelector('.gallery-next');
-            const prevButton = document.querySelector('.gallery-prev');
-            
-            let currentIndex = 0;
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            
-            // Set initial position
-            track.style.transform = `translateX(0px)`;
-            
-            // Next button click
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            });
-            
-            // Previous button click
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            });
-            
-            // Auto slide every 5 seconds
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            }, 5000);
-        });
-    </script>
-
-          <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav');
-            
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                });
-            }
-            
-            // Close menu when clicking on a link
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
