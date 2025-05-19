@@ -19,7 +19,7 @@
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
             <li><a href="../public/services.php">SERVICES</a></li>
-            <li><a href="../public/developers.php">DEVELOPERS</a></li>
+            <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
