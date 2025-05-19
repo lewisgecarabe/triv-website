@@ -1,4 +1,21 @@
 <?php include 'functions.php'; ?>
+<?php require_once '../classes/Database.php';
+
+// Connect to the database
+$db = new Database();
+$conn = $db->connect();
+
+// Fetch all projects
+try {
+    $stmt = $conn->prepare("SELECT * FROM projects ORDER BY id DESC");
+    $stmt->execute();
+    $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Query failed: " . $e->getMessage());
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +36,7 @@
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
             <li><a href="../public/services.php">SERVICES</a></li>
-            <li><a href="../public/developers.php">BOUT US</a></li>
+            <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
@@ -38,29 +55,21 @@
 
     <section class="projects-portfolio">
     <div class="projects-page">
-        <?php
-        $projects = [
-            ["title" => "Quilib Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/FINAL P1 - Copy.jpg"],
-             ["title" => "Masaya Rosario, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/3RD.jpg"],
-              ["title" => "San Miguel Padre Garcia, Batangas", "type" => "RESIDENTIAL", "img" => "../assets/images/VIEW0010EDITED.jpg"],
-              ["title" => "Romblon, Romblon", "type" => "RESIDENTIAL AND COMMERCIAL", "img" => "../assets/images/project5.JPG  "],
-        ];
-
-        foreach ($projects as $project) {
-         echo '<div class="project-card-page">';
-          echo '  <img src="' . $project["img"] . '" alt="">';
-          echo '  <div class="overlay">';
-          echo '    <p>' . $project["type"] . '</p>';
-          echo '    <h3>' . $project["title"] . '</h3>';
-          echo '  </div>';
-          echo '</div>';
-        }
-        ?>
-</div>
-
+        <?php if ($projects && count($projects) > 0): ?>
+            <?php foreach ($projects as $project): ?>
+                <div class="project-card-page">
+                    <img src="<?= htmlspecialchars($project['image']) ?>" alt="<?= htmlspecialchars($project['title']) ?>">
+                    <div class="overlay">
+                        <p><?= htmlspecialchars($project['type']) ?></p>
+                        <h3><?= htmlspecialchars($project['title']) ?></h3>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No projects available at the moment.</p>
+        <?php endif; ?>
+    </div>
 </section>
-
-
 
     <footer>
         <div class="footer-logo">
