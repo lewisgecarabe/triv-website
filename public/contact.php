@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
     <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -19,7 +19,7 @@
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
             <li><a href="../public/services.php">SERVICES</a></li>
-            <li><a href="../public/developers.php">DEVELOPERS</a></li>
+            <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
@@ -30,7 +30,7 @@
     <section class="contact-hero">
         <div class="hero-overlay"></div>
         <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">
-        <div class="hero-content">
+        <div class="hero-content-contact">
             <h1>CONTACT US</h1>
         </div>
     </section>

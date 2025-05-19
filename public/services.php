@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <header>
     <div class="logo">
-        <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
     <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -27,7 +27,7 @@
     <section class="services-hero">
         <div class="hero-overlay"></div>
         <img src="../assets/images/services.jpg" alt="Construction Site" class="hero-bg">
-        <div class="hero-content">
+        <div class="hero-content-services">
             <h1>SERVICES</h1>
         </div>
     </section>
