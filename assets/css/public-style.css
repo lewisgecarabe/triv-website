@@ -340,50 +340,124 @@ nav ul li a:hover {
   margin: 5px 0 0;
 }
 
-.soc-med {
-  min-height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 5%;
-  background-color: #000000;
-}
-
-.soc-med-content {
-  text-align: center;
-  width: 100%;
-}
-
-.soc-med h1 {
-  font-size: 2rem;
-  color: white;
-  font-family: 'Lato', sans-serif;
-  margin-bottom: 20px;
-}
-
-.myfacebook {
-  display: inline-flex;
-  align-items: center;
-  background-color: #2a2626; 
-  color: white;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 10px; 
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  gap: 10px;
-}
-
-.myfacebook:hover {
-  background-color: #006eff;
-}
-
-.fbdatcom {
-  width: 40px;
-  height: auto;
-}
+    .soc-med {
+      background-color: #1a2b49;
+      min-height: 40vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 64px 5%;
+    }
+    
+    .soc-med-content {
+      text-align: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .soc-med h1 {
+      font-size: 2.5rem;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      margin-bottom: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    .myfacebook {
+      display: inline-flex;
+      align-items: center;
+      background-color: #ffffff;
+      color: #1a2b49;
+      padding: 16px 24px;
+      font-size: 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-family: 'Lato', sans-serif;
+      gap: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .myfacebook:hover {
+      background-color: #ffc107;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .myfacebook:hover .fb {
+      color: white;
+    }
+    
+    .fbdatcom-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #1a2b49;
+      transition: all 0.3s ease;
+    }
+    
+    .myfacebook:hover .fbdatcom-wrapper {
+      border-color: white;
+    }
+    
+    .fbdatcom {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .fb {
+      color: #1a2b49;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .decorative-lines {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    
+    .line {
+      height: 4px;
+      width: 64px;
+      border-radius: 2px;
+    }
+    
+    .line-gold {
+      background-color: #ffc107;
+    }
+    
+    .line-white {
+      background-color: white;
+      opacity: 0.5;
+    }
+    
+    @media (max-width: 768px) {
+      .soc-med h1 {
+        font-size: 1.8rem;
+      }
+      
+      .myfacebook {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      
+      .fbdatcom-wrapper {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .line {
+        width: 48px;
+      }
+    }
 
 .btn-red {
   background-color: #1a2b49;
@@ -547,54 +621,200 @@ footer {
   font-weight: 300;
 }
 
-.founders-section {
-  padding: 80px 10%;
-  background-color: #f5f5f5;
-}
+        /* Main Content Section */
+        .main-content {
+            display: flex;
+            padding: 60px 10%; /* Updated padding as requested */
+        }
 
-.founders-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
+        /* Sidebar */
+        .sidebar {
+            width: 220px; /* Adjusted width to fit with new padding */
+            padding-right: 30px;
+        }
 
-.founder-card {
-  background-color: white;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
+        .sidebar-menu {
+            list-style: none;
+        }
 
-.founder-image {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 20px;
-  border: 5px solid #333;
-}
+        .sidebar-menu li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
 
-.founder-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+        .sidebar-menu li a {
+            color: #1a2b49;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
 
-.founder-card h3 {
-  font-size: 22px;
-  margin-bottom: 5px;
-  color: #1a2b49;
-}
+        .sidebar-menu li a:hover, .sidebar-menu li a.active {
+            color: #ffc107;
+        }
 
-.founder-title {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
+        /* Content Area */
+        .content-area {
+            flex: 1;
+        }
 
-.founder-bio {
-  font-size: 14px;
-  color: #555;
-  text-align: justify;
-}
+        .content-section {
+            margin-bottom: 50px; /* Slightly reduced for better spacing */
+        }
+
+        .content-title {
+            color: #1a2b49;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .content-subtitle {
+            color: #1a2b49;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .content-text {
+            margin-bottom: 20px;
+        }
+
+        /* People Section */
+        .people-section {
+            display: none;
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); /* Adjusted for new padding */
+            gap: 25px; /* Slightly reduced gap */
+            margin-top: 30px;
+        }
+
+        .person-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .person-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .person-image {
+            height: 230px; /* Adjusted height */
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .person-details {
+            padding: 15px; /* Slightly reduced padding */
+        }
+
+        .person-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a2b49;
+            margin-bottom: 5px;
+        }
+
+        .person-position {
+            color: #ffc107;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .person-bio {
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 10%; /* Updated padding as requested */
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 5%; /* Adjusted for mobile */
+            }
+
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0 15px 10px 0;
+            }
+
+            .hero {
+                padding: 0 5%; /* Adjusted for mobile */
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                flex-direction: column;
+                padding: 40px 5%; /* Adjusted for mobile */
+            }
+
+            .sidebar {
+                width: 100%;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .sidebar-menu {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .sidebar-menu li {
+                margin-right: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+            }
+        }
 
 .company-contact {
   padding: 60px 10%;

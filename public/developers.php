@@ -35,58 +35,131 @@
         </div>
     </section>
 
-    <!-- Company Description -->
-  <section class="py-5 bg-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-center mb-4 mb-md-0">
-          <h2 class="fw-semibold">TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-        </div>
-        <div class="col-md-6">
-          <p class="text-muted mb-4">
-            TRIV Design & Construction is a full-service firm specializing in architecture, interior design, and construction management. We are committed to transforming ideas into functional and visually compelling spaces. With a focus on quality craftsmanship and client collaboration, we ensure every project meets the highest standards.
-          </p>
-          <p class="text-muted">
-            Our team combines creative design with technical expertise to deliver projects on time and within budget. At TRIV, we build not just structures—but lasting value and meaningful experiences.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="main-content">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="menu-item active" data-target="firm">The Firm</a></li>
+                <li><a href="#" class="menu-item" data-target="people">People</a></li>
+                <li><a href="#" class="menu-item" data-target="inquiries">Inquiries</a></li>
+                <li><a href="#" class="menu-item" data-target="account">Account</a></li>
+            </ul>
+        </aside>
 
-    <section class="founders-section">
-        <div class="founders-container">
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="images/user-icon.png" alt="Engr. Noel R. Villanueva">
-                </div>
-                <h3>Engr. Noel R. Villanueva</h3>
-                <p class="founder-title">Civil Engineer</p>
-                <p class="founder-bio">
-                    a dedicated Software Engineer and Front-End Developer with a strong focus on building responsive, user-centric web applications. He earned his Bachelor of Science in Information Technology from the University of Santo Tomas, where he developed a solid foundation in software development and design principles. Passionate about clean code and elegant design, Noel excels in turning ideas into functional and visually appealing interfaces. His core skill set includes HTML, CSS, JavaScript, and modern frameworks like React and Vue.js.
-                </p>
+        <div class="content-area">
+            <!-- The Firm Section -->
+            <div id="firm-section" class="content-section">
+                <h2 class="content-title">TRIV Design & Construction</h2>
+                <p class="content-text">SINCE 2025.</p>
+                <p class="content-text">Guided by Engr. Noel R. Villanueva, passionate individuals, fueled by talent, the company has grown stronger with each new challenge.</p>
+                
+                <h3 class="content-subtitle">HISTORY</h3>
+                <p class="content-text">TRIV Design & Construction is a full-service firm specializing in architecture, interior design, and construction management. We are committed to transforming ideas into functional and visually compelling spaces. With a focus on quality craftsmanship and client collaboration, we ensure every project meets the highest standards. Our team combines creative design with technical expertise to deliver projects on time and within budget. At TRIV, we build not just structures—but lasting value and meaningful experiences.</p>
+                
+                <h3 class="content-subtitle">MISSION</h3>
+                <p class="content-text">To provide exceptional architectural and construction services that fuse innovative design, functionality, and sustainability. We are committed to exceeding client expectations through collaborative processes, high-quality workmanship, and ethical practices.</p>
+                
+                <h3 class="content-subtitle">VISION</h3>
+                <p class="content-text">To be a leading force in the design and construction industry, recognized for shaping spaces that inspire, endure, and elevate the way people live and work.</p>
             </div>
 
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="images/user-icon.png" alt="Arch. Maria Alyza L. Villanueva">
+            <!-- People Section -->
+            <div id="people-section" class="content-section people-section">
+                <h2 class="content-title">Our Team</h2>
+                <p class="content-text">Meet the talented individuals who make TRIV Design & Construction a leader in the industry.</p>
+                
+                <div class="people-grid">
+                    <div class="person-card">
+                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
+                        <div class="person-details">
+                            <h3 class="person-name">Engr. Noel R. Villanueva</h3>
+                            <p class="person-position">Founder & CEO</p>
+                            <p class="person-bio">With over 20 years of experience in construction and design, Noel founded TRIV with a vision to create spaces that transform lives.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="person-card">
+                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
+                        <div class="person-details">
+                            <h3 class="person-name">Arch. Maria Santos</h3>
+                            <p class="person-position">Principal Architect</p>
+                            <p class="person-bio">Maria brings innovative design solutions and a keen eye for detail to every project, specializing in sustainable architecture.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="person-card">
+                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
+                        <div class="person-details">
+                            <h3 class="person-name">Engr. James Rodriguez</h3>
+                            <p class="person-position">Construction Manager</p>
+                            <p class="person-bio">James ensures that every project is executed with precision, quality, and efficiency, maintaining the highest standards.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="person-card">
+                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
+                        <div class="person-details">
+                            <h3 class="person-name">Diana Lee</h3>
+                            <p class="person-position">Interior Designer</p>
+                            <p class="person-bio">Diana creates functional and aesthetically pleasing interior spaces that reflect each client's unique vision and lifestyle.</p>
+                        </div>
+                    </div>
                 </div>
-                <h3>Arch. Maria Alyza L. Villanueva</h3>
-                <p class="founder-title">Software Engineer / Front-end Developer</p>
-                <p class="founder-bio">
-                    a dedicated Software Engineer and Front-End Developer with a strong focus on building responsive, user-centric web applications. She earned her Bachelor of Science in Information Technology from the University of Santo Tomas, where she developed a solid foundation in software development and design principles. Passionate about clean code and elegant design, Maria excels in turning ideas into functional and visually appealing interfaces. Her core skill set includes HTML, CSS, JavaScript, and modern frameworks like React and Vue.js.
-                </p>
             </div>
 
-            <div class="founder-card">
-                <div class="founder-image">
-                    <img src="images/user-icon.png" alt="Engr. Jan L. Villanueva">
-                </div>
-                <h3>Engr. Jan L. Villanueva</h3>
-                <p class="founder-title">Software Engineer / Front-end Developer</p>
-                <p class="founder-bio">
-                    a dedicated Software Engineer and Front-End Developer with a strong focus on building responsive, user-centric web applications. He earned his Bachelor of Science in Information Technology from the University of Santo Tomas, where he developed a solid foundation in software development and design principles. Passionate about clean code and elegant design, Jan excels in turning ideas into functional and visually appealing interfaces. His core skill set includes HTML, CSS, JavaScript, and modern frameworks like React and Vue.js.
-                </p>
+            <!-- Inquiries Section -->
+            <div id="inquiries-section" class="content-section people-section">
+                <h2 class="content-title">Inquiries</h2>
+                <p class="content-text">Interested in working with us? Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form action="process_inquiry.php" method="POST">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div>
+                            <label for="name" style="display: block; margin-bottom: 5px; font-weight: 500;">Name</label>
+                            <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div>
+                            <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500;">Email</label>
+                            <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label for="subject" style="display: block; margin-bottom: 5px; font-weight: 500;">Subject</label>
+                        <input type="text" id="subject" name="subject" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label for="message" style="display: block; margin-bottom: 5px; font-weight: 500;">Message</label>
+                        <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="border: none; cursor: pointer;">Submit Inquiry</button>
+                </form>
+            </div>
+
+            <!-- Account Section -->
+            <div id="account-section" class="content-section people-section">
+                <h2 class="content-title">Account</h2>
+                <p class="content-text">Access your client portal to view project updates, documents, and communicate with our team.</p>
+                
+                <form action="login.php" method="POST" style="max-width: 400px; margin-top: 30px;">
+                    <div style="margin-bottom: 20px;">
+                        <label for="username" style="display: block; margin-bottom: 5px; font-weight: 500;">Username</label>
+                        <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label for="password" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
+                        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    
+                    <button type="submit" class="btn" style="border: none; cursor: pointer;">Login</button>
+                    
+                    <p style="margin-top: 20px; font-size: 0.9rem;">
+                        <a href="#" style="color: #1a2b49; text-decoration: none;">Forgot password?</a> | 
+                        <a href="#" style="color: #1a2b49; text-decoration: none;">Request an account</a>
+                    </p>
+                </form>
             </div>
         </div>
     </section>
@@ -149,6 +222,77 @@
                     nav.classList.remove('active');
                 });
             });
+        });
+    </script>
+
+     <?php
+    // This would be in process_inquiry.php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+        
+        // Process the form data (e.g., send email, store in database)
+        // This is just a placeholder
+        // mail("contact@trivdesign.com", "New Inquiry: $subject", $message, "From: $email");
+        
+        // Redirect back with success message
+        // header("Location: index.php?inquiry=success");
+    }
+    
+    // This would be in login.php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        
+        // Authenticate user (connect to database, check credentials)
+        // This is just a placeholder
+        
+        // If successful, start session and redirect to dashboard
+        // session_start();
+        // $_SESSION['user'] = $username;
+        // header("Location: dashboard.php");
+    }
+    ?>
+
+    <script>
+        // JavaScript to handle the sidebar menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const sections = document.querySelectorAll('.content-section');
+            
+            // Show only the active section
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId + '-section') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Set active menu item
+            function setActiveMenuItem(item) {
+                menuItems.forEach(menuItem => {
+                    menuItem.classList.remove('active');
+                });
+                item.classList.add('active');
+            }
+            
+            // Add click event to menu items
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-target');
+                    showSection(target);
+                    setActiveMenuItem(this);
+                });
+            });
+            
+            // Initialize with the first section visible
+            showSection('firm');
         });
     </script>
 </body>

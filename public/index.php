@@ -88,15 +88,25 @@
 
 
 
-<section class="soc-med">
-  <div class="soc-med-content">
-    <h1>FOLLOW US ON OUR SOCIAL MEDIA!</h1>
-         <a href="https://web.facebook.com/profile.php?id=61572135853188" class="myfacebook" target="_blank">
-            <img src="../assets/images/fbdatcom.webp" alt="fbbb" class="fbdatcom"> 
-         <i class="fb">Message us on facebook!</i> 
-        </a>
-  </div>
-</section>
+  <section class="soc-med">
+    <div class="soc-med-content">
+      <h1>FOLLOW US ON OUR SOCIAL MEDIA!</h1>
+      <a href="https://web.facebook.com/profile.php?id=61572135853188" class="myfacebook" target="_blank">
+        <div class="fbdatcom-wrapper">
+          <img src="../assets/images/fbdatcom.webp" alt="Facebook" class="fbdatcom">
+        </div>
+        <span class="fb">Message us on Facebook!</span>
+        <!-- Facebook icon using Unicode -->
+        <span style="font-size: 20px;">&#xf39e;</span>
+      </a>
+      
+      <div class="decorative-lines">
+        <div class="line line-gold"></div>
+        <div class="line line-white"></div>
+        <div class="line line-gold"></div>
+      </div>
+    </div>
+  </section>
 
 
     <footer>
