@@ -30,7 +30,7 @@
     <section class="hero developers-hero">
         <div class="hero-overlay"></div>
         <img src="../assets/images/codings.jpg" alt="Code Background" class="hero-bg">
-        <div class="hero-content">
+        <div class="hero-content-aboutus">
             <h1>ABOUT US</h1>
         </div>
     </section>

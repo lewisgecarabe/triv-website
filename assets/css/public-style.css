@@ -616,11 +616,16 @@ footer {
   padding-bottom: 50px;
 }
 
-.developers-hero h1 {
-  font-size: 60px;
-  font-weight: 300;
+.hero-content-aboutus h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 4rem; /* Use relative units */
+  line-height: 1;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 32%;
 }
-
         /* Main Content Section */
         .main-content {
             display: flex;
