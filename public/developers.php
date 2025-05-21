@@ -29,7 +29,7 @@
 
     <section class="hero developers-hero">
         <div class="hero-overlay-aboutus"></div>
-        <img src="../assets/images/codings.jpg" alt="Code Background" class="hero-bg">
+        <img src="../assets/images/aboutushero.jpg" alt="Code Background" class="hero-bg">
         <div class="hero-content-aboutus">
             <h1>ABOUT US</h1>
 </div>
