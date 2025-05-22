@@ -22,7 +22,9 @@
             <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
-            <li><a href="../public/projects.php">PROJECTS</a></li>
+            <li><a href="../public/register.php">PROJECTS</a></li>
+            <hr>
+             <li><a href="../public/projects.php">Log in / Sign Up </a></li>
         </ul>
     </nav>
 </header>
