@@ -1383,13 +1383,11 @@ footer {
 .hero-content-project h1 {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
-  font-size: 4rem; /* Use relative units */
+  font-size: 6rem; /* Use relative units */
   line-height: 1;
-  margin-bottom: 50px; /* Reduced from 100px */
   letter-spacing: 0px;
   text-transform: uppercase;
   color: #ffffff;
-  margin-bottom: 39%;
 }
 
 /* Projects portfolio section */
