@@ -1100,12 +1100,14 @@ footer {
 
 /* Contact Page Styles */
 .contact-hero, .services-hero, .career-hero {
-  height: 50vh;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 10% 50px;
-  overflow: hidden;
+            position: relative;
+            height: 50vh;
+            width: 100%;
+            overflow: hidden;
+            /* Center the content with flexbox */
+            display: flex;
+            justify-content: center;
+            align-items: center;
 }
 
 .contact-hero h1, .services-hero h1, .career-hero h1 {
@@ -1226,14 +1228,14 @@ footer {
 }
 
 .hero-content-contact h1 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 4rem; /* Use relative units */
-  line-height: 1;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-bottom: 32%;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 6rem;
+            line-height: 1;
+            letter-spacing: 0px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0;
 }
 
 
