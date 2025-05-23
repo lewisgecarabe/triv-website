@@ -1,29 +1,50 @@
 <?php
 class Auth {
-    private $conn;
-
-    public function __construct($db_conn) {
-        $this->conn = $db_conn;
+    public static function startSession() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
-    public function login($email, $password) {
-        $stmt = $this->conn->prepare("SELECT * FROM admins WHERE email = :email LIMIT 1");
-        $stmt->bindParam(":email", $email);
-        $stmt->execute();
+    public static function isLoggedIn() {
+        self::startSession();
+        return isset($_SESSION['user_id']);
+    }
 
-        if ($stmt->rowCount() == 1) {
-            $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Note: If password is hashed, use password_verify() instead.
-            if ($admin['password'] === $password) {
-                $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_name'] = $admin['name'];
-                $_SESSION['admin_email'] = $admin['email'];
-                return true;
-            }
+    public static function requireLogin() {
+        if (!self::isLoggedIn()) {
+            header("Location: ../public/login.php");
+            exit();
         }
+    }
 
-        return false;
+public static function requireRole($role) {
+    self::startSession();
+    echo "Checking role..."; // DEBUG: You should see this
+    
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== $role) {
+        header("Location: ../public/login.php");
+        exit();
     }
 }
-?>
+
+
+
+    public static function getUserId() {
+        self::startSession();
+        return $_SESSION['user_id'] ?? null;
+    }
+
+    public static function getUserRole() {
+        self::startSession();
+        return $_SESSION['role'] ?? null;
+    }
+
+    public static function logout() {
+        self::startSession();
+        session_unset();
+        session_destroy();
+        header("Location: ../public/login.php");
+        exit();
+    }
+}

@@ -23,8 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $loggedInUser = $user->login($email, $pass);
 
     if ($loggedInUser) {
+        // ✅ This is where you assign session data
         $_SESSION['user_id'] = $loggedInUser['id'];
+        $_SESSION['email'] = $loggedInUser['email'];
         $_SESSION['role'] = $loggedInUser['role'];
+        $_SESSION['name'] = $loggedInUser['username'];
 
         if ($remember) {
             setcookie('user_id', $loggedInUser['id'], time() + (86400 * 30), "/");
@@ -46,6 +49,7 @@ function redirectBasedOnRole($role) {
     exit();
 }
 ?>
+
 
 <form method="POST">
   <input type="email" name="email" placeholder="Email" required><br>

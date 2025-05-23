@@ -1,4 +1,19 @@
 <?php include 'functions.php'; ?>
+<?php
+require_once '../classes/Database.php';
+require_once '../classes/Project.php';
+
+$db = new Database();
+$conn = $db->connect();
+
+$project = new Project($conn);
+
+$constructionProjects = $project->getByCategory('construction');
+$architecturalProjects = $project->getByCategory('architectural-design');
+$renovationProjects = $project->getByCategory('renovation');
+$interiorProjects = $project->getByCategory('interior-design');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +76,18 @@
             
             <h3 class="content-subtitle-projects"></h3>
             <p class="content-text-projects"></p>
-            
+
+            <div class="projects-grid">
+<?php foreach ($constructionProjects as $proj): ?>
+    <div class="project-card">
+        <div class="project-image" style="background-image: url(../assets/images/<?= htmlspecialchars($proj['image']) ?>);"></div>
+        <div class="project-details">
+            <h3 class="project-name"><?= htmlspecialchars($proj['title']) ?></h3>
+            <p class="project-position"><?= htmlspecialchars($proj['location']) ?></p>
+            <p class="project-bio"><?= htmlspecialchars($proj['description']) ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>   
            
             </div>
         </div>
@@ -79,42 +105,17 @@
             <p class="content-text-projects">Our architectural portfolio showcases a diverse range of projects, each reflecting our commitment to innovative design and excellence in execution.</p>
             
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url(../assets/images/a.jpg);"></div>
-                    <div class="project-details">
-                        <h3 class="project-name">2 Storey House</h3>
-                        <p class="project-position">Santa Rosa, Laguna</p>
-                        <p class="project-bio">A residential house in Bel Air, Santa Rosa Laguna.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url(../assets/images/project4.jpg);"></div>
-                    <div class="project-details">
-                        <h3 class="project-name">4 Storey Residential and Commerical Building</h3>
-                        <p class="project-position">Romblon Romblon</p>
-                        <p class="project-bio">An eco-friendly residential design with minimal environmental impact and energy-efficient features.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url(../assets/images/project2.jpg);"></div>
-                    <div class="project-details">
-                        <h3 class="project-name">2 Storey Residential Building</h3>
-                        <p class="project-position">Rosario, Batangas</p>
-                        <p class="project-bio">A striking office building design that reflects the company's brand identity and corporate culture.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url(../assets/images/bungalow.jpg);"></div>
-                    <div class="project-details">
-                        <h3 class="project-name">Bungalow Recreational Project</h3>
-                        <p class="project-position">Rosario Batangas</p>
-                        <p class="project-bio">A unique hotel design that blends contemporary elements with the character of its historic surroundings.</p>
-                    </div>
-                </div>
-            </div>
+<?php foreach ($architecturalProjects as $proj): ?>
+    <div class="project-card">
+        <div class="project-image" style="background-image: url(../assets/images/<?= htmlspecialchars($proj['image']) ?>);"></div>
+        <div class="project-details">
+            <h3 class="project-name"><?= htmlspecialchars($proj['title']) ?></h3>
+            <p class="project-position"><?= htmlspecialchars($proj['location']) ?></p>
+            <p class="project-bio"><?= htmlspecialchars($proj['description']) ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>
+  </div>
         </div>
 
         <!-- Renovation Section -->
@@ -132,6 +133,18 @@
             <h3 class="content-subtitle-projects"></h3>
             <p class="content-text-projects"></p>
             
+            <div class="projects-grid">
+<?php foreach ($renovationProjects as $proj): ?>
+    <div class="project-card">
+        <div class="project-image" style="background-image: url(../assets/images/<?= htmlspecialchars($proj['image']) ?>);"></div>
+        <div class="project-details">
+            <h3 class="project-name"><?= htmlspecialchars($proj['title']) ?></h3>
+            <p class="project-position"><?= htmlspecialchars($proj['location']) ?></p>
+            <p class="project-bio"><?= htmlspecialchars($proj['description']) ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
             </div>
         </div>
@@ -152,14 +165,17 @@
             <p class="content-text-projects">Our interior design portfolio spans residential, commercial, hospitality, and retail projects, each showcasing our attention to detail and commitment to creating spaces that inspire.</p>
             
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url(../assets/images/condo.jpg);"></div>
-                    <div class="project-details">
-                        <h3 class="project-name">Condominium</h3>
-                        <p class="project-position">DMCI Homes. Torre de Manila</p>
-                        <p class="project-bio">High-end interior design for a city center condo, featuring custom furnishings and premium finishes.</p>
-                    </div>
-                </div>
+<?php foreach ($interiorProjects as $proj): ?>
+    <div class="project-card">
+        <div class="project-image" style="background-image: url(../assets/images/<?= htmlspecialchars($proj['image']) ?>);"></div>
+        <div class="project-details">
+            <h3 class="project-name"><?= htmlspecialchars($proj['title']) ?></h3>
+            <p class="project-position"><?= htmlspecialchars($proj['location']) ?></p>
+            <p class="project-bio"><?= htmlspecialchars($proj['description']) ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>
+
                 
             
             </div>
