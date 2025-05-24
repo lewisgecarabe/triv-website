@@ -1,7 +1,6 @@
 <?php
 session_start();
 require '../classes/Database.php';
-require '../classes/User.php';
 
 $db = new Database();
 $conn = $db->connect();

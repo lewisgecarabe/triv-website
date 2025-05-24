@@ -1,7 +1,6 @@
 <?php include 'functions.php'; ?>
 <?php
 require_once '../classes/Database.php';
-require_once '../classes/Project.php';
 
 $db = new Database();
 $conn = $db->connect();

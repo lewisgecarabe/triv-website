@@ -20,7 +20,6 @@ class Auth {
 
 public static function requireRole($role) {
     self::startSession();
-    echo "Checking role..."; // DEBUG: You should see this
     
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== $role) {
         header("Location: ../public/login.php");
