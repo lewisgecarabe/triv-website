@@ -1,3 +1,13 @@
+<?php
+require_once '../classes/Database.php';
+
+$db = new Database();
+$conn = $db->connect();
+$service = new Service($conn);
+
+$services = $service->getAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +16,12 @@
     <title>Our Services | TRIV Design and Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
 <header>
     <div class="logo">
         <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
-    <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
         <ul>
@@ -31,80 +42,30 @@
             <h1>SERVICES</h1>
         </div>
     </section>
-       
 
-            <!-- Services Grid -->
-            <section class="services-grid-container">
-                <h2 class="services-section-title">Our Services</h2>
+    <!-- Services Grid -->
+    <section class="services-grid-container">
+        <h2 class="services-section-title">Our Services</h2>
                     
         <div class="services-grid">
-            <!-- Construction -->
-            <div class="service-card" onclick="location.href='services_construction.php';">
+            <?php foreach ($services as $serv): ?>
+            <div class="service-card" onclick="location.href='services_<?= $serv['slug'] ?>.php';">
                 <div class="service-card-image">
-                    <img src="../assets/images/services_construction.jpg" alt="Construction Services">
+                    <?php if ($serv['image']): ?>
+                        <img src="../assets/images/<?= htmlspecialchars($serv['image']) ?>" alt="<?= htmlspecialchars($serv['title']) ?> Services">
+                    <?php else: ?>
+                        <img src="../assets/images/services_<?= $serv['slug'] ?>.jpg" alt="<?= htmlspecialchars($serv['title']) ?> Services">
+                    <?php endif; ?>
                     <div class="service-overlay"></div>
                 </div>
                 <div class="service-card-content">
-                    <h3>Construction</h3>
-                    <p>From foundation to finishing, we build durable structures that last for generations.</p>
-                    <a href="services_construction.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <h3><?= htmlspecialchars($serv['title']) ?></h3>
+                    <p><?= htmlspecialchars($serv['short_description']) ?></p>
+                    <a href="services_<?= $serv['slug'] ?>.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-
-            <!-- Renovation -->
-            <div class="service-card" onclick="location.href='services_renovation.php';">
-                <div class="service-card-image">
-                    <img src="../assets/images/services_renovation.jpg" alt="Renovation Services">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-card-content">
-                    <h3>Renovation</h3>
-                    <p>Breathe new life into old spaces with our modern renovation solutions.</p>
-                    <a href="services_renovation.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Architectural Design -->
-            <div class="service-card" onclick="location.href='services_architecturalDesign.php';">
-                <div class="service-card-image">
-                    <img src="../assets/images/services_architecturalDesign.jpg" alt="Architectural Design Services">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-card-content">
-                    <h3>Architectural Design</h3>
-                    <p>Innovative and sustainable designs crafted to inspire and function.</p>
-                    <a href="services_architecturalDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Interior Design -->
-            <div class="service-card" onclick="location.href='services_interiorDesign.php';">
-                <div class="service-card-image">
-                    <img src="../assets/images/services_interiorDesign.jpg" alt="Interior Design Services">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-card-content">
-                    <h3>Interior Design</h3>
-                    <p>Creating elegant interiors that reflect your personality and lifestyle.</p>
-                    <a href="services_interiorDesign.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Extension -->
-            <div class="service-card" onclick="location.href='services_extension.php';">
-                <div class="service-card-image">
-                    <img src="../assets/images/services_extension.jpg" alt="Extension Services">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-card-content">
-                    <h3>Extension</h3>
-                    <p>Expand your space seamlessly while preserving your original structure's charm.</p>
-                    <a href="services_extension.php" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-
-
 
         <!-- CTA Section -->
         <section class="services-cta">
@@ -114,7 +75,7 @@
                 <a href="../public/contact.php" class="cta-button">Get in Touch</a>
             </div>
         </section>
-    </main>
+    </section>
 
     <section class="company-contact-info">
         <div class="contact-info-container">
@@ -174,11 +135,9 @@
                 observer.observe(card);
             });
         });
-    </script>
 
-          <script>
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
             

@@ -10,9 +10,11 @@ $conn = $db->connect();
 
 $project = new Project($conn);
 $user = new User($conn);
+$service = new Service($conn);
 
 $projectCount = $project->getCount();
 $userCount = $user->getCount();
+$serviceCount = $service->getCount();
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +79,9 @@ $userCount = $user->getCount();
 
       <div class="card">
         <h3>Total Services</h3>
-        <div class="count">4</div>
-        <p>4 core services</p>
-        <a href="#" class="btn">Manage Services</a>
+        <div class="count"><?= $serviceCount ?></div>
+        <p><?= $serviceCount ?> active services</p>
+        <a href="services.php" class="btn">Manage Services</a>
       </div>
     </div>
   </main>
