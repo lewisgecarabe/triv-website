@@ -26,8 +26,8 @@
 </header>
 
     <section class="job-details-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
+        <div class="jon-details-hero-overlay"></div>
+        <div class="job-details-hero-content">
             <h1>JOB DETAILS</h1>
         </div>
     </section>

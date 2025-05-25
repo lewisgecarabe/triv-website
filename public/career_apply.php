@@ -26,9 +26,8 @@
 </header>
 
     <section class="apply-hero">
-        <div class="hero-overlay"></div>
-        <img src="../assets/images/career_apply.jpg" alt="Construction Site" class="hero-bg">
-        <div class="hero-content">
+        <div class="apply-hero-overlay"></div>
+        <div class="apply-hero-content">
             <h1>JOIN OUR TEAM</h1>
         </div>
     </section>
