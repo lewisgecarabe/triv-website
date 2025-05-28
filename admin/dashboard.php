@@ -14,6 +14,8 @@ $service = new Service($conn);
 $contactInquiry = new ContactInquiry($conn);
 $job = new Job($conn);
 $jobApplication = new JobApplication($conn);
+$developer = new Developer($conn);
+$teamMember = new TeamMember($conn);
 
 // Get dashboard statistics
 $projectCount = $project->getCount();
@@ -22,11 +24,12 @@ $serviceCount = $service->getCount();
 $inquiryCount = $contactInquiry->getCount();
 $pendingInquiries = $contactInquiry->getPendingCount();
 $recentInquiries = $contactInquiry->getRecentInquiries();
-
+$developerCount = $developer->getCount();
 $jobCount = $job->getCount();
 $applicationCount = $jobApplication->getCount();
 $pendingApplications = $jobApplication->getPendingCount();
 $recentApplications = $jobApplication->getRecentApplications(3);
+$teamMemberCount = $teamMember->getCount();
 
 $userName = Auth::getUserName();
 ?>
@@ -391,6 +394,15 @@ $userName = Auth::getUserName();
         <p><?= $serviceCount ?> active services offered</p>
         <a href="services.php" class="btn"><i class="fas fa-edit"></i> Manage Services</a>
       </div>
+      
+<div class="card" onclick="window.location.href='manage-team.php'">
+      <h3><i class="fas fa-users-cog"></i> Team Members</h3>
+      <div class="count"><?= $teamMemberCount ?></div>
+      <p><?= $teamMemberCount ?> team members</p>
+      <a href="manage-team.php" class="btn btn-info">
+        <i class="fas fa-users"></i> Manage Team
+      </a>
+    </div>
 
        <div class="card">
         <h3><i class="fas fa-briefcase"></i> Job Postings</h3>
@@ -430,8 +442,19 @@ $userName = Auth::getUserName();
           <i class="fas fa-envelope-open"></i> Manage Inquiries
         </a>
       </div>
+        <div class="card" onclick="window.location.href='manage-developers.php'">
+    <h3><i class="fas fa-code"></i> Developers</h3>
+    <div class="count"><?= $developerCount ?></div>
+    <p><?= $developerCount ?> developers in the team</p>
+    <a href="manage-developers.php" class="btn btn-primary">
+        <i class="fas fa-users-cog"></i> Manage Developers
+    </a>
+</div>
     </div>
   </main>
+
+
+
 
   <script>
     // Add some interactive features

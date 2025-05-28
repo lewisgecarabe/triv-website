@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once '../classes/Auth.php';
+?>
 <?php include '../public/functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +24,18 @@
             <li><a href="../public/index.php">HOME</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/services.php">SERVICES</a></li>
-            <li><a href="../public/register.php">PROJECTS</a></li>
+            <li><a href="../public/projects.php">PROJECTS</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <hr>
-             <li><a href="../public/projects.php">Log in / Sign Up </a></li>
+                 <?php if (Auth::isLoggedIn()): ?>
+                <li><a href="../public/logout.php">LOGOUT</a></li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php">LOGIN/SIGNUP</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>

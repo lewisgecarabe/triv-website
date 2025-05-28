@@ -1,12 +1,9 @@
 <?php
 require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
 
-// Simple auth check
-session_start();
-if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: login.php');
-    exit;
-}
+// Ensure only admins can access this page
+Auth::checkAdminAccess();
 
 $db = new Database();
 $conn = $db->connect();

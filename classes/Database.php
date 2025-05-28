@@ -483,6 +483,7 @@ class Service {
     }
 }
 
+
 class User {
     private $conn;
     private $table = 'users';
@@ -508,7 +509,7 @@ class User {
 
             // Hash password and insert user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $this->conn->prepare("INSERT INTO {$this->table} (name, email, password, role, created_at) VALUES (?, ?, ?, ?, NOW())");
+            $stmt = $this->conn->prepare("INSERT INTO {$this->table} (name, email, password, role, status, created_at) VALUES (?, ?, ?, ?, 'active', NOW())");
             
             if ($stmt->execute([$name, $email, $hashedPassword, $role])) {
                 return ['success' => true, 'message' => 'Registration successful'];
@@ -552,7 +553,7 @@ class User {
 
     public function getUserById($id) {
         try {
-            $stmt = $this->conn->prepare("SELECT id, name, email, role FROM {$this->table} WHERE id = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM {$this->table} WHERE id = ?");
             $stmt->execute([$id]);
             return $stmt->fetch();
         } catch (PDOException $e) {
@@ -575,12 +576,191 @@ class User {
 
     public function getAllUsers() {
         try {
-            $stmt = $this->conn->prepare("SELECT id, name, email, role, created_at, last_login FROM {$this->table} ORDER BY created_at DESC");
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, status, created_at, last_login FROM {$this->table} ORDER BY created_at DESC");
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (PDOException $e) {
             error_log("Get all users error: " . $e->getMessage());
             return [];
+        }
+    }
+
+    // NEW METHODS FOR ADMIN MANAGEMENT
+
+    public function create($data) {
+        try {
+            // Check if email already exists
+            $checkStmt = $this->conn->prepare("SELECT id FROM {$this->table} WHERE email = ?");
+            $checkStmt->execute([$data['email']]);
+            
+            if ($checkStmt->rowCount() > 0) {
+                return false;
+            }
+
+            // Hash password
+            $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+            
+            $stmt = $this->conn->prepare("INSERT INTO {$this->table} (name, email, password, role, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+            
+            return $stmt->execute([
+                $data['name'],
+                $data['email'],
+                $hashedPassword,
+                $data['role'],
+                $data['status']
+            ]);
+        } catch (PDOException $e) {
+            error_log("Create user error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function update($id, $data) {
+        try {
+            // Check if email already exists for other users
+            $checkStmt = $this->conn->prepare("SELECT id FROM {$this->table} WHERE email = ? AND id != ?");
+            $checkStmt->execute([$data['email'], $id]);
+            
+            if ($checkStmt->rowCount() > 0) {
+                return false;
+            }
+
+            $sql = "UPDATE {$this->table} SET name = ?, email = ?, role = ?, status = ?";
+            $params = [$data['name'], $data['email'], $data['role'], $data['status']];
+
+            // Only update password if provided
+            if (!empty($data['password'])) {
+                $sql .= ", password = ?";
+                $params[] = password_hash($data['password'], PASSWORD_DEFAULT);
+            }
+
+            $sql .= " WHERE id = ?";
+            $params[] = $id;
+
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute($params);
+        } catch (PDOException $e) {
+            error_log("Update user error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete($id) {
+        try {
+            // Don't allow deletion of the last admin
+            $adminCount = $this->getAdminCount();
+            $user = $this->getUserById($id);
+            
+            if ($user['role'] === 'admin' && $adminCount <= 1) {
+                return false; // Cannot delete the last admin
+            }
+
+            $stmt = $this->conn->prepare("DELETE FROM {$this->table} WHERE id = ?");
+            return $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            error_log("Delete user error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateStatus($id, $status) {
+        try {
+            $stmt = $this->conn->prepare("UPDATE {$this->table} SET status = ? WHERE id = ?");
+            return $stmt->execute([$status, $id]);
+        } catch (PDOException $e) {
+            error_log("Update status error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateRole($id, $role) {
+        try {
+            // Don't allow changing the last admin's role
+            $adminCount = $this->getAdminCount();
+            $user = $this->getUserById($id);
+            
+            if ($user['role'] === 'admin' && $adminCount <= 1 && $role !== 'admin') {
+                return false; // Cannot change the last admin's role
+            }
+
+            $stmt = $this->conn->prepare("UPDATE {$this->table} SET role = ? WHERE id = ?");
+            return $stmt->execute([$role, $id]);
+        } catch (PDOException $e) {
+            error_log("Update role error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getAdminCount() {
+        try {
+            $stmt = $this->conn->prepare("SELECT COUNT(*) as count FROM {$this->table} WHERE role = 'admin'");
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result['count'];
+        } catch (PDOException $e) {
+            error_log("Get admin count error: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    public function searchUsers($search) {
+        try {
+            $searchTerm = "%{$search}%";
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, status, created_at, last_login FROM {$this->table} WHERE name LIKE ? OR email LIKE ? ORDER BY created_at DESC");
+            $stmt->execute([$searchTerm, $searchTerm]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Search users error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getUsersByRole($role) {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, status, created_at, last_login FROM {$this->table} WHERE role = ? ORDER BY created_at DESC");
+            $stmt->execute([$role]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get users by role error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getUsersByStatus($status) {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, status, created_at, last_login FROM {$this->table} WHERE status = ? ORDER BY created_at DESC");
+            $stmt->execute([$status]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get users by status error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getRecentUsers($limit = 5) {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, status, created_at FROM {$this->table} ORDER BY created_at DESC LIMIT ?");
+            $stmt->execute([$limit]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get recent users error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function emailExists($email, $excludeId = null) {
+        try {
+            if ($excludeId) {
+                $stmt = $this->conn->prepare("SELECT id FROM {$this->table} WHERE email = ? AND id != ?");
+                $stmt->execute([$email, $excludeId]);
+            } else {
+                $stmt = $this->conn->prepare("SELECT id FROM {$this->table} WHERE email = ?");
+                $stmt->execute([$email]);
+            }
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("Email exists check error: " . $e->getMessage());
+            return false;
         }
     }
 }
@@ -883,4 +1063,304 @@ class JobApplication {
     }
 }
 
+class Developer {
+    private $conn;
+    private $table = 'developers';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    // Get all developers
+    public function getAll() {
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY order_position ASC, name ASC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get active developers
+    public function getActive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'active' ORDER BY order_position ASC, name ASC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get developer by ID
+    public function getById($id) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Create new developer
+    public function create($data) {
+        $sql = "INSERT INTO " . $this->table . " 
+                (name, position, bio, image, email, github, linkedin, order_position, status) 
+                VALUES (:name, :position, :bio, :image, :email, :github, :linkedin, :order_position, :status)";
+        
+        $stmt = $this->conn->prepare($sql);
+        
+        // Clean and bind data
+        $name = htmlspecialchars(strip_tags($data['name']));
+        $position = htmlspecialchars(strip_tags($data['position']));
+        $bio = htmlspecialchars(strip_tags($data['bio']));
+        $image = htmlspecialchars(strip_tags($data['image']));
+        $email = htmlspecialchars(strip_tags($data['email']));
+        $github = htmlspecialchars(strip_tags($data['github']));
+        $linkedin = htmlspecialchars(strip_tags($data['linkedin']));
+        $order_position = (int)$data['order_position'];
+        $status = htmlspecialchars(strip_tags($data['status']));
+        
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':position', $position);
+        $stmt->bindParam(':bio', $bio);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':github', $github);
+        $stmt->bindParam(':linkedin', $linkedin);
+        $stmt->bindParam(':order_position', $order_position);
+        $stmt->bindParam(':status', $status);
+        
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+        
+        return false;
+    }
+
+    // Update developer
+    public function update($id, $data) {
+        $sql = "UPDATE " . $this->table . " 
+                SET name = :name, position = :position, bio = :bio, 
+                    email = :email, github = :github, linkedin = :linkedin, 
+                    order_position = :order_position, status = :status";
+        
+        // Only update image if provided
+        if (!empty($data['image'])) {
+            $sql .= ", image = :image";
+        }
+        
+        $sql .= " WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($sql);
+        
+        // Clean and bind data
+        $name = htmlspecialchars(strip_tags($data['name']));
+        $position = htmlspecialchars(strip_tags($data['position']));
+        $bio = htmlspecialchars(strip_tags($data['bio']));
+        $email = htmlspecialchars(strip_tags($data['email']));
+        $github = htmlspecialchars(strip_tags($data['github']));
+        $linkedin = htmlspecialchars(strip_tags($data['linkedin']));
+        $order_position = (int)$data['order_position'];
+        $status = htmlspecialchars(strip_tags($data['status']));
+        
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':position', $position);
+        $stmt->bindParam(':bio', $bio);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':github', $github);
+        $stmt->bindParam(':linkedin', $linkedin);
+        $stmt->bindParam(':order_position', $order_position);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':id', $id);
+        
+        // Bind image if provided
+        if (!empty($data['image'])) {
+            $image = htmlspecialchars(strip_tags($data['image']));
+            $stmt->bindParam(':image', $image);
+        }
+        
+        return $stmt->execute();
+    }
+
+    // Delete developer
+    public function delete($id) {
+        // First get the image filename to delete the file
+        $developer = $this->getById($id);
+        
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        
+        if ($stmt->execute()) {
+            // Return the image filename so we can delete the file if needed
+            return $developer['image'] ?? null;
+        }
+        
+        return false;
+    }
+
+    // Get count of developers
+    public function getCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+}
+
+class TeamMember {
+    private $conn;
+    private $table = 'team_members';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    // Get all team members
+    public function getAll() {
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY order_position ASC, name ASC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get active team members
+    public function getActive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'active' ORDER BY order_position ASC, name ASC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Get team member by ID
+    public function getById($id) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Create new team member
+    public function create($data) {
+        $sql = "INSERT INTO " . $this->table . " 
+                (name, position, bio, image, email, phone, linkedin, specialization, years_experience, order_position, status) 
+                VALUES (:name, :position, :bio, :image, :email, :phone, :linkedin, :specialization, :years_experience, :order_position, :status)";
+        
+        $stmt = $this->conn->prepare($sql);
+        
+        // Clean and bind data
+        $name = htmlspecialchars(strip_tags($data['name']));
+        $position = htmlspecialchars(strip_tags($data['position']));
+        $bio = htmlspecialchars(strip_tags($data['bio']));
+        $image = htmlspecialchars(strip_tags($data['image']));
+        $email = htmlspecialchars(strip_tags($data['email']));
+        $phone = htmlspecialchars(strip_tags($data['phone']));
+        $linkedin = htmlspecialchars(strip_tags($data['linkedin']));
+        $specialization = htmlspecialchars(strip_tags($data['specialization']));
+        $years_experience = (int)$data['years_experience'];
+        $order_position = (int)$data['order_position'];
+        $status = htmlspecialchars(strip_tags($data['status']));
+        
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':position', $position);
+        $stmt->bindParam(':bio', $bio);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':linkedin', $linkedin);
+        $stmt->bindParam(':specialization', $specialization);
+        $stmt->bindParam(':years_experience', $years_experience);
+        $stmt->bindParam(':order_position', $order_position);
+        $stmt->bindParam(':status', $status);
+        
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+        
+        return false;
+    }
+
+    // Update team member
+    public function update($id, $data) {
+        $sql = "UPDATE " . $this->table . " 
+                SET name = :name, position = :position, bio = :bio, 
+                    email = :email, phone = :phone, linkedin = :linkedin, 
+                    specialization = :specialization, years_experience = :years_experience,
+                    order_position = :order_position, status = :status";
+        
+        // Only update image if provided
+        if (!empty($data['image'])) {
+            $sql .= ", image = :image";
+        }
+        
+        $sql .= " WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($sql);
+        
+        // Clean and bind data
+        $name = htmlspecialchars(strip_tags($data['name']));
+        $position = htmlspecialchars(strip_tags($data['position']));
+        $bio = htmlspecialchars(strip_tags($data['bio']));
+        $email = htmlspecialchars(strip_tags($data['email']));
+        $phone = htmlspecialchars(strip_tags($data['phone']));
+        $linkedin = htmlspecialchars(strip_tags($data['linkedin']));
+        $specialization = htmlspecialchars(strip_tags($data['specialization']));
+        $years_experience = (int)$data['years_experience'];
+        $order_position = (int)$data['order_position'];
+        $status = htmlspecialchars(strip_tags($data['status']));
+        
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':position', $position);
+        $stmt->bindParam(':bio', $bio);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':linkedin', $linkedin);
+        $stmt->bindParam(':specialization', $specialization);
+        $stmt->bindParam(':years_experience', $years_experience);
+        $stmt->bindParam(':order_position', $order_position);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':id', $id);
+        
+        // Bind image if provided
+        if (!empty($data['image'])) {
+            $image = htmlspecialchars(strip_tags($data['image']));
+            $stmt->bindParam(':image', $image);
+        }
+        
+        return $stmt->execute();
+    }
+
+    // Delete team member
+    public function delete($id) {
+        // First get the image filename to delete the file
+        $teamMember = $this->getById($id);
+        
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        
+        if ($stmt->execute()) {
+            // Return the image filename so we can delete the file if needed
+            return $teamMember['image'] ?? null;
+        }
+        
+        return false;
+    }
+
+    // Get count of team members
+    public function getCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
+    // Get team members by specialization
+    public function getBySpecialization($specialization) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE specialization LIKE :specialization AND status = 'active' ORDER BY order_position ASC";
+        $stmt = $this->conn->prepare($sql);
+        $searchTerm = '%' . $specialization . '%';
+        $stmt->bindParam(':specialization', $searchTerm);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
 ?>
