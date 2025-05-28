@@ -1,3 +1,26 @@
+<?php
+require_once '../classes/Database.php';
+
+$db = new Database();
+$conn = $db->connect();
+$job = new Job($conn);
+
+// Get all active jobs
+$jobs = $job->getActive();
+
+// Get filter parameter
+$departmentFilter = $_GET['department'] ?? 'all';
+
+// Filter jobs if department is specified
+if ($departmentFilter !== 'all') {
+    $jobs = $job->getByDepartment($departmentFilter);
+}
+
+// Get unique departments for filter
+$allJobs = $job->getActive();
+$departments = array_unique(array_column($allJobs, 'department'));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,100 +85,51 @@
         <div class="container">
             <h2>Current Openings</h2>
             <div class="job-filters">
-                <select name="department" id="department-filter">
-                    <option value="all">All Departments</option>
-                    <option value="architecture">Architecture</option>
-                    <option value="engineering">Engineering</option>
-                    <option value="construction">Construction</option>
-                    <option value="interior design">Interior Design</option>
-                    <option value="administration">Administration</option>
-                </select>
+                <form method="GET">
+                    <select name="department" id="department-filter" onchange="this.form.submit()">
+                        <option value="all" <?= $departmentFilter === 'all' ? 'selected' : '' ?>>All Departments</option>
+                        <?php foreach ($departments as $dept): ?>
+                            <option value="<?= htmlspecialchars($dept) ?>" <?= $departmentFilter === $dept ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($dept) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
             </div>
             
             <div class="jobs-container">
-                <!-- Job 1 -->
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3>Senior Architect</h3>
-                        <span class="job-department">Architecture</span>
+                <?php if (empty($jobs)): ?>
+                    <div style="text-align: center; padding: 40px; color: #666;">
+                        <h3>No job openings available at the moment</h3>
+                        <p>Please check back later for new opportunities.</p>
                     </div>
-                    <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
-                        <p class="job-description">Lead architectural design projects from concept to completion, collaborating with clients and construction teams to deliver innovative, sustainable building solutions.</p>
-                        <div class="job-actions">
-                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
+                <?php else: ?>
+                    <?php foreach ($jobs as $jobItem): ?>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <h3><?= htmlspecialchars($jobItem['title']) ?></h3>
+                                <span class="job-department"><?= htmlspecialchars($jobItem['department']) ?></span>
+                            </div>
+                            <div class="job-details">
+                                <p class="job-location">
+                                    <img src="../assets/images/jobLocation.png" alt="Location"> 
+                                    <?= htmlspecialchars($jobItem['location']) ?>
+                                </p>
+                                <p class="job-description">
+                                    <?= htmlspecialchars(substr($jobItem['description'], 0, 150)) ?>
+                                    <?= strlen($jobItem['description']) > 150 ? '...' : '' ?>
+                                </p>
+                                <div class="job-actions">
+                                    <a href="career_jobdetails.php?id=<?= $jobItem['id'] ?>" class="btn btn-outline">View Details</a>
+                                    <a href="career_apply.php?job_id=<?= $jobItem['id'] ?>" class="btn btn-primary">Apply Now</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Job 2 -->
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3>Civil Engineer</h3>
-                        <span class="job-department">Engineering</span>
-                    </div>
-                    <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
-                        <p class="job-description">Design and oversee construction projects ensuring structural integrity, safety compliance, and efficient execution while coordinating with architects and contractors.</p>
-                        <div class="job-actions">
-                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 3 -->
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3>Interior Designer</h3>
-                        <span class="job-department">Interior Design</span>
-                    </div>
-                    <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (Hybrid)</p>
-                        <p class="job-description">Create stunning, functional interior spaces that reflect clients' visions and needs, selecting materials, colors, and furnishings while managing project timelines and budgets.</p>
-                        <div class="job-actions">
-                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 4 -->
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3>Construction Project Manager</h3>
-                        <span class="job-department">Construction</span>
-                    </div>
-                    <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (On-site)</p>
-                        <p class="job-description">Oversee construction projects from planning to completion, managing timelines, budgets, resources, and teams to ensure quality, safety, and client satisfaction.</p>
-                        <div class="job-actions">
-                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 5 -->
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3>Marketing Specialist</h3>
-                        <span class="job-department">Administration</span>
-                    </div>
-                    <div class="job-details">
-                        <p class="job-location"><img src="../assets/images/jobLocation.png" alt="Location"> Manila, Philippines (Hybrid)</p>
-                        <p class="job-description">Develop and implement marketing strategies to promote TRIV's services, manage social media presence, create compelling content, and build client relationships.</p>
-                        <div class="job-actions">
-                            <a href="career_jobdetails.php?id=1" class="btn btn-outline">View Details</a>
-                            <a href="career_apply.php?job=senior-architect" class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
-
 
 
 

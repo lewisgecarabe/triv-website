@@ -12,6 +12,8 @@ $project = new Project($conn);
 $user = new User($conn);
 $service = new Service($conn);
 $contactInquiry = new ContactInquiry($conn);
+$job = new Job($conn);
+$jobApplication = new JobApplication($conn);
 
 // Get dashboard statistics
 $projectCount = $project->getCount();
@@ -20,6 +22,11 @@ $serviceCount = $service->getCount();
 $inquiryCount = $contactInquiry->getCount();
 $pendingInquiries = $contactInquiry->getPendingCount();
 $recentInquiries = $contactInquiry->getRecentInquiries();
+
+$jobCount = $job->getCount();
+$applicationCount = $jobApplication->getCount();
+$pendingApplications = $jobApplication->getPendingCount();
+$recentApplications = $jobApplication->getRecentApplications(3);
 
 $userName = Auth::getUserName();
 ?>
@@ -385,6 +392,29 @@ $userName = Auth::getUserName();
         <a href="services.php" class="btn"><i class="fas fa-edit"></i> Manage Services</a>
       </div>
 
+       <div class="card">
+        <h3><i class="fas fa-briefcase"></i> Job Postings</h3>
+        <div class="count"><?= $jobCount ?></div>
+        <p><?= $jobCount ?> active job postings</p>
+        <a href="manage-jobs.php" class="btn btn-warning"><i class="fas fa-plus"></i> Manage Jobs</a>
+      </div>
+
+      <div class="card" onclick="window.location.href='manage-applications.php'">
+        <?php if ($pendingApplications > 0): ?>
+          <div class="badge"><?= $pendingApplications ?></div>
+        <?php endif; ?>
+        <h3><i class="fas fa-file-alt"></i> Job Applications</h3>
+        <div class="count"><?= $applicationCount ?></div>
+        <p><?= $applicationCount ?> total applications
+          <?php if ($pendingApplications > 0): ?>
+            <br><strong style="color: #dc3545;"><?= $pendingApplications ?> pending review</strong>
+          <?php endif; ?>
+        </p>
+        <a href="manage-applications.php" class="btn btn-success">
+          <i class="fas fa-eye"></i> Review Applications
+        </a>
+      </div>
+
       <div class="card" onclick="window.location.href='manage-inquiries.php'">
         <?php if ($pendingInquiries > 0): ?>
           <div class="badge"><?= $pendingInquiries ?></div>
@@ -400,45 +430,6 @@ $userName = Auth::getUserName();
           <i class="fas fa-envelope-open"></i> Manage Inquiries
         </a>
       </div>
-    </div>
-
-    <!-- Recent Inquiries Section -->
-    <div class="recent-section">
-      <h2><i class="fas fa-clock"></i> Recent Inquiries</h2>
-      
-      <?php if (empty($recentInquiries)): ?>
-        <div class="empty-state">
-          <i class="fas fa-inbox" style="font-size: 3em; color: #ddd; margin-bottom: 15px;"></i>
-          <p>No inquiries yet. When customers submit contact forms, they'll appear here.</p>
-        </div>
-      <?php else: ?>
-        <?php foreach ($recentInquiries as $inquiry): ?>
-          <div class="inquiry-item">
-            <h4>
-              <i class="fas fa-user"></i> <?= htmlspecialchars($inquiry['name']) ?>
-              <span class="status-badge status-<?= $inquiry['status'] ?>">
-                <?= ucfirst($inquiry['status']) ?>
-              </span>
-            </h4>
-            <p><i class="fas fa-envelope"></i> <?= htmlspecialchars($inquiry['email']) ?></p>
-            <p><i class="fas fa-comment"></i> <?= htmlspecialchars(substr($inquiry['message'], 0, 100)) ?>
-              <?= strlen($inquiry['message']) > 100 ? '...' : '' ?>
-            </p>
-            <div class="meta">
-              <i class="fas fa-calendar"></i> <?= date('M j, Y g:i A', strtotime($inquiry['created_at'])) ?>
-              <?php if ($inquiry['plan_file']): ?>
-                | <i class="fas fa-paperclip"></i> File attached
-              <?php endif; ?>
-            </div>
-          </div>
-        <?php endforeach; ?>
-        
-        <div style="text-align: center; margin-top: 20px;">
-          <a href="manage-inquiries.php" class="btn">
-            <i class="fas fa-list"></i> View All Inquiries
-          </a>
-        </div>
-      <?php endif; ?>
     </div>
   </main>
 

@@ -1,3 +1,38 @@
+<?php
+require_once '../classes/Database.php';
+
+$db = new Database();
+$conn = $db->connect();
+$job = new Job($conn);
+
+// Get job ID from URL
+$job_id = isset($_GET['job_id']) ? (int)$_GET['job_id'] : 0;
+
+if ($job_id === 0) {
+    header('Location: career.php');
+    exit;
+}
+
+// Get job details
+$jobDetails = $job->getById($job_id);
+
+if (!$jobDetails) {
+    header('Location: career.php');
+    exit;
+}
+
+// Check for success/error messages
+$message = '';
+$messageType = '';
+if (isset($_GET['success'])) {
+    $message = 'Thank you for your application! We will review it and contact you soon.';
+    $messageType = 'success';
+} elseif (isset($_GET['error'])) {
+    $message = 'There was an error submitting your application. Please try again.';
+    $messageType = 'error';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,128 +76,131 @@
 </section>
     
     <section class="application-form">
-        <div class="container">
-            <a href="career.php" class="back-link"><span>←</span> Back to All Jobs</a>
+    <div class="container">
+        <a href="career.php" class="back-link"><span>←</span> Back to All Jobs</a>
+        
+        <?php if ($message): ?>
+            <div class="message <?= $messageType ?>">
+                <?= htmlspecialchars($message) ?>
+            </div>
+        <?php endif; ?>
+        
+        <div class="form-header">
+            <h2>Apply for: <?= htmlspecialchars($jobDetails['title']) ?></h2>
+            <p>Please complete the form below to apply for this position. All fields marked with an asterisk (*) are required.</p>
+        </div>
+        
+        <form action="process_application.php" method="post" enctype="multipart/form-data" id="job-application">
+            <input type="hidden" name="job_id" value="<?= $job_id ?>">
             
-            <?php
-            // Get the job title from the URL parameter
-            $job_title = isset($_GET['job']) ? urldecode($_GET['job']) : 'Position';
-            ?>
-            
-            <div class="form-header">
-                <h2>Apply for: <?php echo $job_title; ?></h2>
-                <p>Please complete the form below to apply for this position. All fields marked with an asterisk (*) are required.</p>
+            <div class="form-section">
+                <h3>Personal Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first_name">First Name *</label>
+                        <input type="text" id="first_name" name="first_name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last_name">Last Name *</label>
+                        <input type="text" id="last_name" name="last_name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
             </div>
             
-            <form action="#" method="post" enctype="multipart/form-data" id="job-application">
-                <div class="form-section">
-                    <h3>Personal Information</h3>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="first_name">First Name *</label>
-                            <input type="text" id="first_name" name="first_name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="last_name">Last Name *</label>
-                            <input type="text" id="last_name" name="last_name" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="address">Address *</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
+            <div class="form-section">
+                <h3>Professional Information</h3>
+                
+                <div class="form-group">
+                    <label for="resume">Resume/CV (PDF) *</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf" required>
+                    <small>Maximum file size: 5MB</small>
                 </div>
                 
-                <div class="form-section">
-                    <h3>Professional Information</h3>
-                    
-                    <div class="form-group">
-                        <label for="resume">Resume/CV (PDF) *</label>
-                        <input type="file" id="resume" name="resume" accept=".pdf" required>
-                        <small>Maximum file size: 5MB</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="portfolio">Portfolio URL (if applicable)</label>
-                        <input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio-website.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="linkedin">LinkedIn Profile (if applicable)</label>
-                        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Years of Experience *</label>
-                        <select id="experience" name="experience" required>
-                            <option value="">Select</option>
-                            <option value="0-1">Less than 1 year</option>
-                            <option value="1-3">1-3 years</option>
-                            <option value="3-5">3-5 years</option>
-                            <option value="5-10">5-10 years</option>
-                            <option value="10+">10+ years</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="portfolio">Portfolio URL (if applicable)</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio-website.com">
                 </div>
                 
-                <div class="form-section">
-                    <h3>Additional Information</h3>
-                    
-                    <div class="form-group">
-                        <label for="cover_letter">Cover Letter / Why do you want to join TRIV? *</label>
-                        <textarea id="cover_letter" name="cover_letter" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="start_date">Earliest Start Date *</label>
-                        <input type="date" id="start_date" name="start_date" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="salary">Expected Salary (PHP)</label>
-                        <input type="text" id="salary" name="salary" placeholder="e.g., 50,000">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="referral">How did you hear about us?</label>
-                        <select id="referral" name="referral">
-                            <option value="">Select</option>
-                            <option value="website">Company Website</option>
-                            <option value="jobsite">Job Board</option>
-                            <option value="social">Social Media</option>
-                            <option value="employee">Employee Referral</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile (if applicable)</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
                 </div>
                 
-                <div class="form-group consent-checkbox">
-                    <input type="checkbox" id="consent" name="consent" required>
-                    <label for="consent">I consent to TRIV Design & Construction storing and processing my personal data for recruitment purposes. *</label>
+                <div class="form-group">
+                    <label for="experience">Years of Experience *</label>
+                    <select id="experience" name="experience" required>
+                        <option value="">Select</option>
+                        <option value="0-1">Less than 1 year</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="5-10">5-10 years</option>
+                        <option value="10+">10+ years</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Additional Information</h3>
+                
+                <div class="form-group">
+                    <label for="cover_letter">Cover Letter / Why do you want to join TRIV? *</label>
+                    <textarea id="cover_letter" name="cover_letter" rows="5" required></textarea>
                 </div>
                 
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
-                    <button type="reset" class="btn btn-outline">Clear Form</button>
+                <div class="form-group">
+                    <label for="start_date">Earliest Start Date *</label>
+                    <input type="date" id="start_date" name="start_date" required>
                 </div>
-            </form>
-        </div>
-    </section>
+                
+                <div class="form-group">
+                    <label for="salary">Expected Salary (PHP)</label>
+                    <input type="text" id="salary" name="salary" placeholder="e.g., 50,000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="referral">How did you hear about us?</label>
+                    <select id="referral" name="referral">
+                        <option value="">Select</option>
+                        <option value="website">Company Website</option>
+                        <option value="jobsite">Job Board</option>
+                        <option value="social">Social Media</option>
+                        <option value="employee">Employee Referral</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group consent-checkbox">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I consent to TRIV Design & Construction storing and processing my personal data for recruitment purposes. *</label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+                <button type="reset" class="btn btn-outline">Clear Form</button>
+            </div>
+        </form>
+    </div>
+</section>
 <section class="company-contact">
         <div class="company-description">
             <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>

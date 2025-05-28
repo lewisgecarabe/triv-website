@@ -713,4 +713,174 @@ class ContactInquiry {
     }
 }
 
+class Job {
+    private $conn;
+    private $table = 'jobs';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    public function getAll() {
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getActive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'active' ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getById($id) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function getByDepartment($department) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE department = :department AND status = 'active' ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':department', $department);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function create($data) {
+        $sql = "INSERT INTO " . $this->table . " 
+                (title, department, location, employment_type, description, responsibilities, 
+                 qualifications, schedule, benefits, salary_range, status) 
+                VALUES (:title, :department, :location, :employment_type, :description, 
+                        :responsibilities, :qualifications, :schedule, :benefits, :salary_range, :status)";
+        
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($data);
+    }
+
+    public function update($id, $data) {
+        $sql = "UPDATE " . $this->table . " 
+                SET title = :title, department = :department, location = :location, 
+                    employment_type = :employment_type, description = :description, 
+                    responsibilities = :responsibilities, qualifications = :qualifications, 
+                    schedule = :schedule, benefits = :benefits, salary_range = :salary_range, 
+                    status = :status, updated_at = NOW() 
+                WHERE id = :id";
+        
+        $data['id'] = $id;
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($data);
+    }
+
+    public function delete($id) {
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function getCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result['count'];
+    }
+}
+
+class JobApplication {
+    private $conn;
+    private $table = 'job_applications';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    public function getAll() {
+        $sql = "SELECT ja.*, j.title as job_title, j.department 
+                FROM " . $this->table . " ja 
+                LEFT JOIN jobs j ON ja.job_id = j.id 
+                ORDER BY ja.created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getById($id) {
+        $sql = "SELECT ja.*, j.title as job_title, j.department 
+                FROM " . $this->table . " ja 
+                LEFT JOIN jobs j ON ja.job_id = j.id 
+                WHERE ja.id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public function create($data) {
+        $sql = "INSERT INTO " . $this->table . " 
+                (job_id, first_name, last_name, email, phone, address, resume_file, 
+                 portfolio_url, linkedin_url, experience, cover_letter, start_date, 
+                 expected_salary, referral_source, status) 
+                VALUES (:job_id, :first_name, :last_name, :email, :phone, :address, 
+                        :resume_file, :portfolio_url, :linkedin_url, :experience, 
+                        :cover_letter, :start_date, :expected_salary, :referral_source, :status)";
+        
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($data);
+    }
+
+    public function updateStatus($id, $status, $notes = '') {
+        $sql = "UPDATE " . $this->table . " 
+                SET status = :status, notes = :notes, updated_at = NOW() 
+                WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([
+            'id' => $id,
+            'status' => $status,
+            'notes' => $notes
+        ]);
+    }
+
+    public function delete($id) {
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function getCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result['count'];
+    }
+
+    public function getPendingCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table . " WHERE status = 'pending'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result['count'];
+    }
+
+    public function getRecentApplications($limit = 5) {
+        $sql = "SELECT ja.*, j.title as job_title 
+                FROM " . $this->table . " ja 
+                LEFT JOIN jobs j ON ja.job_id = j.id 
+                ORDER BY ja.created_at DESC 
+                LIMIT :limit";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+}
+
 ?>
