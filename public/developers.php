@@ -71,7 +71,7 @@
         <div class="people-grid">
             <div class="person-card">
                 <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
-                    <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
+                    <img src="../assets/images/NRV.jpg" alt="TRIV Design & Construction">
                 </div>
                 <div class="person-details">
                     <h3 class="person-name">Engr. Noel R. Villanueva</h3>
@@ -81,7 +81,9 @@
             </div>
             
             <div class="person-card">
-                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');"></div>
+                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
+                       <img src="../assets/images/ALV.jpg" alt="Noel Andrae Lara Villanueva">
+                </div>
                 <div class="person-details">
                     <h3 class="person-name">Arch. Ma. Alyza Linelle L. Villanueva, RMP</h3>
                     <p class="person-position">Founder | Principal Architect</p>
@@ -90,7 +92,9 @@
             </div>
             
             <div class="person-card">
-                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');"></div>
+                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
+                    <img src="../assets/images/JLV.jpg" alt="Noel Andrae Lara Villanueva">
+                </div>
                 <div class="person-details">
                     <h3 class="person-name">Engr. Jan Alison Lynwhel L. Villanueva</h3>
                     <p class="person-position">Founder | Site Engineer</p>
