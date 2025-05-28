@@ -74,7 +74,7 @@ $developers = $developerObj->getActive();
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="#" class="menu-item active" data-target="firm">The Firm</a></li>
-                <li><a href="#" class="menu-item" data-target="team">People</a></li>
+                <li><a href="#" class="menu-item" data-target="team">Our Team</a></li>
                       <li><a href="#" class="menu-item" data-target="developers">Developers</a></li>
                 <li><a href="#" class="menu-item" data-target="account">Account</a></li>
             </ul>
