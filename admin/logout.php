@@ -1,7 +1,6 @@
 <?php
-session_start();
-session_unset();
-session_destroy();
-header("Location: admin.php");
-exit;
+require_once '../classes/Auth.php';
+
+// Perform logout
+Auth::logout();
 ?>

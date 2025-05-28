@@ -2,8 +2,8 @@
 require_once '../classes/Auth.php';
 require_once '../classes/Database.php';
 
-Auth::requireLogin();
-Auth::requireRole('admin');
+// Ensure only admins can access this page
+Auth::checkAdminAccess();
 
 $db = new Database();
 $conn = $db->connect();
@@ -15,6 +15,8 @@ $service = new Service($conn);
 $projectCount = $project->getCount();
 $userCount = $user->getCount();
 $serviceCount = $service->getCount();
+
+$userName = Auth::getUserName();
 ?>
 
 <!DOCTYPE html>
@@ -53,13 +55,13 @@ $serviceCount = $service->getCount();
       <li><a href="projects.php"><i class="fas fa-tools"></i> Projects</a></li>
       <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
       <li><a href="#"><i class="fas fa-concierge-bell"></i> Services</a></li>
-      <li><a href="../auth/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      <li> <a href="logout.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </aside>
 
   <main>
     <header>
-      <h1>Welcome, Admin</h1>
+      <h1>Welcome back, <?= htmlspecialchars($userName) ?>!</h1>
     </header>
 
     <div class="card-container">
@@ -83,6 +85,7 @@ $serviceCount = $service->getCount();
         <p><?= $serviceCount ?> active services</p>
         <a href="services.php" class="btn">Manage Services</a>
       </div>
+      
     </div>
   </main>
 </body>
