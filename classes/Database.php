@@ -585,4 +585,132 @@ class User {
     }
 }
 
+class ContactInquiry {
+    private $conn;
+    private $table = 'contact_inquiries';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    public function create($userId, $name, $email, $mobile, $message, $planFile = null) {
+        try {
+            $sql = "INSERT INTO {$this->table} (user_id, name, email, mobile, message, plan_file, status, created_at) 
+                    VALUES (?, ?, ?, ?, ?, ?, 'pending', NOW())";
+            
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([$userId, $name, $email, $mobile, $message, $planFile]);
+        } catch (PDOException $e) {
+            error_log("Contact inquiry creation error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getAll() {
+        try {
+            $sql = "SELECT ci.*, u.name as user_name, u.email as user_email 
+                    FROM {$this->table} ci 
+                    LEFT JOIN users u ON ci.user_id = u.id 
+                    ORDER BY ci.created_at DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get inquiries error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getById($id) {
+        try {
+            $sql = "SELECT ci.*, u.name as user_name, u.email as user_email 
+                    FROM {$this->table} ci 
+                    LEFT JOIN users u ON ci.user_id = u.id 
+                    WHERE ci.id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Get inquiry error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateStatus($id, $status) {
+        try {
+            $sql = "UPDATE {$this->table} SET status = ?, updated_at = NOW() WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([$status, $id]);
+        } catch (PDOException $e) {
+            error_log("Update status error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $sql = "DELETE FROM {$this->table} WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            error_log("Delete inquiry error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getCount() {
+        try {
+            $sql = "SELECT COUNT(*) as count FROM {$this->table}";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result['count'];
+        } catch (PDOException $e) {
+            error_log("Get count error: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    public function getPendingCount() {
+        try {
+            $sql = "SELECT COUNT(*) as count FROM {$this->table} WHERE status = 'pending'";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result['count'];
+        } catch (PDOException $e) {
+            error_log("Get pending count error: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    public function getRecentInquiries($limit = 5) {
+        try {
+            $sql = "SELECT ci.*, u.name as user_name 
+                    FROM {$this->table} ci 
+                    LEFT JOIN users u ON ci.user_id = u.id 
+                    ORDER BY ci.created_at DESC 
+                    LIMIT ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$limit]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get recent inquiries error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getInquiriesByUser($userId) {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = ? ORDER BY created_at DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$userId]);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get user inquiries error: " . $e->getMessage());
+            return [];
+        }
+    }
+}
+
 ?>

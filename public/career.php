@@ -156,6 +156,9 @@
         </div>
     </section>
 
+
+
+
         <section class="company-contact">
         <div class="company-description">
             <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
@@ -188,7 +191,7 @@
         </div>
     </section>
 
-   <footer>
+    <footer>
         <div class="footer-logo">
             <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
