@@ -1,4 +1,93 @@
 <?php include 'functions.php'; ?>
+<?php
+require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
+
+// Start session
+Auth::startSession();
+
+$db = new Database();
+$conn = $db->connect();
+
+$contactInquiry = new ContactInquiry($conn);
+$message = '';
+$messageType = '';
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if user is logged in
+    if (!Auth::isLoggedIn()) {
+        // Redirect to login with return URL
+        $currentUrl = urlencode($_SERVER['REQUEST_URI']);
+        header("Location: login.php?redirect=" . $currentUrl . "&message=login_required");
+        exit();
+    }
+
+    // Validate and process form data
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $mobile = trim($_POST['mobile'] ?? '');
+    $messageText = trim($_POST['message'] ?? '');
+    $userId = Auth::getUserId();
+
+    $errors = [];
+
+    // Validation
+    if (empty($name)) $errors[] = "Name is required";
+    if (empty($email)) $errors[] = "Email is required";
+    if (empty($mobile)) $errors[] = "Mobile number is required";
+    if (empty($messageText)) $errors[] = "Message is required";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid email format";
+
+    // Handle file upload
+    $planFile = null;
+    if (isset($_FILES['plan']) && $_FILES['plan']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../uploads/plans/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $fileExtension = strtolower(pathinfo($_FILES['plan']['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png', 'dwg', 'dxf'];
+        
+        if (in_array($fileExtension, $allowedExtensions)) {
+            $fileName = 'plan_' . $userId . '_' . time() . '.' . $fileExtension;
+            $uploadPath = $uploadDir . $fileName;
+            
+            if (move_uploaded_file($_FILES['plan']['tmp_name'], $uploadPath)) {
+                $planFile = $fileName;
+            } else {
+                $errors[] = "Failed to upload plan file";
+            }
+        } else {
+            $errors[] = "Invalid file type. Allowed: PDF, JPG, PNG, DWG, DXF";
+        }
+    }
+
+    if (empty($errors)) {
+        if ($contactInquiry->create($userId, $name, $email, $mobile, $messageText, $planFile)) {
+            $message = "Your inquiry has been submitted successfully! We'll get back to you soon.";
+            $messageType = 'success';
+            
+            // Clear form data
+            $name = $email = $mobile = $messageText = '';
+        } else {
+            $message = "Failed to submit inquiry. Please try again.";
+            $messageType = 'error';
+        }
+    } else {
+        $message = implode('<br>', $errors);
+        $messageType = 'error';
+    }
+}
+
+// Check for login required message
+if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
+    $message = "Please log in to submit a contact inquiry.";
+    $messageType = 'info';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +112,14 @@
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
+            <?php if (Auth::isLoggedIn()): ?>
+                <li><a href="../public/logout.php">LOGOUT</a></li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php">LOGIN</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>
@@ -35,51 +132,97 @@
         </div>
     </section>
 
-    <section class="contact-main">
-        <div class="contact-container">
-            <div class="contact-form-section">
+   <section class="contact-main">
+    <div class="contact-container">
+        <div class="contact-form-section">
+            <?php if (!empty($message)): ?>
+                <div class="form-message <?= $messageType ?>">
+                    <?= $message ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (Auth::isLoggedIn()): ?>
+                <div class="user-info">
+                    <strong>Logged in as:</strong> <?= htmlspecialchars(Auth::getUserName()) ?> (<?= htmlspecialchars(Auth::getUserEmail()) ?>)
+                    <a href="../public/logout.php" class="logout-link" style="float: right;">Logout</a>
+                </div>
+
                 <form action="contact.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name:" required>
+                        <input type="text" name="name" placeholder="Name:" value="<?= htmlspecialchars($name ?? Auth::getUserName()) ?>" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email:" required>
+                        <input type="email" name="email" placeholder="Email:" value="<?= htmlspecialchars($email ?? Auth::getUserEmail()) ?>" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="mobile" placeholder="Mobile:" required>
+                        <input type="tel" name="mobile" placeholder="Mobile:" value="<?= htmlspecialchars($mobile ?? '') ?>" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="6" required><?= htmlspecialchars($messageText ?? '') ?></textarea>
                     </div>
                     <div class="form-group file-upload">
                         <label for="plan-upload" class="file-label">
+                            <span>Drop Plan Here (Optional)</span>
+                            <input type="file" id="plan-upload" name="plan" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf">
+                        </label>
+                        <small>Accepted formats: PDF, JPG, PNG, DWG, DXF</small>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Inquiry</button>
+                </form>
+            <?php else: ?>
+                <div class="login-prompt">
+                    <h3>Login Required</h3>
+                    <p>You need to be logged in to submit a contact inquiry.</p>
+                    <p>
+                        <a href="login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>">Login</a> or 
+                        <a href="register.php">Create an Account</a>
+                    </p>
+                </div>
+                
+                <!-- Show form but disabled -->
+                <form style="opacity: 0.5; pointer-events: none;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name:" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email:" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Mobile:" disabled>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="6" disabled></textarea>
+                    </div>
+                    <div class="form-group file-upload">
+                        <label class="file-label">
                             <span>Drop Plan Here</span>
-                            <input type="file" id="plan-upload" name="plan" class="file-input">
+                            <input type="file" disabled>
                         </label>
                     </div>
-                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="button" class="submit-btn" disabled>Login Required</button>
                 </form>
+            <?php endif; ?>
+        </div>
+        
+        <div class="contact-info-section">
+            <h2>TRIV Design & Construction</h2>
+            
+            <div class="contact-detail">
+                <div class="contact-icon">
+                    <img src="../assets/images/location.jpg" alt="Location">
+                </div>
+                <p>322 National Highway, Masaya Rosario, Batangas</p>
             </div>
             
-            <div class="contact-info-section">
-                <h2>TRIV Design & Construction</h2>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <img src="../assets/images/location.jpg" alt="Location">
-                    </div>
-                    <p>322 National Highway, Masaya Rosario, Batangas</p>
+            <div class="contact-detail">
+                <div class="contact-icon">
+                    <img src="../assets/images/phone.png" alt="Phone">
                 </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <img src="../assets/images/phone.png" alt="Phone">
-                    </div>
-                    <p>09087420857</p>
-                </div>
+                <p>09087420857</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="company-contact">
         <div class="company-description">
@@ -122,26 +265,6 @@
         </div>
     </footer>
 
-    <?php 
-    // Process the contact form if submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $result = processContactForm();
-        if ($result) {
-            echo '<div class="form-message ' . ($result['success'] ? 'success' : 'error') . '">';
-            if ($result['success']) {
-                echo $result['message'];
-            } else {
-                echo '<ul>';
-                foreach ($result['errors'] as $error) {
-                    echo '<li>' . $error . '</li>';
-                }
-                echo '</ul>';
-            }
-            echo '</div>';
-        }
-    }
-    ?>
-
           <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
@@ -161,7 +284,20 @@
                     nav.classList.remove('active');
                 });
             });
-        });
+         // File upload preview
+        const fileInput = document.getElementById('plan-upload');
+        const fileLabel = document.querySelector('.file-label span');
+        
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    fileLabel.textContent = this.files[0].name;
+                } else {
+                    fileLabel.textContent = 'Drop Plan Here (Optional)';
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
