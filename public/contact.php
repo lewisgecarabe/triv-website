@@ -61,7 +61,27 @@
                 </form>
             </div>
             
-<section class="company-contact">
+            <div class="contact-info-section">
+                <h2>TRIV Design & Construction</h2>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <img src="../assets/images/location.jpg" alt="Location">
+                    </div>
+                    <p>322 National Highway, Masaya Rosario, Batangas</p>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <img src="../assets/images/phone.png" alt="Phone">
+                    </div>
+                    <p>09087420857</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="company-contact">
         <div class="company-description">
             <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
             <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
