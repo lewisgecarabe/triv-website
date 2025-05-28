@@ -24,14 +24,22 @@
         </ul>
     </nav>
 </header>
+    
+<section class="apply-hero" style="position: relative;">
+    <img src="../assets/images/applyy.jpg" alt="Job Hero" style="width: 100%; height: auto; display: block;">
 
-    <section class="apply-hero">
-        <div class="apply-hero-overlay"></div>
-        <div class="apply-hero-content">
-            <h1>JOIN OUR TEAM</h1>
-        </div>
-    </section>
-
+    <div class="apply-hero-content" style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        z-index: 1;">
+        <h1 style="font-size: 3rem; margin: 0;">APPLY NOW</h1>
+    </div>
+</section>
+    
     <section class="application-form">
         <div class="container">
             <a href="career.php" class="back-link"><span>←</span> Back to All Jobs</a>
@@ -155,40 +163,39 @@
             </form>
         </div>
     </section>
-
-    <section class="company-contact-info">
-        <div class="contact-info-container">
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/email.png" alt="Email">
-                    </div>
-                    <p>nrvillanueva8@yahoo.com</p>
+<section class="company-contact">
+        <div class="company-description">
+            <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+            <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/email.png" alt="Email">
                 </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/phone.png" alt="Phone">
-                    </div>
-                    <p>0919-670-9187</p> 
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/location.jpg" alt="Location">
-                    </div>
-                    <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
-                </div>
+                <p>nrvillanueva8@yahoo.com</p>
             </div>
             
-            <div class="company-description">
-                <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-                <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/phone.png" alt="Phone">
+                </div>
+                <p>0908-742-0857</p>
             </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/location.jpg" alt="Location">
+                </div>
+                <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
+            </div>
+
+            
         </div>
     </section>
 
-    <footer>
+   <footer>
         <div class="footer-logo">
             <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
