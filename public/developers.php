@@ -40,8 +40,8 @@
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="#" class="menu-item active" data-target="firm">The Firm</a></li>
-                <li><a href="#" class="menu-item" data-target="people">People</a></li>
-      
+                <li><a href="#" class="menu-item" data-target="team">People</a></li>
+                      <li><a href="#" class="menu-item" data-target="developers">Developers</a></li>
                 <li><a href="#" class="menu-item" data-target="account">Account</a></li>
             </ul>
         </aside>
@@ -63,40 +63,88 @@
                 <p class="content-text">To be a leading force in the design and construction industry, recognized for shaping spaces that inspire, endure, and elevate the way people live and work.</p>
             </div>
 
-            <!-- People Section -->
-            <div id="people-section" class="content-section people-section">
-                <h2 class="content-title">Our Team</h2>
-                <p class="content-text">Meet the talented individuals who make TRIV Design & Construction a leader in the industry.</p>
-                
-                <div class="people-grid">
-                    <div class="person-card">
-                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
-                        <div class="person-details">
-                            <h3 class="person-name">Engr. Noel R. Villanueva</h3>
-                            <p class="person-position">Founder | Consultant</p>
-                            <p class="person-bio"></p>
-                        </div>
-                    </div>
-                    
-                    <div class="person-card">
-                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
-                        <div class="person-details">
-                            <h3 class="person-name">Arch. Ma. Alyza Linelle L. Villanueva, RMP</h3>
-                            <p class="person-position">Founder | Principal Architect</p>
-                            <p class="person-bio"></p>
-                        </div>
-                    </div>
-                    
-                    <div class="person-card">
-                        <div class="person-image" style="background-image: url('/placeholder.svg?height=250&width=250');"></div>
-                        <div class="person-details">
-                            <h3 class="person-name">Engr. Jan Alison Lynwhel L. Villanueva</h3>
-                            <p class="person-position">Founder | Site Engineer</p>
-                            <p class="person-bio"></p>
-                        </div>
-                    </div>
-                       </div>
-                    </div>
+    <!-- Our Team Section -->
+    <div id="team-section" class="content-section people-section">
+        <h2 class="content-title">Our Team</h2>
+        <p class="content-text">Meet the talented individuals who make TRIV Design & Construction a leader in the industry.</p>
+        
+        <div class="people-grid">
+            <div class="person-card">
+                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
+                    <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
+                </div>
+                <div class="person-details">
+                    <h3 class="person-name">Engr. Noel R. Villanueva</h3>
+                    <p class="person-position">Founder | Consultant</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+            
+            <div class="person-card">
+                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');"></div>
+                <div class="person-details">
+                    <h3 class="person-name">Arch. Ma. Alyza Linelle L. Villanueva, RMP</h3>
+                    <p class="person-position">Founder | Principal Architect</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+            
+            <div class="person-card">
+                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');"></div>
+                <div class="person-details">
+                    <h3 class="person-name">Engr. Jan Alison Lynwhel L. Villanueva</h3>
+                    <p class="person-position">Founder | Site Engineer</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developers Section -->
+    <div id="developers-section" class="content-section people-section">
+        <h2 class="content-title">Developers</h2>
+        <p class="content-text">Meet the talented individuals who created this website.</p>
+        
+        <div class="people-grid">
+            <div class="person-card">
+                <div class="person-image">
+                    <img src="../assets/images/noelv.jpg" alt="Noel Andrae Lara Villanueva">
+                </div> 
+                <div class="person-details">
+                    <h3 class="person-name">Noel Andrae Lara Villanueva</h3>
+                    <p class="person-position">Full Stack Developer</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+                        
+            <div class="person-card">
+                <div class="person-image">
+                    <img src="../assets/images/lanceb.jpg" alt="Lance Aidrian Benico">
+                </div>
+                <div class="person-details">
+                    <h3 class="person-name">Lance Aidrian Benico</h3>
+                    <p class="person-position">Full Stack Developer</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+            
+            <div class="person-card">
+                <div class="person-image">
+                    <img src="../assets/images/lewisg.jpeg" alt="Lewis Leander Gecarane">
+                </div>
+                <div class="person-details">
+                    <h3 class="person-name">Lewis Leander Gecarane</h3>
+                    <p class="person-position">Full Stack Developer</p>
+                    <p class="person-bio"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            
+
+
+
    
 
             <!-- Inquiries Section -->
@@ -130,6 +178,11 @@
     </section>
 
     <section class="company-contact">
+        <div class="company-description">
+            <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+            <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+        </div>
+        
         <div class="contact-info">
             <div class="contact-item">
                 <div class="icon">
@@ -151,11 +204,8 @@
                 </div>
                 <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
             </div>
-        </div>
-        
-        <div class="company-description">
-            <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-            <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+
+            
         </div>
     </section>
 

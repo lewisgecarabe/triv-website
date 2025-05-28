@@ -115,64 +115,44 @@
         <!-- Page content would go here -->
     </div>
 
-    <footer class="triv-footer">
-        <div class="triv-footer-container">
-            <div class="triv-footer-grid">
-                <!-- Company Section -->
-                <div class="triv-company-column">
-                    <div class="triv-logo-block">
-                  <img src="../assets/images/trivfinalnatalaga.png" class="triv-logo-footer">
-                        <div class="triv-tagline">
-                            
-                        </div>
-                        <div class="triv-divider"></div>
-                    </div>
-                    <p class="triv-description">
-                        The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.
-                    </p>
+    <section class="company-contact">
+        <div class="company-description">
+            <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+            <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/email.png" alt="Email">
                 </div>
-
-                <!-- Info Section -->
-                <div class="triv-info-column">
-                    <h3 class="triv-column-heading">Infos</h3>
-                    <div class="triv-info-content">
-                        <div class="triv-address">
-                            <p>322 National Highway, Masaya, Rosario</p>
-                            <p>Batangas</p>
-                        </div>
-                        <p class="triv-phone">0908-742-0857</p>
-                        <p class="triv-email">nrvillanueva8@yahoo.com</p>
-                    </div>
+                <p>nrvillanueva8@yahoo.com</p>
+            </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/phone.png" alt="Phone">
                 </div>
-
-                <!-- Links Section -->
-                <div class="triv-links-column">
-                    <h3 class="triv-column-heading">Links</h3>
-                    <nav class="triv-nav">
-                        <ul class="triv-nav-list">
-                            <li class="triv-nav-item"><a href="/about" class="triv-nav-link">About TRIV</a></li>
-                            <li class="triv-nav-item"><a href="/terms" class="triv-nav-link">Terms</a></li>
-                            <li class="triv-nav-item"><a href="/privacy" class="triv-nav-link">Privacy</a></li>
-                            <li class="triv-nav-item"><a href="/careers" class="triv-nav-link">Careers</a></li>
-                        </ul>
-                    </nav>
+                <p>0908-742-0857</p>
+            </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/location.jpg" alt="Location">
                 </div>
-
-                <!-- Social Links Section -->
-                <div class="triv-social-column">
-                    <h3 class="triv-column-heading">Social Links</h3>
-                    <div class="triv-social-content">
-                        <a href="https://facebook.com" class="triv-social-link">Facebook</a>
-                    </div>
-                </div>
+                <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
             </div>
 
-            <!-- Copyright Section -->
-            <div class="triv-copyright">
-                <p class="triv-copyright-text">
-                    &copy; Copyright <?php echo date("Y"); ?> TRIV Design & Construction | All Rights Reserved | Built by: Lance Benico, Lewis Gacarane, Noel Villanueva
-                </p>
-            </div>
+            
+        </div>
+    </section>
+
+   <footer>
+        <div class="footer-logo">
+            <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
+        </div>
+        <div class="copyright">
+            <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>
         </div>
     </footer>
 

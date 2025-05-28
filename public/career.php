@@ -156,39 +156,39 @@
         </div>
     </section>
 
-    <section class="company-contact-info">
-        <div class="contact-info-container">
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/email.png" alt="Email">
-                    </div>
-                    <p>nrvillanueva8@yahoo.com</p>
+        <section class="company-contact">
+        <div class="company-description">
+            <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
+            <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/email.png" alt="Email">
                 </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/phone.png" alt="Phone">
-                    </div>
-                    <p>0919-670-9187</p> 
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/location.jpg" alt="Location">
-                    </div>
-                    <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
-                </div>
+                <p>nrvillanueva8@yahoo.com</p>
             </div>
             
-            <div class="company-description">
-                <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-                <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/phone.png" alt="Phone">
+                </div>
+                <p>0908-742-0857</p>
             </div>
+            
+            <div class="contact-item">
+                <div class="icon">
+                    <img src="../assets/images/location.jpg" alt="Location">
+                </div>
+                <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
+            </div>
+
+            
         </div>
     </section>
 
-    <footer>
+   <footer>
         <div class="footer-logo">
             <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
