@@ -1,5 +1,7 @@
 <?php
 require_once '../classes/Database.php';
+session_start();
+require_once '../classes/Auth.php';
 
 $db = new Database();
 $conn = $db->connect();
@@ -26,11 +28,26 @@ $services = $service->getAll();
     <nav>
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
-            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
-            <li><a href="../public/contact.php">CONTACT US</a></li>
-            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <hr>
+                 <?php if (Auth::isLoggedIn()): ?>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>
@@ -77,37 +94,6 @@ $services = $service->getAll();
         </section>
     </section>
 
-    <section class="company-contact-info">
-        <div class="contact-info-container">
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/email.png" alt="Email">
-                    </div>
-                    <p>nrvillanueva8@yahoo.com</p>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/phone.png" alt="Phone">
-                    </div>
-                    <p>0919-670-9187</p> 
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/location.jpg" alt="Location">
-                    </div>
-                    <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
-                </div>
-            </div>
-            
-            <div class="company-description">
-                <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-                <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
-            </div>
-        </div>
-    </section>
 
 <section class="company-contact">
         <div class="company-description">

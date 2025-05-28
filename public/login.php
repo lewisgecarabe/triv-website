@@ -76,13 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Left Panel with Image -->
         <div class="left-panel">
             <div class="logo-container">
-                <img class="logo" src="../assets/images/login-photo.png" alt="TRIV Logo" />
+                <img class="logo" src="../assets/images/trivfinalnatalaga.png" alt="TRIV Logo" />
             </div>
         </div>
 
         <!-- Right Panel with Login Form -->
         <div class="right-panel">
             <div class="login-form">
+                <p style="margin-bottom: 10px;">
+                    <a href="index.php">← Back to Home</a>
+                </p>
                 <h2>Login to Your Account</h2>
 
                 <?php if (!empty($error)): ?>
@@ -122,9 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Don't have an account? <a href="register.php">Register here</a>.
                 </p>
                 
-                <p style="margin-top: 10px;">
-                    <a href="index.php">← Back to Home</a>
-                </p>
+                
             </div>
         </div>
     </div>

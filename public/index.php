@@ -11,6 +11,8 @@ require_once '../classes/Auth.php';
     <title>TRIV Design & Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 <header>
@@ -29,17 +31,22 @@ require_once '../classes/Auth.php';
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <hr>
                  <?php if (Auth::isLoggedIn()): ?>
-                <li><a href="../public/logout.php">LOGOUT</a></li>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
                 <?php if (Auth::isAdmin()): ?>
                     <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
                 <?php endif; ?>
             <?php else: ?>
-                <li><a href="../public/login.php">LOGIN/SIGNUP</a></li>
-            <?php endif; ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>
-
     <section class="hero">
         <div class="hero-overlay"></div>
         <img src="../assets/images/construction-bg.jpg" alt="Construction Site" class="hero-bg">

@@ -51,9 +51,14 @@ $inquiries = $contactInquiry->getAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Inquiries - TRIV Admin</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+           img {
+      max-width: 100%;
+       height: 40px;
+}
         .inquiries-container {
-            max-width: 1200px;
+            max-width:auto;
             margin: 0 auto;
             padding: 20px;
         }
@@ -173,13 +178,99 @@ $inquiries = $contactInquiry->getAll();
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+font-family: 'Lato', sans-serif;
+}
+    body { 
+      display: flex; 
+      height: 100vh; 
+     color: #333;
+    }
+    
+    aside { 
+      width: 250px; 
+      background: #1a2b49; 
+      color: white; 
+      padding: 20px; 
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    
+    aside h2 { 
+      margin-bottom: 30px; 
+      text-align: center;
+      color: #ffc107;
+      font-size: 1.5em;
+    }
+    
+    aside ul { 
+      list-style: none; 
+    }
+    
+    aside ul li { 
+      margin: 15px 0; 
+    }
+    
+    aside ul li a { 
+      color: white; 
+      text-decoration: none; 
+      display: flex; 
+      align-items: center; 
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    aside ul li a:hover {
+      background: rgba(97, 218, 251, 0.1);
+      transform: translateX(5px);
+    }
+    
+    aside ul li a i { 
+      margin-right: 12px; 
+      width: 20px;
+      text-align: center;
+    }
+    
+    aside ul li a.active { 
+      background: #ffc107; 
+      box-shadow: 0 2px 10px rgba(83, 86, 88, 0.3);
+    }
+    
+    .logout-btn {
+      margin-top: 30px !important;
+      border-top: 1px solid #333;
+      padding-top: 20px !important;
+    }
+    
+    .logout-btn a {
+      color: #ff6b6b !important;
+    }
     </style>
 </head>
 <body>
+
+<aside>
+    <h2><img src = ../assets/images/trivfinalnatalaga.png></h2>
+    <ul>
+      <li><a href="dashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="projects.php"><i class="fas fa-tools"></i> Projects</a></li>
+      <li><a href="manage-users.php"><i class="fas fa-users"></i> Users</a></li>
+      <li><a href="services.php"><i class="fas fa-concierge-bell"></i> Services</a></li>
+       <li><a href="manage-jobs.php"><i class="fas fa-briefcase"></i> Jobs</a></li>
+            <li><a href="manage-applications.php"><i class="fas fa-file-alt"></i> Applications</a></li>
+            <li><a href="manage-team.php"><i class="fas fa-users-cog"></i> Team Members</a></li>
+            <li><a href="manage-developers.php"><i class="fas fa-code"></i> Developers</a></li>
+            <li><a href="manage-inquiries.php"><i class="fas fa-envelope"></i> Inquiries</a></li>
+      <li class="logout-btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
     <div class="inquiries-container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <h1>Contact Inquiries Management</h1>
-            <a href="dashboard.php" class="btn btn-primary">← Back to Dashboard</a>
+            
         </div>
 
         <?php if (!empty($message)): ?>

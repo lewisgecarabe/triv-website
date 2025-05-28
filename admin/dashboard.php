@@ -42,22 +42,22 @@ $userName = Auth::getUserName();
   <title>Admin Dashboard - TRIV</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    }
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+font-family: 'Lato', sans-serif;
+}
     
     body { 
       display: flex; 
       height: 100vh; 
-      background: #f4f6f8; 
+     color: #333;
     }
     
     aside { 
       width: 250px; 
-      background: #20232a; 
+      background: #1a2b49; 
       color: white; 
       padding: 20px; 
       box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -66,7 +66,7 @@ $userName = Auth::getUserName();
     aside h2 { 
       margin-bottom: 30px; 
       text-align: center;
-      color: #61dafb;
+      color: #ffc107;
       font-size: 1.5em;
     }
     
@@ -100,8 +100,8 @@ $userName = Auth::getUserName();
     }
     
     aside ul li a.active { 
-      background: #007bff; 
-      box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+      background: #ffc107; 
+      box-shadow: 0 2px 10px rgba(83, 86, 88, 0.3);
     }
     
     .logout-btn {
@@ -126,7 +126,7 @@ $userName = Auth::getUserName();
       box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
       margin-bottom: 25px; 
       border-radius: 12px;
-      border-left: 4px solid #007bff;
+      border-left: 4px solid #1a2b49;
     }
     
     header h1 {
@@ -170,7 +170,7 @@ $userName = Auth::getUserName();
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #007bff, #61dafb);
+      background: linear-gradient(90deg, #1a2b49, #1a2b49);
     }
     
     .card h3 { 
@@ -352,17 +352,26 @@ $userName = Auth::getUserName();
         grid-template-columns: 1fr;
       }
     }
+
+    img {
+      max-width: 100%;
+       height: 40px;
+}
   </style>
 </head>
 <body>
   <aside>
-    <h2><i class="fas fa-building"></i> TRIV Admin</h2>
+    <h2><img src = ../assets/images/trivfinalnatalaga.png></h2>
     <ul>
       <li><a href="dashboard.php" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
       <li><a href="projects.php"><i class="fas fa-tools"></i> Projects</a></li>
       <li><a href="manage-users.php"><i class="fas fa-users"></i> Users</a></li>
       <li><a href="services.php"><i class="fas fa-concierge-bell"></i> Services</a></li>
-      <li><a href="manage-inquiries.php"><i class="fas fa-envelope"></i> Inquiries</a></li>
+       <li><a href="manage-jobs.php"><i class="fas fa-briefcase"></i> Jobs</a></li>
+            <li><a href="manage-applications.php"><i class="fas fa-file-alt"></i> Applications</a></li>
+            <li><a href="manage-team.php"><i class="fas fa-users-cog"></i> Team Members</a></li>
+            <li><a href="manage-developers.php"><i class="fas fa-code"></i> Developers</a></li>
+            <li><a href="manage-inquiries.php"><i class="fas fa-envelope"></i> Inquiries</a></li>
       <li class="logout-btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </aside>

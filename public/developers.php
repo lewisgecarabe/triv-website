@@ -1,6 +1,10 @@
 <?php include 'functions.php'; ?>
 <?php
 require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
+
+// Start session
+Auth::startSession();
 
 $db = new Database();
 $conn = $db->connect();
@@ -52,11 +56,26 @@ $developers = $developerObj->getActive();
     <nav>
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
-            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
-            <li><a href="../public/contact.php">CONTACT US</a></li>
-            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <hr>
+                 <?php if (Auth::isLoggedIn()): ?>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>
@@ -199,30 +218,43 @@ $developers = $developerObj->getActive();
     </div>
 
 
+    
             <!-- Account Section -->
-            <div id="account-section" class="content-section people-section">
-                <h2 class="content-title">Account</h2>
-                <p class="content-text">Access your client portal to view project updates, documents, and communicate with our team.</p>
-                
-                <form action="login.php" method="POST" style="max-width: 400px; margin-top: 30px;">
-                    <div style="margin-bottom: 20px;">
-                        <label for="username" style="display: block; margin-bottom: 5px; font-weight: 500;">Username</label>
-                        <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label for="password" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
-                        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
-                    
-                    <button type="submit" class="btn" style="border: none; cursor: pointer;">Login</button>
-                    
-                    <p style="margin-top: 20px; font-size: 0.9rem;">
-                        <a href="#" style="color: #1a2b49; text-decoration: none;">Forgot password?</a> | 
-                        <a href="#" style="color: #1a2b49; text-decoration: none;">Request an account</a>
-                    </p>
-                </form>
+<div id="account-section" class="content-section people-section">
+    <h2 class="content-title">Account</h2>
+
+    <?php if (Auth::isLoggedIn()): ?>
+        <p class="content-text">Welcome back, <?= htmlspecialchars(Auth::getUserName()) ?>!</p>
+        <div class="client-dashboard" style="margin-top: 20px;">
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="account.php" style="text-decoration: none; color: #1a2b49;">📋 View Project Status</a></li>
+                <li><a href="logout.php" style="color: #c00; font-weight: bold;">🚪 Logout</a></li>
+            </ul>
+        </div>
+    <?php else: ?>
+        <p class="content-text">Access your client portal to view project updates, documents, and communicate with our team.</p>
+
+        <form action="login.php" method="POST" style="max-width: 400px; margin-top: 30px;">
+            <div style="margin-bottom: 20px;">
+                <label for="username" style="display: block; margin-bottom: 5px; font-weight: 500;">Username</label>
+                <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="password" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
+                <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Login</button>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                <a href="#" style="color: #1a2b49; text-decoration: none;">Forgot password?</a> | 
+                <a href="register.php" style="color: #1a2b49; text-decoration: none;">Request an account</a>
+            </p>
+        </form>
+    <?php endif; ?>
+</div>
+
         </div>
     </section>
 
