@@ -66,48 +66,16 @@ $services = $service->getAll();
             </div>
             <?php endforeach; ?>
         </div>
+        </section>
 
         <!-- CTA Section -->
-        <section class="services-cta">
-            <div class="services-cta-content">
-                <h2>Ready to Start Your Project?</h2>
-                <p>Contact us today for a free consultation and quote.</p>
-                <a href="../public/contact.php" class="cta-button">Get in Touch</a>
+        <section class="service-cta">
+            <div class="service-cta-container">
+                <h2>Ready to Expand Your Space?</h2>
+                <p>Contact us today to discuss your extension project and schedule a site assessment.</p>
+                <a href="../public/contact.php" class="cta-button">Start Your Extension Project</a>
             </div>
         </section>
-    </section>
-
-    <section class="company-contact-info">
-        <div class="contact-info-container">
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/email.png" alt="Email">
-                    </div>
-                    <p>nrvillanueva8@yahoo.com</p>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/phone.png" alt="Phone">
-                    </div>
-                    <p>0919-670-9187</p> 
-                </div>
-                
-                <div class="contact-item">
-                    <div class="icon">
-                        <img src="../assets/images/location.jpg" alt="Location">
-                    </div>
-                    <p>322 National Highway,<br>Masaya, Rosario Batangas</p>
-                </div>
-            </div>
-            
-            <div class="company-description">
-                <h2>TRIV Design & Studio is a Filipino owned company specializing in design & construction services.</h2>
-                <p>The company brings together a highly skilled technical staff to ensure that excellence in design services standards are achieved to the satisfaction of the clients and owners.</p>
-            </div>
-        </div>
-    </section>
 
 <section class="company-contact">
         <div class="company-description">
