@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interior Design Services | TRIV Design and Construction</title>
+    <title>Construction Services | TRIV Design and Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -34,29 +34,30 @@
 </header>
 
     <main class="service-detail-main">
-        <!-- Banner Section -->
-        <section class="service-banner interior-banner">
-            <div class="service-banner-overlay"></div>
-            <div class="service-banner-content">
-                <h1>Interior Design</h1>
-                <p>Creating elegant interiors that reflect your personality and lifestyle</p>
-            </div>
-        </section>
+   <!-- Banner Section -->
+<section class="service-banner construction-banner">
+    <div class="service-banner-overlay"></div>
+    <div class="service-banner-content">
+        <h1>Construction Services</h1>
+        <p>Building dreams into reality with precision and excellence</p>
+    </div>
+</section>
+
 
         <!-- Description Section -->
         <section class="service-description">
             <div class="service-description-container">
-                <h2>Practical Interior Spaces</h2>
+                <h2>Expert Construction Solutions</h2>
                 <div class="service-description-content">
                     <div class="service-description-text">
-                        <p>TRIV Design and Construction offers interior design services that create comfortable, functional, and attractive spaces for homes and businesses in Manila and other locations. Though Manila-based, we're open to projects throughout the Philippines with proper arrangements. Our designers focus on creating interiors that reflect your personal style while meeting your practical needs.</p>
+                        <p>At TRIV Design and Construction, we offer quality construction services for residential and commercial projects in Manila and beyond. While we're based in Manila, we're willing to take on projects in other locations throughout the Philippines upon negotiation. Our team combines technical knowledge with practical skills to ensure your building project is completed to the highest standards.</p>
                         
-                        <p>We believe good interior design should make your daily life better. Our approach balances aesthetics with functionality, ensuring that your space not only looks good but also works well for the people who use it every day.</p>
+                        <p>We use quality materials sourced from trusted local suppliers and follow proper construction techniques to create buildings that are built to last. Whether you're planning a home renovation or a small commercial space, we bring the same dedication to every project.</p>
                         
-                        <p>As a new design firm in the Philippines, we're passionate about creating interiors that incorporate local elements while meeting modern needs. We work within your budget to select appropriate materials, furniture, and finishes, creating spaces that feel both fresh and uniquely yours.</p>
+                        <p>Safety and quality are our priorities. We follow building codes and regulations while working efficiently to deliver your project on time and within budget. As a new firm in Manila, we're committed to building our reputation through excellent workmanship and customer satisfaction.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="../assets/images/services_ID.jpg" alt="Interior design project by TRIV">
+                        <img src="../assets/images/services_constructionServices.jpg" alt="Construction workers at a TRIV project site">
                     </div>
                 </div>
             </div>
@@ -65,45 +66,45 @@
         <!-- Process Section -->
         <section class="service-process">
             <div class="service-process-container">
-                <h2>Our Interior Design Process</h2>
+                <h2>Our Construction Process</h2>
                 <div class="process-steps">
                     <div class="process-step">
                         <div class="process-step-number">1</div>
                         <div class="process-step-content">
-                            <h3>Consultation & Brief</h3>
-                            <p>We begin with an in-depth consultation to understand your style preferences, functional requirements, and budget considerations for your interior project.</p>
+                            <h3>Planning & Design</h3>
+                            <p>We begin with thorough planning and design, working closely with architects and engineers to create detailed blueprints and construction schedules.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-step-number">2</div>
                         <div class="process-step-content">
-                            <h3>Concept Development</h3>
-                            <p>Our designers create concept boards and preliminary designs that capture the essence of your vision while introducing innovative ideas and solutions.</p>
+                            <h3>Permits & Approvals</h3>
+                            <p>Our team handles all necessary permits and regulatory approvals, ensuring your project complies with local building codes and regulations.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-step-number">3</div>
                         <div class="process-step-content">
-                            <h3>Design Specification</h3>
-                            <p>We develop detailed design specifications, including furniture layouts, material selections, color schemes, lighting plans, and custom elements.</p>
+                            <h3>Site Preparation</h3>
+                            <p>We prepare the construction site with proper excavation, foundation work, and utility installations to create a solid base for your structure.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-step-number">4</div>
                         <div class="process-step-content">
-                            <h3>Implementation</h3>
-                            <p>Our team coordinates with contractors and suppliers to implement the design, overseeing all aspects of the installation process to ensure quality execution.</p>
+                            <h3>Construction</h3>
+                            <p>Our skilled construction team executes the building process with precision, following the approved plans while maintaining quality and safety standards.</p>
                         </div>
                     </div>
                     
                     <div class="process-step">
                         <div class="process-step-number">5</div>
                         <div class="process-step-content">
-                            <h3>Styling & Finishing</h3>
-                            <p>We complete your interior with careful styling and finishing touches, arranging accessories and ensuring every detail contributes to the overall design vision.</p>
+                            <h3>Finishing & Handover</h3>
+                            <p>We complete all finishing touches, conduct thorough quality inspections, and hand over your completed project with full documentation and support.</p>
                         </div>
                     </div>
                 </div>
@@ -113,9 +114,9 @@
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
-                <h2>Ready to Transform Your Interior?</h2>
-                <p>Contact us today to schedule a consultation with our interior design team.</p>
-                <a href="../public/contact.php" class="cta-button">Begin Your Interior Journey</a>
+                <h2>Ready to Build Your Dream Project?</h2>
+                <p>Contact us today to discuss your construction needs and get a detailed quote.</p>
+                <a href="../public/contact.php" class="cta-button">Request a Quote</a>
             </div>
         </section>
     </main>

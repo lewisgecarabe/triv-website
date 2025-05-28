@@ -9,9 +9,17 @@
 </head>
 <body>
 <header>
+
+<div class="return-services-container">
+    <a href="../public/services.php" class="return-services-button">
+        <i class="fas fa-arrow-left"></i> Return to Services
+    </a>
+</div>
+
     <div class="logo">
         <img src="../assets/images/trivfinalnatalaga.png" alt="TRIV Design & Construction">
     </div>
+    <!-- Make sure the button is OUTSIDE the nav element -->
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
         <ul>
@@ -25,13 +33,15 @@
     </nav>
 </header>
 
-    <section class="services-hero">
-        <div class="hero-overlay"></div>
-        <img src="../assets/images/services.jpg" alt="Construction Site" class="hero-bg">
-        <div class="hero-content-services">
-            <h1>EXTENSION</h1>
-        </div>
-    </section>
+    <main class="service-detail-main">
+        <!-- Banner Section -->
+        <section class="service-banner extension-banner">
+            <div class="service-banner-overlay"></div>
+            <div class="service-banner-content">
+                <h1>Extension Services</h1>
+                <p>Expand your space seamlessly while preserving your original structure's charm</p>
+            </div>
+        </section>
 
         <!-- Description Section -->
         <section class="service-description">
