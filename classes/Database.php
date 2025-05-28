@@ -485,45 +485,103 @@ class Service {
 
 class User {
     private $conn;
+    private $table = 'users';
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
     public function register($name, $email, $password, $role = 'client') {
-    // 1. Check if email already exists
-    $check = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
-    $check->execute([$email]);
-    if ($check->rowCount() > 0) {
-        return false;  // Email already registered
+        try {
+            // Check if email already exists
+            $checkStmt = $this->conn->prepare("SELECT id FROM {$this->table} WHERE email = ?");
+            $checkStmt->execute([$email]);
+            
+            if ($checkStmt->rowCount() > 0) {
+                return ['success' => false, 'message' => 'Email already registered'];
+            }
+
+            // Validate password strength
+            if (strlen($password) < 6) {
+                return ['success' => false, 'message' => 'Password must be at least 6 characters long'];
+            }
+
+            // Hash password and insert user
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $this->conn->prepare("INSERT INTO {$this->table} (name, email, password, role, created_at) VALUES (?, ?, ?, ?, NOW())");
+            
+            if ($stmt->execute([$name, $email, $hashedPassword, $role])) {
+                return ['success' => true, 'message' => 'Registration successful'];
+            }
+            
+            return ['success' => false, 'message' => 'Registration failed'];
+        } catch (PDOException $e) {
+            error_log("Registration error: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Registration failed. Please try again.'];
+        }
     }
 
-    // 2. If not, proceed to insert
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-    return $stmt->execute([$name, $email, $hashed_password, $role]);
-}
-
-
     public function login($email, $password) {
-        $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM {$this->table} WHERE email = ? AND status = 'active'");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
+            if ($user && password_verify($password, $user['password'])) {
+                // Update last login
+                $updateStmt = $this->conn->prepare("UPDATE {$this->table} SET last_login = NOW() WHERE id = ?");
+                $updateStmt->execute([$user['id']]);
+                
+                return [
+                    'success' => true,
+                    'user' => [
+                        'id' => $user['id'],
+                        'name' => $user['name'],
+                        'email' => $user['email'],
+                        'role' => $user['role']
+                    ]
+                ];
+            }
+
+            return ['success' => false, 'message' => 'Invalid email or password'];
+        } catch (PDOException $e) {
+            error_log("Login error: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Login failed. Please try again.'];
         }
+    }
 
-        return false;
+    public function getUserById($id) {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, name, email, role FROM {$this->table} WHERE id = ?");
+            $stmt->execute([$id]);
+            return $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Get user error: " . $e->getMessage());
+            return false;
+        }
     }
 
     public function getCount() {
-        $sql = "SELECT COUNT(*) as count FROM users";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'];
+        try {
+            $stmt = $this->conn->prepare("SELECT COUNT(*) as count FROM {$this->table}");
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result['count'];
+        } catch (PDOException $e) {
+            error_log("Get count error: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    public function getAllUsers() {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, name, email, role, created_at, last_login FROM {$this->table} ORDER BY created_at DESC");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log("Get all users error: " . $e->getMessage());
+            return [];
+        }
     }
 }
 

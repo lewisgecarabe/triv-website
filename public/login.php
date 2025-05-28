@@ -1,58 +1,132 @@
 <?php
-session_start();
-require '../classes/Database.php';
+require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
+
+Auth::startSession();
+
+// Redirect if already logged in
+if (Auth::isLoggedIn()) {
+    Auth::redirectBasedOnRole();
+}
 
 $db = new Database();
 $conn = $db->connect();
 $user = new User($conn);
 
-// Handle Cookie Login
-if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_id'])) {
-    $_SESSION['user_id'] = $_COOKIE['user_id'];
-    $_SESSION['role'] = $_COOKIE['user_role'];
-    redirectBasedOnRole($_SESSION['role']);
-}
+$error = "";
+$success = "";
 
-// Handle Form Login
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
     $remember = isset($_POST['remember']);
 
-    $loggedInUser = $user->login($email, $pass);
-
-    if ($loggedInUser) {
-        // ✅ This is where you assign session data
-        $_SESSION['user_id'] = $loggedInUser['id'];
-        $_SESSION['email'] = $loggedInUser['email'];
-        $_SESSION['role'] = $loggedInUser['role'];
-        $_SESSION['name'] = $loggedInUser['username'];
-
-        if ($remember) {
-            setcookie('user_id', $loggedInUser['id'], time() + (86400 * 30), "/");
-            setcookie('user_role', $loggedInUser['role'], time() + (86400 * 30), "/");
+    if (empty($email) || empty($password)) {
+        $error = "Please fill in all fields.";
+    } else {
+        $loginResult = $user->login($email, $password);
+        
+        if ($loginResult['success']) {
+            Auth::login($loginResult['user'], $remember);
+            
+            // Check for redirect URL
+            $redirectUrl = Auth::getLoginRedirectUrl();
+            if ($redirectUrl) {
+                header("Location: " . $redirectUrl);
+            } else {
+                Auth::redirectBasedOnRole($loginResult['user']['role']);
+            }
+            exit();
+        } else {
+            $error = $loginResult['message'];
         }
-
-        redirectBasedOnRole($loggedInUser['role']);
-    } else {
-        echo "Invalid login credentials.";
     }
-}
-
-function redirectBasedOnRole($role) {
-    if ($role === 'admin') {
-        header("Location: ../admin/dashboard.php");
-    } else {
-        header("Location: index.php");
-    }
-    exit();
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRIV Design & Construction - Login</title>
+    <link rel="stylesheet" href="../admin/style.css" />
+    <style>
+        .error-message {
+            background-color: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            border: 1px solid #fcc;
+        }
+        .success-message {
+            background-color: #efe;
+            color: #363;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            border: 1px solid #cfc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel with Image -->
+        <div class="left-panel">
+            <div class="logo-container">
+                <img class="logo" src="../assets/images/login-photo.png" alt="TRIV Logo" />
+            </div>
+        </div>
 
-<form method="POST">
-  <input type="email" name="email" placeholder="Email" required><br>
-  <input type="password" name="password" placeholder="Password" required><br>
-  <label><input type="checkbox" name="remember"> Remember Me</label><br>
-  <button type="submit">Login</button>
-</form>
+        <!-- Right Panel with Login Form -->
+        <div class="right-panel">
+            <div class="login-form">
+                <h2>Login to Your Account</h2>
+
+                <?php if (!empty($error)): ?>
+                    <div class="error-message">
+                        <?= htmlspecialchars($error) ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($success)): ?>
+                    <div class="success-message">
+                        <?= htmlspecialchars($success) ?>
+                    </div>
+                <?php endif; ?>
+
+                <form method="POST" action="login.php<?= isset($_GET['redirect']) ? '?redirect=' . urlencode($_GET['redirect']) : '' ?>">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($email ?? '') ?>" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required />
+                    </div>
+
+                    <div class="form-group remember-me">
+                        <label>
+                            <input type="checkbox" name="remember" <?= isset($_POST['remember']) ? 'checked' : '' ?>> 
+                            Remember Me (30 days)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+
+                <p style="margin-top: 15px;">
+                    Don't have an account? <a href="register.php">Register here</a>.
+                </p>
+                
+                <p style="margin-top: 10px;">
+                    <a href="index.php">← Back to Home</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
