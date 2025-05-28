@@ -2768,7 +2768,7 @@ img {
 
 /* Work Culture Section */
 .work-culture {
-    padding: 50px 0;
+    padding: 60px 10%;
     background-color: #FAFAFA;
 }
 
@@ -2820,6 +2820,32 @@ img {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .work-culture {
+        padding: 40px 5%;
+    }
+    
+    .culture-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .work-culture h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-culture {
+        padding: 30px 5%;
+    }
+    
+    .work-culture h2 {
+        font-size: 1.6rem;
+    }
 }
 
 /* Job Listings Section */
