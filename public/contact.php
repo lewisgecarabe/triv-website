@@ -1,4 +1,93 @@
+
 <?php include 'functions.php'; ?>
+<?php
+require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
+
+// Start session
+Auth::startSession();
+
+$db = new Database();
+$conn = $db->connect();
+
+$contactInquiry = new ContactInquiry($conn);
+$message = '';
+$messageType = '';
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if user is logged in
+    if (!Auth::isLoggedIn()) {
+        // Redirect to login with return URL
+        $currentUrl = urlencode($_SERVER['REQUEST_URI']);
+        header("Location: login.php?redirect=" . $currentUrl . "&message=login_required");
+        exit();
+    }
+
+    // Validate and process form data
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $mobile = trim($_POST['mobile'] ?? '');
+    $messageText = trim($_POST['message'] ?? '');
+    $userId = Auth::getUserId();
+
+    $errors = [];
+
+    // Validation
+    if (empty($name)) $errors[] = "Name is required";
+    if (empty($email)) $errors[] = "Email is required";
+    if (empty($mobile)) $errors[] = "Mobile number is required";
+    if (empty($messageText)) $errors[] = "Message is required";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid email format";
+
+    // Handle file upload
+    $planFile = null;
+    if (isset($_FILES['plan']) && $_FILES['plan']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../uploads/plans/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $fileExtension = strtolower(pathinfo($_FILES['plan']['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png', 'dwg', 'dxf'];
+        
+        if (in_array($fileExtension, $allowedExtensions)) {
+            $fileName = 'plan_' . $userId . '_' . time() . '.' . $fileExtension;
+            $uploadPath = $uploadDir . $fileName;
+            
+            if (move_uploaded_file($_FILES['plan']['tmp_name'], $uploadPath)) {
+                $planFile = $fileName;
+            } else {
+                $errors[] = "Failed to upload plan file";
+            }
+        } else {
+            $errors[] = "Invalid file type. Allowed: PDF, JPG, PNG, DWG, DXF";
+        }
+    }
+
+    if (empty($errors)) {
+        if ($contactInquiry->create($userId, $name, $email, $mobile, $messageText, $planFile)) {
+            $message = "Your inquiry has been submitted successfully! We'll get back to you soon.";
+            $messageType = 'success';
+            
+            // Clear form data
+            $name = $email = $mobile = $messageText = '';
+        } else {
+            $message = "Failed to submit inquiry. Please try again.";
+            $messageType = 'error';
+        }
+    } else {
+        $message = implode('<br>', $errors);
+        $messageType = 'error';
+    }
+}
+
+// Check for login required message
+if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
+    $message = "Please log in to submit a contact inquiry.";
+    $messageType = 'info';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +95,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRIV Design & Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,11 +110,26 @@
     <nav>
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
-            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
-            <li><a href="../public/contact.php">CONTACT US</a></li>
-            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <hr>
+                 <?php if (Auth::isLoggedIn()): ?>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>

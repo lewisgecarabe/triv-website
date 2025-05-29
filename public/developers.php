@@ -1,4 +1,20 @@
 <?php include 'functions.php'; ?>
+<?php
+require_once '../classes/Database.php';
+require_once '../classes/Auth.php';
+
+// Start session
+Auth::startSession();
+
+$db = new Database();
+$conn = $db->connect();
+$developerObj = new Developer($conn);
+$teamMemberObj = new TeamMember($conn);
+
+$teamMembers = $teamMemberObj->getActive();
+$developers = $developerObj->getActive();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +23,29 @@
     <title>TRIV Design & Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<style>
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .social-links a {
+            color:rgb(151, 159, 173);
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #007bff;
+        }
+        .person-bio {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+    </style>
 <body>
 <header>
     <div class="logo">
@@ -18,11 +56,26 @@
     <nav>
         <ul>
             <li><a href="../public/index.php">HOME</a></li>
-            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
-            <li><a href="../public/contact.php">CONTACT US</a></li>
-            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/services.php">SERVICES</a></li>
             <li><a href="../public/projects.php">PROJECTS</a></li>
+            <li><a href="../public/career.php">CAREERS</a></li>
+            <li><a href="../public/contact.php">CONTACT US</a></li>
+            <hr>
+                 <?php if (Auth::isLoggedIn()): ?>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
+                <?php endif; ?>
+            <?php else: ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>
@@ -69,38 +122,57 @@
         <p class="content-text">Meet the talented individuals who make TRIV Design & Construction a leader in the industry.</p>
         
         <div class="people-grid">
-            <div class="person-card">
-                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
-                    <img src="../assets/images/NRV.jpg" alt="TRIV Design & Construction">
+            <?php foreach ($teamMembers as $member): ?>
+                <div class="person-card">
+                    <div class="person-image">
+                        <?php if (!empty($member['image'])): ?>
+                            <img src="../assets/images/<?= htmlspecialchars($member['image']) ?>" alt="<?= htmlspecialchars($member['name']) ?>">
+                        <?php else: ?>
+                            <img src="../assets/images/placeholder-profile.jpg" alt="<?= htmlspecialchars($member['name']) ?>">
+                        <?php endif; ?>
+                    </div>
+                    <div class="person-details">
+                        <h3 class="person-name"><?= htmlspecialchars($member['name']) ?></h3>
+                        <p class="person-position"><?= htmlspecialchars($member['position']) ?></p>
+                        
+                        <?php if (!empty($member['specialization'])): ?>
+                            <p class="person-specialization">
+                                <i class="fas fa-star"></i> <?= htmlspecialchars($member['specialization']) ?>
+                            </p>
+                        <?php endif; ?>
+                        
+                        <?php if ($member['years_experience'] > 0): ?>
+                            <p class="person-experience">
+                                <i class="fas fa-clock"></i> <?= $member['years_experience'] ?> years of experience
+                            </p>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($member['bio'])): ?>
+                            <p class="person-bio"><?= htmlspecialchars($member['bio']) ?></p>
+                        <?php endif; ?>
+                        
+                        <div class="contact-info-person">
+                            <?php if (!empty($member['email'])): ?>
+                                <div><i class="fas fa-envelope"></i> <?= htmlspecialchars($member['email']) ?></div>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($member['phone'])): ?>
+                                <div><i class="fas fa-phone"></i> <?= htmlspecialchars($member['phone']) ?></div>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div class="social-links">
+                            <?php if (!empty($member['email'])): ?>
+                                <a href="mailto:<?= htmlspecialchars($member['email']) ?>" title="Email"><i class="fas fa-envelope"></i></a>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($member['linkedin'])): ?>
+                                <a href="https://linkedin.com/in/<?= htmlspecialchars($member['linkedin']) ?>" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="person-details">
-                    <h3 class="person-name">Engr. Noel R. Villanueva</h3>
-                    <p class="person-position">Founder | Consultant</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
-            
-            <div class="person-card">
-                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
-                       <img src="../assets/images/ALV.jpg" alt="Noel Andrae Lara Villanueva">
-                </div>
-                <div class="person-details">
-                    <h3 class="person-name">Arch. Ma. Alyza Linelle L. Villanueva, RMP</h3>
-                    <p class="person-position">Founder | Principal Architect</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
-            
-            <div class="person-card">
-                <div class="person-image" style="background-image: url('/placeholder.svg?height=230&width=230');">
-                    <img src="../assets/images/JLV.jpg" alt="Noel Andrae Lara Villanueva">
-                </div>
-                <div class="person-details">
-                    <h3 class="person-name">Engr. Jan Alison Lynwhel L. Villanueva</h3>
-                    <p class="person-position">Founder | Site Engineer</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -110,74 +182,79 @@
         <p class="content-text">Meet the talented individuals who created this website.</p>
         
         <div class="people-grid">
-            <div class="person-card">
-                <div class="person-image">
-                    <img src="../assets/images/noelv.jpg" alt="Noel Andrae Lara Villanueva">
-                </div> 
-                <div class="person-details">
-                    <h3 class="person-name">Noel Andrae Lara Villanueva</h3>
-                    <p class="person-position">Full Stack Developer</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
+            <?php foreach ($developers as $developer): ?>
+                <div class="person-card">
+                    <div class="person-image">
+                        <?php if (!empty($developer['image'])): ?>
+                            <img src="../assets/images/<?= htmlspecialchars($developer['image']) ?>" alt="<?= htmlspecialchars($developer['name']) ?>">
+                        <?php else: ?>
+                            <img src="../assets/images/placeholder-profile.jpg" alt="<?= htmlspecialchars($developer['name']) ?>">
+                        <?php endif; ?>
+                    </div> 
+                    <div class="person-details">
+                        <h3 class="person-name"><?= htmlspecialchars($developer['name']) ?></h3>
+                        <p class="person-position"><?= htmlspecialchars($developer['position']) ?></p>
+                        <?php if (!empty($developer['bio'])): ?>
+                            <p class="person-bio"><?= htmlspecialchars($developer['bio']) ?></p>
+                        <?php endif; ?>
                         
-            <div class="person-card">
-                <div class="person-image">
-                    <img src="../assets/images/lanceb.jpg" alt="Lance Aidrian Benico">
+                        <div class="social-links">
+                            <?php if (!empty($developer['email'])): ?>
+                                <a href="mailto:<?= htmlspecialchars($developer['email']) ?>" title="Email"><i class="fas fa-envelope"></i></a>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($developer['github'])): ?>
+                                <a href="https://github.com/<?= htmlspecialchars($developer['github']) ?>" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($developer['linkedin'])): ?>
+                                <a href="https://linkedin.com/in/<?= htmlspecialchars($developer['linkedin']) ?>" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="person-details">
-                    <h3 class="person-name">Lance Aidrian Benico</h3>
-                    <p class="person-position">Full Stack Developer</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
-            
-            <div class="person-card">
-                <div class="person-image">
-                    <img src="../assets/images/lewisg.jpeg" alt="Lewis Leander Gecarane">
-                </div>
-                <div class="person-details">
-                    <h3 class="person-name">Lewis Leander Gecarane</h3>
-                    <p class="person-position">Full Stack Developer</p>
-                    <p class="person-bio"></p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
-                            
 
-
-
-   
-
-            <!-- Inquiries Section -->
-
-
+    
             <!-- Account Section -->
-            <div id="account-section" class="content-section people-section">
-                <h2 class="content-title">Account</h2>
-                <p class="content-text">Access your client portal to view project updates, documents, and communicate with our team.</p>
-                
-                <form action="login.php" method="POST" style="max-width: 400px; margin-top: 30px;">
-                    <div style="margin-bottom: 20px;">
-                        <label for="username" style="display: block; margin-bottom: 5px; font-weight: 500;">Username</label>
-                        <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <label for="password" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
-                        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
-                    
-                    <button type="submit" class="btn" style="border: none; cursor: pointer;">Login</button>
-                    
-                    <p style="margin-top: 20px; font-size: 0.9rem;">
-                        <a href="#" style="color: #1a2b49; text-decoration: none;">Forgot password?</a> | 
-                        <a href="#" style="color: #1a2b49; text-decoration: none;">Request an account</a>
-                    </p>
-                </form>
+<div id="account-section" class="content-section people-section">
+    <h2 class="content-title">Account</h2>
+
+    <?php if (Auth::isLoggedIn()): ?>
+        <p class="content-text">Welcome back, <?= htmlspecialchars(Auth::getUserName()) ?>!</p>
+        <div class="client-dashboard" style="margin-top: 20px;">
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="account.php" style="text-decoration: none; color: #1a2b49;">📋 View Project Status</a></li>
+                <li><a href="logout.php" style="color: #c00; font-weight: bold;">🚪 Logout</a></li>
+            </ul>
+        </div>
+    <?php else: ?>
+        <p class="content-text">Access your client portal to view project updates, documents, and communicate with our team.</p>
+
+        <form action="login.php" method="POST" style="max-width: 400px; margin-top: 30px;">
+            <div style="margin-bottom: 20px;">
+                <label for="username" style="display: block; margin-bottom: 5px; font-weight: 500;">Username</label>
+                <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="password" style="display: block; margin-bottom: 5px; font-weight: 500;">Password</label>
+                <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Login</button>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                <a href="#" style="color: #1a2b49; text-decoration: none;">Forgot password?</a> | 
+                <a href="register.php" style="color: #1a2b49; text-decoration: none;">Request an account</a>
+            </p>
+        </form>
+    <?php endif; ?>
+</div>
+
         </div>
     </section>
 

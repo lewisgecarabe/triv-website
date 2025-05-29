@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once '../classes/Auth.php';
+?>
+<?php
 require_once '../classes/Database.php';
 
 $db = new Database();
@@ -39,6 +43,9 @@ if (isset($_GET['success'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply - TRIV Design & Construction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="../assets/css/public-style.css">
 </head>
 <body>
@@ -53,20 +60,24 @@ if (isset($_GET['success'])) {
             <li><a href="../public/index.php">HOME</a></li>
             <li><a href="../public/developers.php">ABOUT US</a></li>
             <li><a href="../public/services.php">SERVICES</a></li>
-            <li><a href="../public/register.php">PROJECTS</a></li>
+            <li><a href="../public/projects.php">PROJECTS</a></li>
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <hr>
-             <li><a href="../public/projects.php">Log in / Sign Up </a></li>
-        </ul>
-            <?php if (Auth::isLoggedIn()): ?>
-                <li><a href="../public/logout.php">LOGOUT</a></li>
+                 <?php if (Auth::isLoggedIn()): ?>
+                     <li>
+        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
+    </li>
+                <li >
+  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
+</li>
                 <?php if (Auth::isAdmin()): ?>
                     <li><a href="../admin/dashboard.php">ADMIN</a></li>
+
                 <?php endif; ?>
             <?php else: ?>
-                <li><a href="../public/login.php">LOGIN</a></li>
-            <?php endif; ?>
+                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
+<?php endif; ?>
         </ul>
     </nav>
 </header>

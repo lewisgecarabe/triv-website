@@ -1170,7 +1170,7 @@ footer {
 .cta-button {
   display: inline-block;
   padding: 15px 30px;
-  background-color: #8b0000;
+  background-color: #1a2b49;
   color: white;
   font-weight: bold;
   border: none;
@@ -1178,7 +1178,7 @@ footer {
 }
 
 .cta-button:hover {
-  background-color: #6b0000;
+  background-color: #1a2b49;
 }
 
 /* Form Message */

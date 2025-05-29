@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once '../classes/Auth.php';
+?>
+<?php
 require_once '../classes/Database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
