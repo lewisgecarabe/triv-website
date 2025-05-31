@@ -1,8 +1,5 @@
-<?php
-session_start();
-require_once '../classes/Auth.php';
-?>
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,48 +31,32 @@ require_once '../classes/Auth.php';
             <li><a href="../public/career.php">CAREERS</a></li>
             <li><a href="../public/contact.php">CONTACT US</a></li>
             <hr>
-                 <?php if (Auth::isLoggedIn()): ?>
-                     <li>
-        <a href="../public/account.php"><i class="fas fa-user-cog"></i> ACCOUNT</a>
-    </li>
-                <li >
-  <a href="../public/logout.php"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></i>
-</li>
-                <?php if (Auth::isAdmin()): ?>
-                    <li><a href="../admin/dashboard.php">ADMIN</a></li>
-
-                <?php endif; ?>
-            <?php else: ?>
-                <li><a href="../public/login.php"><i class="fas fa-sign-in-alt"></i> LOGIN/SIGNUP</a></li>
-<?php endif; ?>
         </ul>
     </nav>
+</header>
 </header>
 
     <main class="service-detail-main">
         <!-- Banner Section -->
         <section class="service-banner extension-banner">
             <div class="service-banner-overlay"></div>
+            <img src="../assets/images/services_extension.jpg" alt="Extension Banner" class="hero-bg">
             <div class="service-banner-content">
-                <h1>Extension Services</h1>
-                <p>Expand your space seamlessly while preserving your original structure's charm</p>
+                <h1>Extension</h1>
+                <p>Expand your space seamlessly while preserving your original structure&#039;s charm.</p>
             </div>
         </section>
 
         <!-- Description Section -->
         <section class="service-description">
             <div class="service-description-container">
-                <h2>Practical Space Expansion</h2>
+                <h2>Extension Solutions</h2>
                 <div class="service-description-content">
                     <div class="service-description-text">
-                        <p>TRIV Design and Construction specializes in creating practical extensions that add valuable space to your existing property. Based in Manila, we can also work on projects in other areas of the Philippines upon negotiation. Our extension services offer a cost-effective way to gain additional room without the hassle and expense of relocating.</p>
-                        
-                        <p>We approach each extension project with careful consideration of your existing building, ensuring that the new addition complements the original structure. Our team handles all aspects of the extension process, from initial design to final construction.</p>
-                        
-                        <p>Whether you need extra space for your growing family, additional room for your business, or want to maximize your property's potential, our team can help. As a new firm in the Philippines, we're committed to delivering quality extensions that seamlessly integrate with your existing structure while meeting local building requirements.</p>
+                        <p>Expand your space seamlessly while preserving your original structure&#039;s charm. Our extension services offer a cost-effective way to gain additional room.</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="../assets/images/services_ext.jpg" alt="Building extension project by TRIV">
+                        <img src="../assets/images/services_extension.jpg" alt="Extension project by TRIV">
                     </div>
                 </div>
             </div>
@@ -89,40 +70,29 @@ require_once '../classes/Auth.php';
                     <div class="process-step">
                         <div class="process-step-number">1</div>
                         <div class="process-step-content">
-                            <h3>Site Analysis & Feasibility</h3>
-                            <p>We begin with a thorough assessment of your property to determine the optimal extension approach, considering structural, regulatory, and aesthetic factors.</p>
+                            <h3>Consultation</h3>
+                            <p>We begin with understanding your needs and requirements.</p>
                         </div>
                     </div>
-                    
                     <div class="process-step">
                         <div class="process-step-number">2</div>
                         <div class="process-step-content">
-                            <h3>Design & Planning</h3>
-                            <p>Our architects create extension designs that seamlessly integrate with your existing structure while fulfilling your space requirements and design preferences.</p>
+                            <h3>Planning</h3>
+                            <p>We create detailed plans for your project.</p>
                         </div>
                     </div>
-                    
                     <div class="process-step">
                         <div class="process-step-number">3</div>
                         <div class="process-step-content">
-                            <h3>Permits & Approvals</h3>
-                            <p>We handle all necessary permits and regulatory approvals, ensuring your extension project complies with local building codes and zoning regulations.</p>
+                            <h3>Execution</h3>
+                            <p>We implement the project with precision and quality.</p>
                         </div>
                     </div>
-                    
                     <div class="process-step">
                         <div class="process-step-number">4</div>
                         <div class="process-step-content">
-                            <h3>Construction</h3>
-                            <p>Our construction team executes the extension with minimal disruption to your existing space, implementing careful measures to protect your property during the process.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="process-step-number">5</div>
-                        <div class="process-step-content">
-                            <h3>Integration & Finishing</h3>
-                            <p>We ensure seamless integration between the new extension and existing structure, completing all finishing work to create a cohesive and harmonious result.</p>
+                            <h3>Completion</h3>
+                            <p>We deliver your completed project on time.</p>
                         </div>
                     </div>
                 </div>
@@ -132,12 +102,33 @@ require_once '../classes/Auth.php';
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
-                <h2>Ready to Expand Your Space?</h2>
-                <p>Contact us today to discuss your extension project and schedule a site assessment.</p>
-                <a href="../public/contact.php" class="cta-button">Start Your Extension Project</a>
+                <h2>Ready to Start Your Project?</h2>
+                <p>Contact us today to discuss your project needs.</p>
+                <a href="../public/contact.php" class="cta-button">Get Started</a>
             </div>
         </section>
     </main>
 
-    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
 </html>

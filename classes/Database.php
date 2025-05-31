@@ -29,7 +29,7 @@ class Project {
         $this->conn = $db;
     }
 
-    // Fetch all projects
+    // Fetch all projects (both active and inactive)
     public function getAll() {
         $sql = "SELECT * FROM " . $this->table . " ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
@@ -37,15 +37,32 @@ class Project {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Fetch all projects for a given category
+    // Fetch only active projects
+    public function getActive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'active' ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch only inactive projects
+    public function getInactive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'inactive' ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch all active projects for a given category
     public function getByCategory($category) {
-        $sql = "SELECT * FROM " . $this->table . " WHERE category = :category ORDER BY created_at DESC";
+        $sql = "SELECT * FROM " . $this->table . " WHERE category = :category AND status = 'active' ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':category', $category);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-// Get single project by ID
+
+    // Get single project by ID
     public function getById($id) {
         $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -53,10 +70,11 @@ class Project {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-// Create new project
-    public function create($title, $description, $location, $category, $image = null) {
-        $sql = "INSERT INTO " . $this->table . " (title, description, location, category, image, created_at) 
-                VALUES (:title, :description, :location, :category, :image, NOW())";
+
+    // Create new project
+    public function create($title, $description, $location, $category, $image = null, $status = 'active') {
+        $sql = "INSERT INTO " . $this->table . " (title, description, location, category, image, status, created_at) 
+                VALUES (:title, :description, :location, :category, :image, :status, NOW())";
         
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':title', $title);
@@ -64,20 +82,22 @@ class Project {
         $stmt->bindParam(':location', $location);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':status', $status);
         
         return $stmt->execute();
     }
-// Update project
-    public function update($id, $title, $description, $location, $category, $image = null) {
+
+    // Update project
+    public function update($id, $title, $description, $location, $category, $image = null, $status = 'active') {
         if ($image) {
             $sql = "UPDATE " . $this->table . " 
                     SET title = :title, description = :description, location = :location, 
-                        category = :category, image = :image, updated_at = NOW() 
+                        category = :category, image = :image, status = :status, updated_at = NOW() 
                     WHERE id = :id";
         } else {
             $sql = "UPDATE " . $this->table . " 
                     SET title = :title, description = :description, location = :location, 
-                        category = :category, updated_at = NOW() 
+                        category = :category, status = :status, updated_at = NOW() 
                     WHERE id = :id";
         }
         
@@ -87,6 +107,7 @@ class Project {
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':location', $location);
         $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':status', $status);
         
         if ($image) {
             $stmt->bindParam(':image', $image);
@@ -95,7 +116,17 @@ class Project {
         return $stmt->execute();
     }
 
-    // Delete project
+    // Update project status
+    public function updateStatus($id, $status) {
+        $sql = "UPDATE " . $this->table . " SET status = :status, updated_at = NOW() WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':status', $status);
+        
+        return $stmt->execute();
+    }
+
+    // Delete project (kept for backward compatibility, but not recommended)
     public function delete($id) {
         $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -103,13 +134,34 @@ class Project {
         return $stmt->execute();
     }
 
-    // Get project count
+    // Get project count (active only)
     public function getCount() {
+        $sql = "SELECT COUNT(*) as count FROM " . $this->table . " WHERE status = 'active'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
+    // Get total project count (all statuses)
+    public function getTotalCount() {
         $sql = "SELECT COUNT(*) as count FROM " . $this->table;
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
+    }
+
+    // Get project counts by status
+    public function getStatusCounts() {
+        $sql = "SELECT 
+                    COUNT(*) as total,
+                    SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as active,
+                    SUM(CASE WHEN status = 'inactive' THEN 1 ELSE 0 END) as inactive
+                FROM " . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
@@ -121,9 +173,25 @@ class Service {
         $this->conn = $db;
     }
 
-    // Fetch all services
+    // Fetch all services (both active and inactive)
     public function getAll() {
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY display_order ASC, created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch only active services
+    public function getActive() {
         $sql = "SELECT * FROM " . $this->table . " WHERE status = 'active' ORDER BY display_order ASC, created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch only inactive services
+    public function getInactive() {
+        $sql = "SELECT * FROM " . $this->table . " WHERE status = 'inactive' ORDER BY display_order ASC, created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -163,13 +231,39 @@ class Service {
         $stmt->bindParam(':status', $status);
         
         if ($stmt->execute()) {
-            // Generate the PHP page file
-            $this->generateServicePage($title, $description, $short_description, $slug, $image, $banner_image);
+            // Generate the PHP page file only if status is active
+            if ($status === 'active') {
+                $this->generateServicePage($title, $description, $short_description, $slug, $image, $banner_image);
+            }
             return true;
         }
         return false;
     }
 
+    // Update service status
+    public function updateStatus($id, $status) {
+        $service = $this->getById($id);
+        
+        $sql = "UPDATE " . $this->table . " SET status = :status, updated_at = NOW() WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':status', $status);
+        
+        if ($stmt->execute()) {
+            // If service is now active, generate the page
+            if ($status === 'active') {
+                $this->generateServicePage($service['title'], $service['description'], $service['short_description'], $service['slug'], $service['image'], $service['banner_image']);
+            } else {
+                // If service is now inactive, remove the page
+                $this->deleteServicePage($service['slug']);
+            }
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
     // Update service
     public function update($id, $title, $description, $short_description, $slug, $image = null, $banner_image = null, $display_order = 0, $status = 'active') {
         // Get old service data for file management
@@ -210,10 +304,15 @@ class Service {
                 $this->deleteServicePage($oldService['slug']);
             }
             
-            // Generate updated page file
-            $finalImage = $image ? $image : $oldService['image'];
-            $finalBannerImage = $banner_image ? $banner_image : $oldService['banner_image'];
-            $this->generateServicePage($title, $description, $short_description, $slug, $finalImage, $finalBannerImage);
+            // Generate updated page file only if status is active
+            if ($status === 'active') {
+                $finalImage = $image ? $image : $oldService['image'];
+                $finalBannerImage = $banner_image ? $banner_image : $oldService['banner_image'];
+                $this->generateServicePage($title, $description, $short_description, $slug, $finalImage, $finalBannerImage);
+            } else {
+                // If status is inactive, make sure the page is deleted
+                $this->deleteServicePage($slug);
+            }
             return true;
         }
         return false;
@@ -482,7 +581,6 @@ class Service {
         return $content;
     }
 }
-
 
 class User {
     private $conn;

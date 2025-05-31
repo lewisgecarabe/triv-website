@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../classes/Auth.php';
+require_once '../classes/Database.php';
 ?>
 <?php include '../public/functions.php'; ?>
 <!DOCTYPE html>
@@ -61,7 +62,8 @@ require_once '../classes/Auth.php';
         <div class="about-content">
             <h1>ABOUT US</h1>
             <h2>With our knowledge we guarantee success</h2>
-            <p>Fusce id hendrerit lectus. Morbi vitae tortor sed turpis feugiat congue</p>
+            <p>TRIV Design and Construction is a forward-thinking firm specializing in creating innovative, 
+                high-quality design and construction solutions tailored to bring your vision to life.</p>
     </div>
 
 
@@ -170,7 +172,7 @@ require_once '../classes/Auth.php';
             <img src="../assets/images/triv-logo.png" alt="TRIV Design & Construction">
         </div>
         <div class="copyright">
-            <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Bericio, Lewis Guicante, Noel Villanueva'; ?>
+            <?php echo '© Copyright ' . date('Y') . ' TRIV Design & Construction | All Rights Reserved | Built by: Lance Benico, Lewis Gecarane, Noel Villanueva'; ?>
         </div>
     </footer>
 

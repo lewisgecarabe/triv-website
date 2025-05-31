@@ -7,7 +7,7 @@ $db = new Database();
 $conn = $db->connect();
 $service = new Service($conn);
 
-$services = $service->getAll();
+$services = $service->getActive();
 ?>
 
 <!DOCTYPE html>

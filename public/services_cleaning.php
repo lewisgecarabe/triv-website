@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Construction Services | TRIV Design and Construction</title>
+    <title>Cleaning Services | TRIV Design and Construction</title>
     <link rel="stylesheet" href="../assets/css/public-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -34,25 +34,25 @@
 
     <main class="service-detail-main">
         <!-- Banner Section -->
-        <section class="service-banner construction-banner">
+        <section class="service-banner cleaning-banner">
             <div class="service-banner-overlay"></div>
-            <img src="../assets/images/services_construction.jpg" alt="Construction Banner" class="hero-bg">
+            <img src="../assets/images/6837d1527c996.gif" alt="Cleaning Banner" class="hero-bg">
             <div class="service-banner-content">
-                <h1>Construction</h1>
-                <p>From foundation to finishing, we build durable structures that last for generations.</p>
+                <h1>Cleaning</h1>
+                <p>cleaning with us</p>
             </div>
         </section>
 
         <!-- Description Section -->
         <section class="service-description">
             <div class="service-description-container">
-                <h2>Construction Solutions</h2>
+                <h2>Cleaning Solutions</h2>
                 <div class="service-description-content">
                     <div class="service-description-text">
-                        <p>From foundation to finishing, we build durable structures that last for generations. Our construction services deliver exceptional quality and craftsmanship for both residential and commercial projects.</p>
+                        <p>cleaning tara na linis tayo</p>
                     </div>
                     <div class="service-description-image">
-                        <img src="../assets/images/services_construction.jpg" alt="Construction project by TRIV">
+                        <img src="../assets/images/6837d1527c7a4.gif" alt="Cleaning project by TRIV">
                     </div>
                 </div>
             </div>
@@ -61,41 +61,34 @@
         <!-- Process Section -->
         <section class="service-process">
             <div class="service-process-container">
-                <h2>Our Construction Process</h2>
+                <h2>Our Cleaning Process</h2>
                 <div class="process-steps">
                     <div class="process-step">
                         <div class="process-step-number">1</div>
                         <div class="process-step-content">
-                            <h3>Planning &amp; Design</h3>
-                            <p>We begin with thorough planning and design, working closely with architects and engineers to create detailed blueprints and construction schedules.</p>
+                            <h3>Consultation</h3>
+                            <p>We begin with understanding your needs and requirements.</p>
                         </div>
                     </div>
                     <div class="process-step">
                         <div class="process-step-number">2</div>
                         <div class="process-step-content">
-                            <h3>Permits &amp; Approvals</h3>
-                            <p>Our team handles all necessary permits and regulatory approvals, ensuring your project complies with local building codes and regulations.</p>
+                            <h3>Planning</h3>
+                            <p>We create detailed plans for your project.</p>
                         </div>
                     </div>
                     <div class="process-step">
                         <div class="process-step-number">3</div>
                         <div class="process-step-content">
-                            <h3>Site Preparation</h3>
-                            <p>We prepare the construction site with proper excavation, foundation work, and utility installations to create a solid base for your structure.</p>
+                            <h3>Execution</h3>
+                            <p>We implement the project with precision and quality.</p>
                         </div>
                     </div>
                     <div class="process-step">
                         <div class="process-step-number">4</div>
                         <div class="process-step-content">
-                            <h3>Construction</h3>
-                            <p>Our skilled construction team executes the building process with precision, following the approved plans while maintaining quality and safety standards.</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-step-number">5</div>
-                        <div class="process-step-content">
-                            <h3>Finishing &amp; Handover</h3>
-                            <p>We complete all finishing touches, conduct thorough quality inspections, and hand over your completed project with full documentation and support.</p>
+                            <h3>Completion</h3>
+                            <p>We deliver your completed project on time.</p>
                         </div>
                     </div>
                 </div>
@@ -105,9 +98,9 @@
         <!-- CTA Section -->
         <section class="service-cta">
             <div class="service-cta-container">
-                <h2>Ready to Build Your Dream Project?</h2>
-                <p>Contact us today to discuss your construction needs and get a detailed quote.</p>
-                <a href="../public/contact.php" class="cta-button">Request a Quote</a>
+                <h2>Ready to Start Your Project?</h2>
+                <p>Contact us today to discuss your project needs.</p>
+                <a href="../public/contact.php" class="cta-button">Get Started</a>
             </div>
         </section>
     </main>

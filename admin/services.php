@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 
                 if ($service->create($_POST['title'], $_POST['description'], $_POST['short_description'], $slug, $image, $banner_image, $_POST['display_order'], $_POST['status'])) {
-                    $message = 'Service created successfully! Page file "services_' . $slug . '.php" has been generated.';
+                    $pageMessage = $_POST['status'] === 'active' ? ' Page file "services_' . $slug . '.php" has been generated.' : '';
+                    $message = 'Service created successfully!' . $pageMessage;
                     $messageType = 'success';
                 } else {
                     $message = 'Error creating service.';
@@ -52,10 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($service->update($_POST['id'], $_POST['title'], $_POST['description'], $_POST['short_description'], $slug, $image, $banner_image, $_POST['display_order'], $_POST['status'])) {
                     $pageMessage = '';
-                    if ($oldService && $oldService['slug'] !== $slug) {
-                        $pageMessage = ' Old page "services_' . $oldService['slug'] . '.php" deleted and new page "services_' . $slug . '.php" created.';
+                    if ($_POST['status'] === 'active') {
+                        if ($oldService && $oldService['slug'] !== $slug) {
+                            $pageMessage = ' Old page "services_' . $oldService['slug'] . '.php" deleted and new page "services_' . $slug . '.php" created.';
+                        } else {
+                            $pageMessage = ' Page "services_' . $slug . '.php" updated.';
+                        }
                     } else {
-                        $pageMessage = ' Page "services_' . $slug . '.php" updated.';
+                        $pageMessage = ' Page file has been removed from public view.';
                     }
                     $message = 'Service updated successfully!' . $pageMessage;
                     $messageType = 'success';
@@ -65,14 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 break;
                 
-            case 'delete':
+            case 'toggle_status':
                 $serviceData = $service->getById($_POST['id']);
-                if ($service->delete($_POST['id'])) {
-                    $pageMessage = $serviceData ? ' Page "services_' . $serviceData['slug'] . '.php" deleted.' : '';
-                    $message = 'Service deleted successfully!' . $pageMessage;
+                $newStatus = $serviceData['status'] === 'active' ? 'inactive' : 'active';
+                
+                if ($service->updateStatus($_POST['id'], $newStatus)) {
+                    $pageMessage = $newStatus === 'active' 
+                        ? ' Page file "services_' . $serviceData['slug'] . '.php" has been generated.'
+                        : ' Page file "services_' . $serviceData['slug'] . '.php" has been removed from public view.';
+                    
+                    $message = 'Service status updated to ' . ucfirst($newStatus) . ' successfully!' . $pageMessage;
                     $messageType = 'success';
                 } else {
-                    $message = 'Error deleting service.';
+                    $message = 'Error updating service status.';
                     $messageType = 'error';
                 }
                 break;
@@ -220,6 +230,14 @@ font-family: 'Lato', sans-serif;
         .action-buttons { display: flex; gap: 5px; flex-wrap: wrap; }
         .page-info { background: #e7f3ff; padding: 10px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid #007bff; }
         .page-filename { font-family: monospace; background: #f8f9fa; padding: 2px 6px; border-radius: 3px; }
+        .filter-controls { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
+        .filter-controls select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .status-count { display: flex; gap: 15px; margin-bottom: 15px; }
+        .status-count-item { padding: 8px 15px; border-radius: 4px; display: flex; align-items: center; }
+        .status-count-item i { margin-right: 8px; }
+        .status-count-active { background: #d4edda; color: #155724; }
+        .status-count-inactive { background: #f8d7da; color: #721c24; }
+        .status-count-all { background: #e2e3e5; color: #383d41; }
     </style>
 </head>
 <body>
@@ -249,8 +267,8 @@ font-family: 'Lato', sans-serif;
 
         <div class="page-info">
             <strong><i class="fas fa-info-circle"></i> Auto Page Generation:</strong> 
-            When you create or update a service, a PHP page file is automatically generated in the public folder. 
-            For example, a "Construction" service creates <span class="page-filename">services_construction.php</span>
+            When you create or update an active service, a PHP page file is automatically generated in the public folder. 
+            Inactive services are only visible in the admin panel.
         </div>
 
         <?php if ($message): ?>
@@ -258,6 +276,41 @@ font-family: 'Lato', sans-serif;
                 <?= htmlspecialchars($message) ?>
             </div>
         <?php endif; ?>
+
+        <?php
+            // Count services by status
+            $activeCount = 0;
+            $inactiveCount = 0;
+            foreach ($services as $serv) {
+                if ($serv['status'] === 'active') {
+                    $activeCount++;
+                } else {
+                    $inactiveCount++;
+                }
+            }
+            $totalCount = count($services);
+        ?>
+
+        <div class="status-count">
+            <div class="status-count-item status-count-all" onclick="filterServices('all')">
+                <i class="fas fa-list"></i> All Services: <?= $totalCount ?>
+            </div>
+            <div class="status-count-item status-count-active" onclick="filterServices('active')">
+                <i class="fas fa-check-circle"></i> Active: <?= $activeCount ?>
+            </div>
+            <div class="status-count-item status-count-inactive" onclick="filterServices('inactive')">
+                <i class="fas fa-archive"></i> Archived: <?= $inactiveCount ?>
+            </div>
+        </div>
+
+        <div class="filter-controls">
+            <label for="status-filter">Filter by status:</label>
+            <select id="status-filter" onchange="filterServices(this.value)">
+                <option value="all">All Services</option>
+                <option value="active">Active Only</option>
+                <option value="inactive">Archived Only</option>
+            </select>
+        </div>
 
         <table class="table">
             <thead>
@@ -274,7 +327,7 @@ font-family: 'Lato', sans-serif;
             </thead>
             <tbody>
                 <?php foreach ($services as $serv): ?>
-                <tr>
+                <tr class="service-row" data-status="<?= $serv['status'] ?>">
                     <td><?= $serv['id'] ?></td>
                     <td>
                         <?php if ($serv['image']): ?>
@@ -288,32 +341,38 @@ font-family: 'Lato', sans-serif;
                     <td><?= htmlspecialchars($serv['title']) ?></td>
                     <td>
                         <span class="page-filename">services_<?= $serv['slug'] ?>.php</span>
-                        <?php if (file_exists("../public/services_" . $serv['slug'] . ".php")): ?>
-                            <i class="fas fa-check-circle" style="color: green; margin-left: 5px;" title="File exists"></i>
+                        <?php if ($serv['status'] === 'active'): ?>
+                            <?php if (file_exists("../public/services_" . $serv['slug'] . ".php")): ?>
+                                <i class="fas fa-check-circle" style="color: green; margin-left: 5px;" title="File exists"></i>
+                            <?php else: ?>
+                                <i class="fas fa-exclamation-triangle" style="color: orange; margin-left: 5px;" title="File missing"></i>
+                            <?php endif; ?>
                         <?php else: ?>
-                            <i class="fas fa-exclamation-triangle" style="color: orange; margin-left: 5px;" title="File missing"></i>
+                            <i class="fas fa-archive" style="color: #6c757d; margin-left: 5px;" title="Archived - no public page"></i>
                         <?php endif; ?>
                     </td>
                     <td><?= $serv['display_order'] ?></td>
                     <td>
                         <span class="status-badge status-<?= $serv['status'] ?>">
-                            <?= ucfirst($serv['status']) ?>
+                            <?= $serv['status'] === 'active' ? 'Active' : 'Archived' ?>
                         </span>
                     </td>
                     <td><?= date('M j, Y', strtotime($serv['created_at'])) ?></td>
                     <td>
                         <div class="action-buttons">
+                            <?php if ($serv['status'] === 'active'): ?>
                             <a href="../public/services_<?= $serv['slug'] ?>.php" target="_blank" class="btn btn-info" title="View Page">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            <?php endif; ?>
                             <button class="btn btn-warning" onclick="editService(<?= htmlspecialchars(json_encode($serv)) ?>)" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <form style="display: inline;" method="POST" onsubmit="return confirm('Are you sure you want to delete this service? This will also delete the page file.')">
-                                <input type="hidden" name="action" value="delete">
+                            <form style="display: inline;" method="POST" onsubmit="return confirm('Are you sure you want to <?= $serv['status'] === 'active' ? 'archive' : 'activate' ?> this service? <?= $serv['status'] === 'active' ? 'It will be removed from public view but remain in the admin panel.' : 'It will be visible on the public website.' ?>')">
+                                <input type="hidden" name="action" value="toggle_status">
                                 <input type="hidden" name="id" value="<?= $serv['id'] ?>">
-                                <button type="submit" class="btn btn-danger" title="Delete">
-                                    <i class="fas fa-trash"></i>
+                                <button type="submit" class="btn <?= $serv['status'] === 'active' ? 'btn-danger' : 'btn-success' ?>" title="<?= $serv['status'] === 'active' ? 'Archive' : 'Activate' ?>">
+                                    <i class="fas <?= $serv['status'] === 'active' ? 'fa-archive' : 'fa-check-circle' ?>"></i>
                                 </button>
                             </form>
                         </div>
@@ -329,7 +388,7 @@ font-family: 'Lato', sans-serif;
                 <span class="close" onclick="closeModal('createModal')">&times;</span>
                 <h2>Add New Service</h2>
                 <p style="margin-bottom: 15px; color: #666;">
-                    <i class="fas fa-magic"></i> A PHP page file will be automatically created when you save this service.
+                    <i class="fas fa-magic"></i> A PHP page file will be automatically created when you save this service as active.
                 </p>
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="create">
@@ -371,11 +430,11 @@ font-family: 'Lato', sans-serif;
                         <label for="status">Status:</label>
                         <select id="status" name="status" required>
                             <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="inactive">Archived</option>
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-success">Create Service & Generate Page</button>
+                    <button type="submit" class="btn btn-success">Create Service</button>
                 </form>
             </div>
         </div>
@@ -386,7 +445,7 @@ font-family: 'Lato', sans-serif;
                 <span class="close" onclick="closeModal('editModal')">&times;</span>
                 <h2>Edit Service</h2>
                 <p style="margin-bottom: 15px; color: #666;">
-                    <i class="fas fa-sync"></i> The PHP page file will be automatically updated when you save changes.
+                    <i class="fas fa-sync"></i> The PHP page file will be automatically updated when you save changes if the service is active.
                 </p>
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="update">
@@ -426,11 +485,11 @@ font-family: 'Lato', sans-serif;
                         <label for="edit_status">Status:</label>
                         <select id="edit_status" name="status" required>
                             <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="inactive">Archived</option>
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-success">Update Service & Page</button>
+                    <button type="submit" class="btn btn-success">Update Service</button>
                 </form>
             </div>
         </div>
@@ -462,6 +521,26 @@ font-family: 'Lato', sans-serif;
             document.getElementById('preview-filename').textContent = 'services_' + slug + '.php';
         });
 
+        // Filter services by status
+        function filterServices(status) {
+            if (!status) {
+                status = document.getElementById('status-filter').value;
+            } else {
+                document.getElementById('status-filter').value = status;
+            }
+            
+            const rows = document.querySelectorAll('.service-row');
+            
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                if (status === 'all' || rowStatus === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
@@ -471,6 +550,11 @@ font-family: 'Lato', sans-serif;
                 }
             });
         }
+
+        // Initialize the filter
+        document.addEventListener('DOMContentLoaded', function() {
+            filterServices('all');
+        });
     </script>
 </body>
 </html>

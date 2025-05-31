@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $imageName = handleImageUpload($_FILES['image']);
                 }
                 
-                if ($project->create($_POST['title'], $_POST['description'], $_POST['location'], $_POST['category'], $imageName)) {
+                if ($project->create($_POST['title'], $_POST['description'], $_POST['location'], $_POST['category'], $imageName, $_POST['status'])) {
                     $message = 'Project created successfully!';
                     $messageType = 'success';
                 } else {
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $imageName = handleImageUpload($_FILES['image']);
                 }
                 
-                if ($project->update($_POST['id'], $_POST['title'], $_POST['description'], $_POST['location'], $_POST['category'], $imageName)) {
+                if ($project->update($_POST['id'], $_POST['title'], $_POST['description'], $_POST['location'], $_POST['category'], $imageName, $_POST['status'])) {
                     $message = 'Project updated successfully!';
                     $messageType = 'success';
                 } else {
@@ -46,12 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 break;
                 
-            case 'delete':
-                if ($project->delete($_POST['id'])) {
-                    $message = 'Project deleted successfully!';
+            case 'toggle_status':
+                $projectData = $project->getById($_POST['id']);
+                $newStatus = $projectData['status'] === 'active' ? 'inactive' : 'active';
+                
+                if ($project->updateStatus($_POST['id'], $newStatus)) {
+                    $message = 'Project status updated to ' . ucfirst($newStatus) . ' successfully!';
                     $messageType = 'success';
                 } else {
-                    $message = 'Error deleting project.';
+                    $message = 'Error updating project status.';
                     $messageType = 'error';
                 }
                 break;
@@ -164,12 +167,14 @@ font-family: 'Lato', sans-serif;
     }
         main { flex: 1; padding: 20px; overflow-y: auto; }
         header { background: white; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; border-radius: 8px; }
-        .btn { display: inline-block; background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; margin: 5px; }
+        .btn { display: inline-block; background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; margin: 5px; font-size: 12px; }
         .btn:hover { background: #0056b3; }
         .btn-danger { background: #dc3545; }
         .btn-danger:hover { background: #c82333; }
         .btn-success { background: #28a745; }
         .btn-success:hover { background: #218838; }
+        .btn-warning { background: #ffc107; color: #212529; }
+        .btn-warning:hover { background: #e0a800; }
         .table { width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 20px; }
         .table th, .table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
         .table th { background: #f8f9fa; font-weight: bold; }
@@ -186,6 +191,20 @@ font-family: 'Lato', sans-serif;
         .message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .message.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         .project-image { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .status-active { background: #d4edda; color: #155724; }
+        .status-inactive { background: #f8d7da; color: #721c24; }
+        .action-buttons { display: flex; gap: 5px; flex-wrap: wrap; }
+        .filter-controls { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
+        .filter-controls select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .status-count { display: flex; gap: 15px; margin-bottom: 15px; }
+        .status-count-item { padding: 8px 15px; border-radius: 4px; display: flex; align-items: center; cursor: pointer; transition: all 0.3s ease; }
+        .status-count-item:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .status-count-item i { margin-right: 8px; }
+        .status-count-active { background: #d4edda; color: #155724; }
+        .status-count-inactive { background: #f8d7da; color: #721c24; }
+        .status-count-all { background: #e2e3e5; color: #383d41; }
+        .page-info { background: #e7f3ff; padding: 10px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid #007bff; }
             img {
       max-width: 100%;
        height: 40px;
@@ -217,11 +236,61 @@ font-family: 'Lato', sans-serif;
             </button>
         </header>
 
+        <div class="page-info">
+            <strong><i class="fas fa-info-circle"></i> Project Archive System:</strong> 
+            Projects can be set as active (visible on public website) or archived (only visible in admin panel). 
+            Archived projects are preserved for reference but hidden from public view.
+        </div>
+
         <?php if ($message): ?>
             <div class="message <?= $messageType ?>">
                 <?= htmlspecialchars($message) ?>
             </div>
         <?php endif; ?>
+
+        <?php
+            // Count projects by status
+            $activeCount = 0;
+            $inactiveCount = 0;
+            foreach ($projects as $proj) {
+                if ($proj['status'] === 'active') {
+                    $activeCount++;
+                } else {
+                    $inactiveCount++;
+                }
+            }
+            $totalCount = count($projects);
+        ?>
+
+        <div class="status-count">
+            <div class="status-count-item status-count-all" onclick="filterProjects('all')">
+                <i class="fas fa-list"></i> All Projects: <?= $totalCount ?>
+            </div>
+            <div class="status-count-item status-count-active" onclick="filterProjects('active')">
+                <i class="fas fa-check-circle"></i> Active: <?= $activeCount ?>
+            </div>
+            <div class="status-count-item status-count-inactive" onclick="filterProjects('inactive')">
+                <i class="fas fa-archive"></i> Archived: <?= $inactiveCount ?>
+            </div>
+        </div>
+
+        <div class="filter-controls">
+            <label for="status-filter">Filter by status:</label>
+            <select id="status-filter" onchange="filterProjects(this.value)">
+                <option value="all">All Projects</option>
+                <option value="active">Active Only</option>
+                <option value="inactive">Archived Only</option>
+            </select>
+            
+            <label for="category-filter" style="margin-left: 20px;">Filter by category:</label>
+            <select id="category-filter" onchange="filterByCategory()">
+                <option value="all">All Categories</option>
+                <option value="construction">Construction</option>
+                <option value="architectural-design">Architectural Design</option>
+                <option value="renovation">Renovation</option>
+                <option value="interior-design">Interior Design</option>
+            </select>
+        </div>
 
         <table class="table">
             <thead>
@@ -231,6 +300,7 @@ font-family: 'Lato', sans-serif;
                     <th>Title</th>
                     <th>Category</th>
                     <th>Location</th>
+                    <th>Status</th>
                     <th>Description</th>
                     <th>Created</th>
                     <th>Actions</th>
@@ -238,7 +308,7 @@ font-family: 'Lato', sans-serif;
             </thead>
             <tbody>
                 <?php foreach ($projects as $proj): ?>
-                <tr>
+                <tr class="project-row" data-status="<?= $proj['status'] ?>" data-category="<?= $proj['category'] ?>">
                     <td><?= $proj['id'] ?></td>
                     <td>
                         <?php if ($proj['image']): ?>
@@ -252,19 +322,26 @@ font-family: 'Lato', sans-serif;
                     <td><?= htmlspecialchars($proj['title']) ?></td>
                     <td><?= htmlspecialchars($proj['category']) ?></td>
                     <td><?= htmlspecialchars($proj['location']) ?></td>
+                    <td>
+                        <span class="status-badge status-<?= $proj['status'] ?>">
+                            <?= $proj['status'] === 'active' ? 'Active' : 'Archived' ?>
+                        </span>
+                    </td>
                     <td><?= htmlspecialchars(substr($proj['description'], 0, 100)) ?>...</td>
                     <td><?= date('M j, Y', strtotime($proj['created_at'])) ?></td>
                     <td>
-                        <button class="btn" onclick="editProject(<?= htmlspecialchars(json_encode($proj)) ?>)">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <form style="display: inline;" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?')">
-                            <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="id" value="<?= $proj['id'] ?>">
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
+                        <div class="action-buttons">
+                            <button class="btn btn-warning" onclick="editProject(<?= htmlspecialchars(json_encode($proj)) ?>)" title="Edit">
+                                <i class="fas fa-edit"></i>
                             </button>
-                        </form>
+                            <form style="display: inline;" method="POST" onsubmit="return confirm('Are you sure you want to <?= $proj['status'] === 'active' ? 'archive' : 'activate' ?> this project? <?= $proj['status'] === 'active' ? 'It will be removed from public view but remain in the admin panel.' : 'It will be visible on the public website.' ?>')">
+                                <input type="hidden" name="action" value="toggle_status">
+                                <input type="hidden" name="id" value="<?= $proj['id'] ?>">
+                                <button type="submit" class="btn <?= $proj['status'] === 'active' ? 'btn-danger' : 'btn-success' ?>" title="<?= $proj['status'] === 'active' ? 'Archive' : 'Activate' ?>">
+                                    <i class="fas <?= $proj['status'] === 'active' ? 'fa-archive' : 'fa-check-circle' ?>"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -308,6 +385,14 @@ font-family: 'Lato', sans-serif;
                     <div class="form-group">
                         <label for="image">Image:</label>
                         <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Archived</option>
+                        </select>
                     </div>
                     
                     <button type="submit" class="btn btn-success">Create Project</button>
@@ -355,6 +440,14 @@ font-family: 'Lato', sans-serif;
                         <input type="file" id="edit_image" name="image" accept="image/*">
                     </div>
                     
+                    <div class="form-group">
+                        <label for="edit_status">Status:</label>
+                        <select id="edit_status" name="status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Archived</option>
+                        </select>
+                    </div>
+                    
                     <button type="submit" class="btn btn-success">Update Project</button>
                 </form>
             </div>
@@ -376,7 +469,45 @@ font-family: 'Lato', sans-serif;
             document.getElementById('edit_category').value = project.category;
             document.getElementById('edit_location').value = project.location;
             document.getElementById('edit_description').value = project.description;
+            document.getElementById('edit_status').value = project.status;
             openModal('editModal');
+        }
+
+        // Filter projects by status
+        function filterProjects(status) {
+            if (!status) {
+                status = document.getElementById('status-filter').value;
+            } else {
+                document.getElementById('status-filter').value = status;
+            }
+            
+            applyFilters();
+        }
+
+        // Filter projects by category
+        function filterByCategory() {
+            applyFilters();
+        }
+
+        // Apply both status and category filters
+        function applyFilters() {
+            const statusFilter = document.getElementById('status-filter').value;
+            const categoryFilter = document.getElementById('category-filter').value;
+            const rows = document.querySelectorAll('.project-row');
+            
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                const rowCategory = row.getAttribute('data-category');
+                
+                const statusMatch = statusFilter === 'all' || rowStatus === statusFilter;
+                const categoryMatch = categoryFilter === 'all' || rowCategory === categoryFilter;
+                
+                if (statusMatch && categoryMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         }
 
         // Close modal when clicking outside
@@ -388,6 +519,11 @@ font-family: 'Lato', sans-serif;
                 }
             });
         }
+
+        // Initialize the filters
+        document.addEventListener('DOMContentLoaded', function() {
+            applyFilters();
+        });
     </script>
 </body>
 </html>

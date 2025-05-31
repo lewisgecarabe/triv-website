@@ -87,7 +87,27 @@ if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
     $message = "Please log in to submit a contact inquiry.";
     $messageType = 'info';
 }
+
+$user = null;
+$name = $email = $mobile = '';
+
+$name = $email = $mobile = '';
+
+if (Auth::isLoggedIn()) {
+    $name = htmlspecialchars(Auth::getUserName() ?? '');
+    $email = htmlspecialchars(Auth::getUserEmail() ?? '');
+
+}
+
+    if ($user) {
+        $name = htmlspecialchars($user['name'] ?? '');
+        $email = htmlspecialchars($user['email'] ?? '');
+    }
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,6 +120,40 @@ if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
+<style>
+.drop-zone {
+    border: 2px dashed #aaa;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fafafa;
+    transition: background-color 0.3s ease;
+}
+
+.drop-zone:hover {
+    background-color: #f0f0f0;
+}
+
+.drop-zone.dragover {
+    background-color: #e0ffe0;
+}
+
+.file-preview {
+    margin-top: 15px;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.file-preview img,
+.file-preview iframe {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+</style>
+
 <body>
 <header>
     <div class="logo">
@@ -147,11 +201,11 @@ if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
             <div class="contact-form-section">
                 <form action="contact.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name:" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email:" required>
-                    </div>
+    <input type="text" name="name" placeholder="Name:" value="<?php echo $name; ?>" required>
+</div>
+<div class="form-group">
+    <input type="email" name="email" placeholder="Email:" value="<?php echo $email; ?>" required>
+</div>
                     <div class="form-group">
                         <input type="tel" name="mobile" placeholder="Mobile:" required>
                     </div>
@@ -159,11 +213,16 @@ if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
                         <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
                     </div>
                     <div class="form-group file-upload">
-                        <label for="plan-upload" class="file-label">
-                            <span>Drop Plan Here</span>
-                            <input type="file" id="plan-upload" name="plan" class="file-input">
-                        </label>
-                    </div>
+    <div class="form-group file-upload">
+    <div id="drop-zone" class="drop-zone">
+        <p>Drop your plan file here or click to browse</p>
+        <input type="file" id="plan-upload" name="plan" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf" hidden>
+    </div>
+    <div id="file-preview" class="file-preview"></div>
+</div>
+</div>
+
+
                     <button type="submit" class="submit-btn">Submit</button>
                 </form>
             </div>
@@ -269,6 +328,61 @@ if (isset($_GET['message']) && $_GET['message'] === 'login_required') {
                 });
             });
         });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('plan-upload');
+    const previewContainer = document.getElementById('file-preview');
+
+    // Handle click to open file picker
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    // Handle file selection
+    fileInput.addEventListener('change', () => handleFiles(fileInput.files));
+
+    // Drag events
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files; // Sync hidden input
+            handleFiles(files);
+        }
+    });
+
+    function handleFiles(files) {
+        previewContainer.innerHTML = '';
+
+        const file = files[0];
+        if (!file) return;
+
+        const fileType = file.type;
+
+        if (fileType.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            previewContainer.appendChild(img);
+        } else if (fileType === 'application/pdf') {
+            const iframe = document.createElement('iframe');
+            iframe.src = URL.createObjectURL(file);
+            iframe.style.height = '400px';
+            previewContainer.appendChild(iframe);
+        } else {
+            previewContainer.textContent = 'Preview not available for this file type.';
+        }
+    }
+});
+
     </script>
 </body>
 </html>
